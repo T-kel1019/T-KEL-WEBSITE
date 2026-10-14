@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>T-KEL Management Director Login</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="T-KEL logo.png"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            min-height: 100dvh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 25px 15px;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4f8ff,
+                    #ffffff,
+                    #eef5ff
+                );
+
+            color: #111827;
+        }
+
+        .director-login {
+            width: 100%;
+            max-width: 480px;
+
+            background: #ffffff;
+
+            padding: 40px 35px;
+
+            border-radius: 20px;
+
+            border: 1px solid #e2e8f0;
+
+            box-shadow:
+                0 15px 45px
+                rgba(0, 71, 184, 0.12);
+
+            text-align: center;
+        }
+
+        .director-login img {
+            width: 105px;
+            height: 105px;
+
+            object-fit: contain;
+
+            display: block;
+
+            margin: 0 auto 20px;
+        }
+
+        .director-login h1 {
+            margin: 0;
+
+            color: #0066ff;
+
+            font-size: 29px;
+
+            font-weight: 800;
+        }
+
+        .director-login h2 {
+            margin: 7px 0 10px;
+
+            font-size: 21px;
+
+            color: #111827;
+        }
+
+        .director-login p {
+            margin: 0 0 28px;
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+        .form-group {
+            text-align: left;
+
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            color: #1e293b;
+        }
+
+        .form-group input {
+            width: 100%;
+
+            padding: 14px;
+
+            border:
+                1px solid #cbd5e1;
+
+            border-radius: 10px;
+
+            background: #ffffff;
+
+            color: #111827;
+
+            font-size: 16px;
+
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #0066ff;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(0, 102, 255, 0.10);
+        }
+
+        .login-button {
+            width: 100%;
+
+            border: none;
+
+            border-radius: 10px;
+
+            padding: 15px;
+
+            margin-top: 5px;
+
+            background: #0066ff;
+
+            color: #ffffff;
+
+            font-size: 16px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background: #0047b8;
+        }
+
+        .login-message {
+            min-height: 24px;
+
+            margin-top: 18px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            line-height: 1.5;
+        }
+
+        .private-notice {
+            margin-top: 22px;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            background: #f1f6ff;
+
+            color: #475569;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+        .back-link {
+            display: inline-block;
+
+            margin-top: 20px;
+
+            color: #0066ff;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 20px 14px;
+            }
+
+            .director-login {
+                padding: 32px 22px;
+
+                border-radius: 16px;
+            }
+
+            .director-login img {
+                width: 90px;
+                height: 90px;
+            }
+
+            .director-login h1 {
+                font-size: 25px;
+            }
+
+            .director-login h2 {
+                font-size: 19px;
+            }
+
+            .director-login p {
+                font-size: 13px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="director-login">
+
+    <img
+        src="T-KEL logo.png"
+        alt="T-KEL Logo"
+    >
+
+
+    <h1>
+        T-KEL Management
+    </h1>
+
+
+    <h2>
+        Director Login
+    </h2>
+
+
+    <p>
+        Terriken Entertainment Limited
+    </p>
+
+
+    <form id="director-login-form">
+
+
+        <div class="form-group">
+
+            <label for="director-email">
+                Director Email
+            </label>
+
+            <input
+                type="email"
+                id="director-email"
+                placeholder="Enter director email"
+                autocomplete="email"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="director-password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="director-password"
+                placeholder="Enter director password"
+                autocomplete="current-password"
+                required
+            >
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="login-button"
+        >
+            Sign In as Director
+        </button>
+
+
+    </form>
+
+
+    <div
+        id="login-message"
+        class="login-message"
+        aria-live="polite"
+    ></div>
+
+
+    <div class="private-notice">
+
+        🔐 Private Management Director access.
+        This page is not part of the public T-KEL
+        website navigation.
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="back-link"
+    >
+        ← Back to T-KEL
+    </a>
+
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+const SUPABASE_URL =
+    "https://tvefankphzactrtciuwp.supabase.co";
+
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_yRe3y1xhJO_OFEVQpxopxg_1mR7gmqf";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
+
+document
+    .getElementById("director-login-form")
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const email =
+                document
+                    .getElementById(
+                        "director-email"
+                    )
+                    .value
+                    .trim();
+
+
+            const password =
+                document
+                    .getElementById(
+                        "director-password"
+                    )
+                    .value;
+
+
+            const message =
+                document.getElementById(
+                    "login-message"
+                );
+
+
+            message.style.color =
+                "#0066ff";
+
+            message.textContent =
+                "Signing in...";
+
+
+            try {
+
+                const {
+                    data,
+                    error
+                } =
+                    await supabaseClient
+                        .auth
+                        .signInWithPassword({
+
+                            email:
+                                email,
+
+                            password:
+                                password
+
+                        });
+
+
+                if (error) {
+
+                    throw error;
+
+                }
+
+
+                if (!data.session) {
+
+                    throw new Error(
+                        "No Director session was created."
+                    );
+
+                }
+
+
+                /*
+                 * The actual Director authorization
+                 * is checked by the protected
+                 * Director functions.
+                 */
+
+                message.style.color =
+                    "#15803d";
+
+                message.textContent =
+                    "Director login successful.";
+
+
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            "management-director.html";
+
+                    },
+                    500
+                );
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                message.style.color =
+                    "#dc2626";
+
+                message.textContent =
+                    "Login failed: " +
+                    error.message;
+
+            }
+
+        }
+    );
+
+
+/*
+ * Mobile keyboard support
+ */
+
+document.addEventListener(
+    "focusin",
+    function(event) {
+
+        if (
+            event.target.tagName ===
+            "INPUT"
+        ) {
+
+            setTimeout(
+                function() {
+
+                    event.target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                },
+                300
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

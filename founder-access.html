@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>T-KEL Founder Access</title>
+
+    <meta
+        name="description"
+        content="Secure T-KEL Founder access.">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            min-height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #0066ff;
+            color: #222;
+        }
+
+
+        /* =========================
+           MAIN PAGE
+        ========================== */
+
+        .founder-page {
+
+            min-height: 100vh;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 50px;
+
+            padding: 50px 6vw;
+
+            align-items: center;
+
+        }
+
+
+        /* =========================
+           LEFT SIDE
+        ========================== */
+
+        .founder-brand {
+
+            min-height: 75vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            padding: 30px;
+
+            color: #ffffff;
+
+        }
+
+
+        .logo-area {
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .logo-area img {
+
+            width: 280px;
+
+            max-width: 75%;
+
+            height: auto;
+
+            display: block;
+
+        }
+
+
+        .founder-brand h2 {
+    font-size: clamp(38px, 4.5vw, 64px);
+    line-height: 1.05;
+    margin: 0 0 20px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+
+        .founder-description {
+
+            max-width: 650px;
+
+            font-size: 20px;
+
+            line-height: 1.7;
+
+            margin: 0 0 30px;
+
+            color: rgba(
+                255,
+                255,
+                255,
+                0.95
+            );
+
+        }
+
+
+        /* =========================
+           FOUNDER INFORMATION
+        ========================== */
+
+        .founder-information {
+
+            max-width: 700px;
+
+            background: rgba(
+                255,
+                255,
+                255,
+                0.12
+            );
+
+            border: 1px solid rgba(
+                255,
+                255,
+                255,
+                0.25
+            );
+
+            border-radius: 12px;
+
+            padding: 25px;
+
+            backdrop-filter: blur(6px);
+
+        }
+
+
+        .founder-information h3 {
+
+            margin: 0 0 12px;
+
+            font-size: 20px;
+
+        }
+
+
+        .founder-information p {
+
+            margin: 0;
+
+            line-height: 1.7;
+
+            font-size: 15px;
+
+            color: rgba(
+                255,
+                255,
+                255,
+                0.9
+            );
+
+        }
+
+
+        /* =========================
+           RIGHT SIDE
+        ========================== */
+
+        .founder-form-section {
+
+            width: 100%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+        }
+
+
+        .founder-card {
+
+            width: 100%;
+
+            max-width: 650px;
+
+            background: #ffffff;
+
+            padding: 50px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 20px 60px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.25
+                );
+
+        }
+
+
+        .founder-card h1 {
+
+            margin: 0 0 12px;
+
+            color: #061a3a;
+
+            font-size: 38px;
+
+        }
+
+
+        .subtitle {
+
+            color: #666;
+
+            font-size: 17px;
+
+            line-height: 1.6;
+
+            margin: 0 0 30px;
+
+        }
+
+
+        /* =========================
+           SECURITY NOTICE
+        ========================== */
+
+        .notice {
+
+            background: #eef6ff;
+
+            border-left: 5px solid #0066ff;
+
+            padding: 18px;
+
+            margin-bottom: 30px;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+
+            color: #333;
+
+            border-radius: 5px;
+
+        }
+
+
+        .notice strong {
+
+            display: block;
+
+            color: #061a3a;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        /* =========================
+           FORM
+        ========================== */
+
+        label {
+
+            display: block;
+
+            font-weight: bold;
+
+            margin-bottom: 9px;
+
+            color: #061a3a;
+
+            font-size: 15px;
+
+        }
+
+
+        input {
+
+            width: 100%;
+
+            padding: 17px;
+
+            margin-bottom: 23px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 8px;
+
+            font-size: 17px;
+
+        }
+
+
+        input:focus {
+
+            outline: none;
+
+            border-color: #0066ff;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(
+                    0,
+                    102,
+                    255,
+                    0.12
+                );
+
+        }
+
+
+        button {
+
+            width: 100%;
+
+            padding: 17px;
+
+            background: #0066ff;
+
+            color: #ffffff;
+
+            border: none;
+
+            border-radius: 8px;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+        }
+
+
+        button:hover {
+
+            background: #0047b8;
+
+        }
+
+
+        button:disabled {
+
+            opacity: 0.7;
+
+            cursor: not-allowed;
+
+        }
+
+
+        /* =========================
+           MESSAGE
+        ========================== */
+
+        .message {
+
+            margin-top: 20px;
+
+            padding: 14px;
+
+            border-radius: 8px;
+
+            display: none;
+
+            line-height: 1.5;
+
+        }
+
+
+        .error {
+
+            background: #ffe8e8;
+
+            color: #a00000;
+
+        }
+
+
+        .success {
+
+            background: #e8f7e8;
+
+            color: #146b14;
+
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        .form-footer {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+        }
+
+
+        .back-link {
+
+            color: #0066ff;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+        }
+
+
+        .back-link:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        .footer-note {
+
+            margin-top: 10px;
+
+            color: #777;
+
+            font-size: 13px;
+
+        }
+
+
+        /* =========================
+           TABLET
+        ========================== */
+
+        @media (max-width: 900px) {
+
+            .founder-page {
+
+                grid-template-columns: 1fr;
+
+                padding: 40px 25px;
+
+                gap: 25px;
+
+            }
+
+
+            .founder-brand {
+
+                min-height: auto;
+
+                padding: 20px;
+
+                text-align: center;
+
+                align-items: center;
+
+            }
+
+
+            .logo-area img {
+
+                margin: 0 auto;
+
+                width: 230px;
+
+            }
+
+
+            .founder-description {
+
+                max-width: 700px;
+
+            }
+
+
+            .founder-information {
+
+                width: 100%;
+
+                max-width: 700px;
+
+                text-align: left;
+
+            }
+
+
+            .founder-card {
+
+                max-width: 700px;
+
+            }
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 600px) {
+
+            .founder-page {
+
+                padding: 25px 15px;
+
+                gap: 20px;
+
+            }
+
+
+            .founder-brand {
+
+                padding: 15px;
+
+            }
+
+
+            .logo-area img {
+
+                width: 180px;
+
+            }
+
+
+            .founder-brand h2 {
+
+                font-size: 38px;
+
+            }
+
+
+            .founder-description {
+
+                font-size: 16px;
+
+            }
+
+
+            .founder-information {
+
+                padding: 20px;
+
+            }
+
+
+            .founder-card {
+
+                padding: 30px 22px;
+
+                border-radius: 14px;
+
+            }
+
+
+            .founder-card h1 {
+
+                font-size: 28px;
+
+            }
+
+
+            .subtitle {
+
+                font-size: 15px;
+
+            }
+
+
+            input,
+            button {
+
+                padding: 15px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="founder-page">
+
+
+    <!-- =========================
+         LEFT BRAND AREA
+    ========================== -->
+
+    <section class="founder-brand">
+
+
+        <div class="logo-area">
+
+            <img
+                src="T-KEL logo.png"
+                alt="T-KEL Logo">
+
+        </div>
+
+
+      
+    <h2>
+    Founder Access
+</h2>
+
+
+        <p class="founder-description">
+
+            The Founder Access portal is the
+            secure entry point for establishing
+            and administering the T-KEL Management
+            system.
+
+        </p>
+
+
+        <div class="founder-information">
+
+            <h3>
+
+                Founder Authority
+
+            </h3>
+
+
+            <p>
+
+                Founder access is reserved for the
+                authorized T-KEL Founder. From here,
+                the initial Founder Management account
+                can be established before other
+                Management members are registered.
+
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         RIGHT FORM
+    ========================== -->
+
+    <section class="founder-form-section">
+
+
+        <div class="founder-card">
+
+
+            <h1>
+
+                Founder Access
+
+            </h1>
+
+
+            <p class="subtitle">
+
+                T-KEL Founder and initial
+                Management administrator access.
+
+            </p>
+
+
+            <div class="notice">
+
+                <strong>
+                    🔐 Restricted Founder Area
+                </strong>
+
+                This area is for the Founder only.
+                Founder access allows the initial
+                T-KEL Management account to be
+                created before other Management
+                members are registered.
+
+            </div>
+
+
+            <form id="founderForm">
+
+
+                <label for="setupKey">
+
+                    Founder Setup Key
+
+                </label>
+
+
+                <input
+                    type="password"
+                    id="setupKey"
+                    placeholder="Enter Founder Setup Key"
+                    autocomplete="off"
+                    required>
+
+
+
+                <label for="fullName">
+
+                    Founder Full Name
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="fullName"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required>
+
+
+
+                <label for="password">
+
+                    Create Founder Password
+
+                </label>
+
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create a strong password"
+                    autocomplete="new-password"
+                    required>
+
+
+
+                <button
+                    type="submit"
+                    id="founderButton">
+
+                    Create Founder Access
+
+                </button>
+
+
+            </form>
+
+
+            <div
+                id="message"
+                class="message">
+
+            </div>
+
+
+            <div class="form-footer">
+
+                <a
+                    href="management-login.html"
+                    class="back-link">
+
+                    ← Back to Management Login
+
+                </a>
+
+
+                <div class="footer-note">
+
+                    T-KEL Founder Management System
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</div>
+
+
+
+<script>
+
+const founderForm =
+    document.getElementById("founderForm");
+
+const founderButton =
+    document.getElementById("founderButton");
+
+const message =
+    document.getElementById("message");
+
+
+function showMessage(text, type) {
+
+    message.textContent = text;
+
+    message.className =
+        "message " + type;
+
+    message.style.display = "block";
+
+}
+
+
+founderForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+        message.style.display = "none";
+
+
+        const setupKey =
+            document
+                .getElementById("setupKey")
+                .value
+                .trim();
+
+
+        const fullName =
+            document
+                .getElementById("fullName")
+                .value
+                .trim();
+
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        if (!setupKey || !fullName || !password) {
+
+            showMessage(
+                "Please complete all fields.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (password.length < 8) {
+
+            showMessage(
+                "Your password must be at least 8 characters.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        founderButton.disabled = true;
+
+        founderButton.textContent =
+            "Creating Founder Access...";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/.netlify/functions/founder-setup",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        credentials: "include",
+
+                        body: JSON.stringify({
+                            setupKey,
+                            fullName,
+                            password
+                        })
+                    }
+                );
+
+
+          
+
+            const responseText = await response.text();
+
+let result;
+
+try {
+    result = JSON.parse(responseText);
+} catch (parseError) {
+    console.error(
+        "Founder system returned a non-JSON response:",
+        responseText
+    );
+
+    showMessage(
+        "The Founder system returned an unexpected response. Please check the Netlify function logs.",
+        "error"
+    );
+
+    founderButton.disabled = false;
+    founderButton.textContent =
+        "Create Founder Access";
+
+    return;
+}
+
+if (!response.ok || !result.success) {
+
+    showMessage(
+        result.message ||
+        "Founder setup failed.",
+        "error"
+    );
+
+    founderButton.disabled = false;
+
+    founderButton.textContent =
+        "Create Founder Access";
+
+    return;
+
+}
+
+            showMessage(
+                result.message,
+                "success"
+            );
+
+
+            setTimeout(function() {
+
+                window.location.href =
+                    "management-dashboard.html";
+
+            }, 1500);
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "Unable to connect to the Founder system.",
+                "error"
+            );
+
+            founderButton.disabled = false;
+
+            founderButton.textContent =
+                "Create Founder Access";
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

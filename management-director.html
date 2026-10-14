@@ -1,0 +1,2768 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>T-KEL Management Director</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            color: #222;
+        }
+
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #ddd;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+        }
+
+        .director-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        .login-box,
+        .dashboard {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .login-box {
+            max-width: 450px;
+            margin: 50px auto;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin-top: 0;
+        }
+
+        h1 {
+            color: #007BFF;
+            font-size: 25px;
+        }
+
+        h2 {
+            color: #007BFF;
+            margin-top: 30px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            border: none;
+            border-radius: 7px;
+            padding: 12px 18px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .blue-btn {
+            width: 100%;
+            margin-top: 20px;
+            background: #007BFF;
+            color: #ffffff;
+        }
+
+        .logout-btn {
+            background: #222;
+            color: #ffffff;
+        }
+
+        .approve-btn {
+            background: #198754;
+            color: #ffffff;
+        }
+
+        .reject-btn {
+            background: #dc3545;
+            color: #ffffff;
+        }
+
+        .load-btn {
+            background: #007BFF;
+            color: #ffffff;
+            margin-top: 10px;
+        }
+
+        .update-btn {
+            background: #007BFF;
+            color: #ffffff;
+            margin-top: 15px;
+        }
+
+        .suspend-btn {
+            background: #f0ad00;
+            color: #ffffff;
+        }
+
+        .restore-btn {
+            background: #198754;
+            color: #ffffff;
+        }
+
+        .remove-btn {
+            background: #dc3545;
+            color: #ffffff;
+        }
+
+        .message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 7px;
+            display: none;
+        }
+
+        .error {
+            background: #ffe5e5;
+            color: #a00000;
+        }
+
+        .success {
+            background: #e5f8ea;
+            color: #146c2e;
+        }
+
+        .director-info {
+            background: #eef6ff;
+            border-left: 4px solid #007BFF;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .dashboard-section {
+            margin-top: 30px;
+        }
+
+        .application {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            background: #ffffff;
+        }
+
+        .application h3 {
+            color: #007BFF;
+        }
+
+        .application-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .field {
+            background: #f7f7f7;
+            padding: 10px;
+            border-radius: 6px;
+            overflow-wrap: anywhere;
+        }
+
+        .field strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .actions {
+            margin-top: 20px;
+        }
+
+        .actions button {
+            margin-right: 8px;
+            margin-top: 8px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            border: 1px dashed #bbb;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .director-reports-section,
+        .director-members-section {
+            margin-top: 30px;
+            padding-top: 10px;
+        }
+
+        .director-report-card,
+        .management-member-card {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .director-report-card h3,
+        .management-member-card h3 {
+            color: #007BFF;
+            margin-bottom: 15px;
+        }
+
+        .report-description {
+            background: #f7f7f7;
+            border-radius: 7px;
+            padding: 15px;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            line-height: 1.5;
+        }
+
+        .report-update-message,
+        .member-action-message {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .member-status {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 5px;
+            background: #eef6ff;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        .member-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .member-actions button {
+            margin: 0;
+        }
+
+        .section-description {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 650px) {
+
+            .header {
+                padding: 12px;
+            }
+
+            .logo {
+                width: 95px;
+            }
+
+            .director-title {
+                font-size: 14px;
+            }
+
+            .container {
+                margin-top: 15px;
+                padding: 0 10px;
+            }
+
+            .login-box,
+            .dashboard {
+                padding: 18px;
+            }
+
+            .application-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .actions button {
+                width: 100%;
+                margin-right: 0;
+            }
+
+            .member-actions {
+                flex-direction: column;
+            }
+
+            .member-actions button {
+                width: 100%;
+            }
+
+            .director-report-card,
+            .management-member-card,
+            .application {
+                padding: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <img
+        src="T-KEL logo.png"
+        alt="T-KEL"
+        class="logo">
+
+    <div class="director-title">
+        Management Director
+    </div>
+
+</header>
+
+
+<main class="container">
+
+
+    <!-- =========================
+         DIRECTOR LOGIN
+    ========================== -->
+
+    <section
+        id="loginSection"
+        class="login-box">
+
+        <h1>
+            Management Director
+        </h1>
+
+        <p>
+            Authorized T-KEL Management Director access only.
+        </p>
+
+        <label for="email">
+            Director Email
+        </label>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter Director email"
+            autocomplete="username">
+
+        <label for="password">
+            Password
+        </label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter password"
+            autocomplete="current-password">
+
+        <button
+            class="blue-btn"
+            id="loginBtn"
+            type="button">
+
+            Login
+
+        </button>
+
+        <div
+            id="loginMessage"
+            class="message">
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         DIRECTOR DASHBOARD
+    ========================== -->
+
+    <section
+        id="dashboardSection"
+        class="dashboard"
+        style="display:none;">
+
+
+        <!-- DASHBOARD HEADER -->
+
+        <div
+            style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                gap:15px;
+                flex-wrap:wrap;
+            ">
+
+            <div>
+
+                <h1>
+                    Management Director Dashboard
+                </h1>
+
+                <div class="director-info">
+                    Authorized Director Area
+                </div>
+
+            </div>
+
+            <button
+                class="logout-btn"
+                id="logoutBtn"
+                type="button">
+
+                Logout
+
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             PENDING APPLICATIONS
+        ========================== -->
+
+        <section class="dashboard-section">
+
+            <h2>
+                Pending Management Applications
+            </h2>
+
+            <p class="section-description">
+                Review applications submitted by people
+                requesting to join T-KEL Management.
+            </p>
+
+            <div id="applicationsContainer">
+
+                <div class="loading">
+                    Loading applications...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MANAGEMENT REPORTS
+        ========================== -->
+
+        <section
+            class="director-reports-section">
+
+            <h2>
+                Management Reports
+            </h2>
+
+            <p class="section-description">
+                Review reports submitted by T-KEL management
+                members, assign reports, respond to them,
+                and update their status.
+            </p>
+
+            <button
+                type="button"
+                class="load-btn"
+                onclick="loadDirectorReports()">
+
+                Load Management Reports
+
+            </button>
+
+            <div
+                id="directorReportsMessage">
+            </div>
+
+            <div
+                id="directorReportsContainer">
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MANAGEMENT MEMBERS
+        ========================== -->
+
+        <section
+            class="director-members-section">
+
+            <h2>
+                Management Members
+            </h2>
+
+            <p class="section-description">
+                View registered T-KEL management members
+                and monitor their account status.
+            </p>
+
+            <button
+                type="button"
+                class="load-btn"
+                onclick="loadManagementMembers()">
+
+                Load Management Members
+
+            </button>
+
+            <div
+                id="managementMembersMessage">
+            </div>
+
+            <div
+                id="managementMembersContainer">
+            </div>
+
+        </section>
+
+
+    </section>
+
+
+</main>
+
+
+<script type="module">
+
+
+    /* ==========================================
+       SUPABASE
+    ========================================== */
+
+    import {
+        createClient
+    } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+
+    /*
+     * PUBLIC / PUBLISHABLE KEY ONLY.
+     *
+     * NEVER put SUPABASE_SECRET_KEY here.
+     */
+
+    const SUPABASE_URL =
+        "https://tvefankphzactrtciuwp.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+        "sb_publishable_yRe3y1xhJO_OFEVqpxopxg_1mR7gmqf";
+
+
+    const supabase =
+        createClient(
+            SUPABASE_URL,
+            SUPABASE_PUBLISHABLE_KEY
+        );
+
+
+    /* ==========================================
+       ELEMENTS
+    ========================================== */
+
+    const loginSection =
+        document.getElementById(
+            "loginSection"
+        );
+
+    const dashboardSection =
+        document.getElementById(
+            "dashboardSection"
+        );
+
+    const loginBtn =
+        document.getElementById(
+            "loginBtn"
+        );
+
+    const logoutBtn =
+        document.getElementById(
+            "logoutBtn"
+        );
+
+    const loginMessage =
+        document.getElementById(
+            "loginMessage"
+        );
+
+    const applicationsContainer =
+        document.getElementById(
+            "applicationsContainer"
+        );
+
+
+    /* ==========================================
+       HELPERS
+    ========================================== */
+
+    function showLoginMessage(
+        message,
+        type = "error"
+    ) {
+
+        loginMessage.textContent =
+            message;
+
+        loginMessage.className =
+            "message " + type;
+
+        loginMessage.style.display =
+            "block";
+
+    }
+
+
+    function escapeHtml(value) {
+
+        if (
+            value === null ||
+            value === undefined
+        ) {
+            return "";
+        }
+
+        return String(value)
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+    }
+
+
+    /* ==========================================
+       DIRECTOR LOGIN
+    ========================================== */
+
+    async function loginDirector() {
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        if (!email || !password) {
+
+            showLoginMessage(
+                "Please enter your email and password."
+            );
+
+            return;
+        }
+
+
+        loginBtn.disabled =
+            true;
+
+        loginBtn.textContent =
+            "Logging in...";
+
+
+        try {
+
+            const {
+                data,
+                error
+            } =
+                await supabase.auth.signInWithPassword({
+
+                    email,
+                    password
+
+                });
+
+
+            if (error) {
+
+                loginBtn.disabled =
+                    false;
+
+                loginBtn.textContent =
+                    "Login";
+
+                showLoginMessage(
+                    error.message
+                );
+
+                return;
+            }
+
+
+            if (!data.session) {
+
+                loginBtn.disabled =
+                    false;
+
+                loginBtn.textContent =
+                    "Login";
+
+                showLoginMessage(
+                    "Director session could not be created."
+                );
+
+                return;
+            }
+
+
+            await verifyDirector();
+
+        } catch (error) {
+
+            console.error(
+                "Director login error:",
+                error
+            );
+
+            loginBtn.disabled =
+                false;
+
+            loginBtn.textContent =
+                "Login";
+
+            showLoginMessage(
+                "Unable to complete Director login."
+            );
+
+        }
+
+    }
+
+
+    /* ==========================================
+       VERIFY DIRECTOR
+    ========================================== */
+
+    async function verifyDirector() {
+
+        const {
+            data: {
+                session
+            }
+        } =
+            await supabase.auth.getSession();
+
+
+        if (!session) {
+
+            showLoginMessage(
+                "Please log in again."
+            );
+
+            return;
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/.netlify/functions/management-director-session",
+                    {
+                        method: "GET",
+
+                        headers: {
+                            Authorization:
+                                "Bearer " +
+                                session.access_token
+                        },
+
+                        cache: "no-store"
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (
+                !response.ok ||
+                !result.success
+            ) {
+
+                await supabase.auth.signOut();
+
+                loginBtn.disabled =
+                    false;
+
+                loginBtn.textContent =
+                    "Login";
+
+                showLoginMessage(
+                    result.message ||
+                    "You are not authorized as a Management Director."
+                );
+
+                return;
+            }
+
+
+            loginSection.style.display =
+                "none";
+
+            dashboardSection.style.display =
+                "block";
+
+
+            loginBtn.disabled =
+                false;
+
+            loginBtn.textContent =
+                "Login";
+
+
+            await loadApplications();
+
+
+        } catch (error) {
+
+            console.error(
+                "Director verification error:",
+                error
+            );
+
+            await supabase.auth.signOut();
+
+            loginBtn.disabled =
+                false;
+
+            loginBtn.textContent =
+                "Login";
+
+            showLoginMessage(
+                "Unable to verify Director access."
+            );
+
+        }
+
+    }
+
+
+    /* ==========================================
+       LOAD PENDING APPLICATIONS
+    ========================================== */
+
+    async function loadApplications() {
+
+        applicationsContainer.innerHTML =
+            '<div class="loading">Loading applications...</div>';
+
+
+        const {
+            data: {
+                session
+            }
+        } =
+            await supabase.auth.getSession();
+
+
+        if (!session) {
+
+            applicationsContainer.innerHTML =
+                '<div class="empty">Director session expired.</div>';
+
+            return;
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/.netlify/functions/management-director-applications",
+                    {
+                        method: "GET",
+
+                        headers: {
+                            Authorization:
+                                "Bearer " +
+                                session.access_token
+                        },
+
+                        cache: "no-store"
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (
+                !response.ok ||
+                !result.success
+            ) {
+
+                applicationsContainer.innerHTML =
+                    `<div class="empty">
+                        ${escapeHtml(
+                            result.message ||
+                            "Unable to load applications."
+                        )}
+                    </div>`;
+
+                return;
+            }
+
+
+            const applications =
+                result.applications || [];
+
+
+            if (
+                applications.length === 0
+            ) {
+
+                applicationsContainer.innerHTML =
+                    `<div class="empty">
+                        There are currently no pending Management applications.
+                    </div>`;
+
+                return;
+            }
+
+
+            applicationsContainer.innerHTML =
+                applications
+                    .map(
+                        application =>
+                            createApplicationCard(
+                                application
+                            )
+                    )
+                    .join("");
+
+
+        } catch (error) {
+
+            console.error(
+                "Load applications error:",
+                error
+            );
+
+            applicationsContainer.innerHTML =
+                `<div class="empty">
+                    Unable to load Management applications.
+                </div>`;
+
+        }
+
+    }
+
+
+    /* ==========================================
+       APPLICATION CARD
+    ========================================== */
+
+    function createApplicationCard(
+        application
+    ) {
+
+        return `
+
+            <div
+                class="application"
+                data-id="${escapeHtml(application.id)}">
+
+                <h3>
+                    ${escapeHtml(
+                        application.full_name
+                    )}
+                </h3>
+
+
+                <div class="application-grid">
+
+
+                    <div class="field">
+
+                        <strong>
+                            Email
+                        </strong>
+
+                        ${escapeHtml(
+                            application.email
+                        )}
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <strong>
+                            Phone
+                        </strong>
+
+                        ${escapeHtml(
+                            application.phone
+                        )}
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <strong>
+                            Location
+                        </strong>
+
+                        ${escapeHtml(
+                            application.location
+                        )}
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <strong>
+                            Date of Birth
+                        </strong>
+
+                        ${escapeHtml(
+                            application.date_of_birth ||
+                            "Not provided"
+                        )}
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <strong>
+                            Gender
+                        </strong>
+
+                        ${escapeHtml(
+                            application.gender ||
+                            "Not provided"
+                        )}
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <strong>
+                            Requested Role
+                        </strong>
+
+                        ${escapeHtml(
+                            application.requested_role
+                        )}
+
+                    </div>
+
+
+                </div>
+
+
+                <div
+                    class="field"
+                    style="margin-top:12px;">
+
+                    <strong>
+                        Experience
+                    </strong>
+
+                    ${escapeHtml(
+                        application.experience
+                    )}
+
+                </div>
+
+
+                ${
+                    application.photo_url
+                    ?
+                    `
+                    <div
+                        class="field"
+                        style="margin-top:12px;">
+
+                        <strong>
+                            Applicant Photo
+                        </strong>
+
+                        <div>
+                            Photo is stored securely
+                            and is available to authorized
+                            management processes.
+                        </div>
+
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+
+                <label>
+                    Management Note
+                </label>
+
+
+                <textarea
+                    class="management-note"
+                    maxlength="5000"
+                    placeholder="Optional note about this application...">
+                </textarea>
+
+
+                <div class="actions">
+
+
+                    <button
+                        class="approve-btn"
+                        type="button"
+                        onclick="approveApplication('${escapeHtml(application.id)}')">
+
+                        Approve
+
+                    </button>
+
+
+                    <button
+                        class="reject-btn"
+                        type="button"
+                        onclick="rejectApplication('${escapeHtml(application.id)}')">
+
+                        Reject
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* ==========================================
+       PROCESS APPLICATION
+    ========================================== */
+
+    async function processApplication(
+        action,
+        applicationId
+    ) {
+
+        const card =
+            document.querySelector(
+                `.application[data-id="${applicationId}"]`
+            );
+
+
+        if (!card) {
+            return;
+        }
+
+
+        const noteElement =
+            card.querySelector(
+                ".management-note"
+            );
+
+
+        const note =
+            noteElement
+                ? noteElement.value.trim()
+                : "";
+
+
+        if (
+            action === "reject" &&
+            !window.confirm(
+                "Are you sure you want to reject this Management application?"
+            )
+        ) {
+            return;
+        }
+
+
+        if (
+            action === "approve" &&
+            !window.confirm(
+                "Are you sure you want to approve this Management application?"
+            )
+        ) {
+            return;
+        }
+
+
+        const {
+            data: {
+                session
+            }
+        } =
+            await supabase.auth.getSession();
+
+
+        if (!session) {
+
+            alert(
+                "Your Director session has expired."
+            );
+
+            return;
+        }
+
+
+        const buttons =
+            card.querySelectorAll(
+                "button"
+            );
+
+
+        buttons.forEach(
+            button =>
+                button.disabled = true
+        );
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/.netlify/functions/management-director-action",
+                    {
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json",
+
+                            Authorization:
+                                "Bearer " +
+                                session.access_token
+
+                        },
+
+                        body: JSON.stringify({
+
+                            action,
+
+                            applicationId,
+
+                            managementNote:
+                                note
+
+                        })
+
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (
+                !response.ok ||
+                !result.success
+            ) {
+
+                alert(
+                    result.message ||
+                    "The action could not be completed."
+                );
+
+
+                buttons.forEach(
+                    button =>
+                        button.disabled = false
+                );
+
+                return;
+            }
+
+
+            alert(
+                result.message ||
+                "Application action completed successfully."
+            );
+
+
+            await loadApplications();
+
+
+        } catch (error) {
+
+            console.error(
+                "Process application error:",
+                error
+            );
+
+            alert(
+                "Unable to complete the application action."
+            );
+
+
+            buttons.forEach(
+                button =>
+                    button.disabled = false
+            );
+
+        }
+
+    }
+
+
+    /* ==========================================
+       APPROVE / REJECT
+    ========================================== */
+
+    window.approveApplication =
+        function(applicationId) {
+
+            processApplication(
+                "approve",
+                applicationId
+            );
+
+        };
+
+
+    window.rejectApplication =
+        function(applicationId) {
+
+            processApplication(
+                "reject",
+                applicationId
+            );
+
+        };
+
+
+    /* ==========================================
+       LOAD DIRECTOR REPORTS
+    ========================================== */
+
+    async function loadDirectorReports() {
+
+        const message =
+            document.getElementById(
+                "directorReportsMessage"
+            );
+
+        const container =
+            document.getElementById(
+                "directorReportsContainer"
+            );
+
+
+        message.textContent =
+            "Loading management reports...";
+
+        container.innerHTML =
+            "";
+
+
+        try {
+
+            const {
+                data: {
+                    session
+                }
+            } =
+                await supabase.auth.getSession();
+
+
+            if (
+                !session ||
+                !session.access_token
+            ) {
+
+                message.textContent =
+                    "Director session expired.";
+
+                return;
+            }
+
+
+            const response =
+                await fetch(
+                    "/.netlify/functions/management-director-reports",
+                    {
+                        method: "GET",
+
+                        headers: {
+                            Authorization:
+                                `Bearer ${session.access_token}`
+                        },
+
+                        cache: "no-store"
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.error ||
+                    data.message ||
+                    "Unable to load management reports."
+                );
+
+            }
+
+
+            const reports =
+                data.reports || [];
+
+            const members =
+                data.members || [];
+
+
+            message.textContent =
+                reports.length === 0
+                    ? "There are no management reports yet."
+                    : `${reports.length} report(s) found.`;
+
+
+            if (
+                reports.length === 0
+            ) {
+
+                return;
+            }
+
+
+            container.innerHTML =
+                reports
+                    .map(
+                        report =>
+                            createReportCard(
+                                report,
+                                members
+                            )
+                    )
+                    .join("");
+
+
+        } catch (error) {
+
+            console.error(
+                "Director reports error:",
+                error
+            );
+
+            message.textContent =
+                error.message ||
+                "Unable to load management reports.";
+
+        }
+
+    }
+
+
+    /* ==========================================
+       CREATE REPORT CARD
+    ========================================== */
+
+    function createReportCard(
+        report,
+        members
+    ) {
+
+        const createdDate =
+            report.created_at
+                ? new Date(
+                    report.created_at
+                ).toLocaleString()
+                : "—";
+
+
+        const updatedDate =
+            report.updated_at
+                ? new Date(
+                    report.updated_at
+                ).toLocaleString()
+                : "—";
+
+
+        const memberOptions =
+            members
+                .map(
+                    member => {
+
+                        const selected =
+                            report.assigned_to ===
+                            member.id
+                                ? "selected"
+                                : "";
+
+
+                        return `
+                            <option
+                                value="${escapeHtml(member.id)}"
+                                ${selected}>
+
+                                ${escapeHtml(
+                                    member.full_name
+                                )}
+                                -
+                                ${escapeHtml(
+                                    member.assigned_role
+                                )}
+
+                            </option>
+                        `;
+
+                    }
+                )
+                .join("");
+
+
+        return `
+
+            <div
+                class="director-report-card">
+
+
+                <h3>
+                    ${escapeHtml(
+                        report.report_type
+                    )}
+                </h3>
+
+
+                <p>
+
+                    <strong>
+                        Report ID:
+                    </strong>
+
+                    ${escapeHtml(
+                        report.report_id
+                    )}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Staff:
+                    </strong>
+
+                    ${escapeHtml(
+                        report.staff_name
+                    )}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Management ID:
+                    </strong>
+
+                    ${escapeHtml(
+                        report.management_id
+                    )}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Role:
+                    </strong>
+
+                    ${escapeHtml(
+                        report.assigned_role
+                    )}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Department:
+                    </strong>
+
+                    ${escapeHtml(
+                        report.department ||
+                        "—"
+                    )}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Date Submitted:
+                    </strong>
+
+                    ${escapeHtml(
+                        createdDate
+                    )}
+
+                </p>
+
+
+                <p>
+                    <strong>
+                        Description:
+                    </strong>
+                </p>
+
+
+                <div
+                    class="report-description">
+
+                    ${escapeHtml(
+                        report.description
+                    )}
+
+                </div>
+
+
+                <label
+                    for="status-${escapeHtml(report.id)}">
+
+                    Status
+
+                </label>
+
+
+                <select
+                    id="status-${escapeHtml(report.id)}">
+
+
+                    <option
+                        value="OPEN"
+                        ${
+                            report.status ===
+                            "OPEN"
+                                ? "selected"
+                                : ""
+                        }>
+
+                        OPEN
+
+                    </option>
+
+
+                    <option
+                        value="REVIEWED"
+                        ${
+                            report.status ===
+                            "REVIEWED"
+                                ? "selected"
+                                : ""
+                        }>
+
+                        REVIEWED
+
+                    </option>
+
+
+                    <option
+                        value="IN_PROGRESS"
+                        ${
+                            report.status ===
+                            "IN_PROGRESS"
+                                ? "selected"
+                                : ""
+                        }>
+
+                        IN_PROGRESS
+
+                    </option>
+
+
+                    <option
+                        value="RESOLVED"
+                        ${
+                            report.status ===
+                            "RESOLVED"
+                                ? "selected"
+                                : ""
+                        }>
+
+                        RESOLVED
+
+                    </option>
+
+
+                    <option
+                        value="CLOSED"
+                        ${
+                            report.status ===
+                            "CLOSED"
+                                ? "selected"
+                                : ""
+                        }>
+
+                        CLOSED
+
+                    </option>
+
+
+                </select>
+
+
+                <label
+                    for="assigned-${escapeHtml(report.id)}">
+
+                    Assign To
+
+                </label>
+
+
+                <select
+                    id="assigned-${escapeHtml(report.id)}">
+
+
+                    <option value="">
+                        Not assigned
+                    </option>
+
+
+                    ${memberOptions}
+
+
+                </select>
+
+
+                <label
+                    for="response-${escapeHtml(report.id)}">
+
+                    Management Response
+
+                </label>
+
+
+                <textarea
+                    id="response-${escapeHtml(report.id)}"
+                    rows="5"
+                    maxlength="10000"
+                    placeholder="Write a response to this report...">${escapeHtml(
+                        report.director_response ||
+                        ""
+                    )}</textarea>
+
+
+                <p>
+
+                    <strong>
+                        Last Updated:
+                    </strong>
+
+                    ${escapeHtml(
+                        updatedDate
+                    )}
+
+                </p>
+
+
+                <button
+                    type="button"
+                    class="update-btn"
+                    onclick="updateManagementReport('${escapeHtml(report.id)}')">
+
+                    Save Report Update
+
+                </button>
+
+
+                <div
+                    id="report-update-${escapeHtml(report.id)}"
+                    class="report-update-message">
+
+                </div>
+
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* ==========================================
+       UPDATE MANAGEMENT REPORT
+    ========================================== */
+
+    async function updateManagementReport(
+        reportId
+    ) {
+
+        const statusElement =
+            document.getElementById(
+                `status-${reportId}`
+            );
+
+        const assignedElement =
+            document.getElementById(
+                `assigned-${reportId}`
+            );
+
+        const responseElement =
+            document.getElementById(
+                `response-${reportId}`
+            );
+
+        const messageElement =
+            document.getElementById(
+                `report-update-${reportId}`
+            );
+
+
+        if (
+            !statusElement ||
+            !assignedElement ||
+            !responseElement ||
+            !messageElement
+        ) {
+
+            return;
+        }
+
+
+        const status =
+            statusElement.value;
+
+        const assignedTo =
+            assignedElement.value;
+
+        const directorResponse =
+            responseElement.value.trim();
+
+
+        messageElement.textContent =
+            "Saving update...";
+
+
+        try {
+
+            const {
+                data: {
+                    session
+                }
+            } =
+                await supabase.auth.getSession();
+
+
+            if (
+                !session ||
+                !session.access_token
+            ) {
+
+                messageElement.textContent =
+                    "Director session expired.";
+
+                return;
+            }
+
+
+            const response =
+                await fetch(
+                    "/.netlify/functions/management-director-update-report",
+                    {
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json",
+
+                            Authorization:
+                                `Bearer ${session.access_token}`
+
+                        },
+
+                        body: JSON.stringify({
+
+                            reportId,
+
+                            status,
+
+                            assignedTo,
+
+                            directorResponse
+
+                        })
+
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.error ||
+                    data.message ||
+                    "Unable to update report."
+                );
+
+            }
+
+
+            messageElement.textContent =
+                "Report updated successfully.";
+
+
+            await loadDirectorReports();
+
+
+        } catch (error) {
+
+            console.error(
+                "Update management report error:",
+                error
+            );
+
+            messageElement.textContent =
+                error.message ||
+                "Unable to update report.";
+
+        }
+
+    }
+
+
+    /* ==========================================
+       LOAD MANAGEMENT MEMBERS
+    ========================================== */
+
+    async function loadManagementMembers() {
+
+        const message =
+            document.getElementById(
+                "managementMembersMessage"
+            );
+
+        const container =
+            document.getElementById(
+                "managementMembersContainer"
+            );
+
+
+        message.textContent =
+            "Loading management members...";
+
+        container.innerHTML =
+            "";
+
+
+        try {
+
+            const {
+                data: {
+                    session
+                }
+            } =
+                await supabase.auth.getSession();
+
+
+            if (
+                !session ||
+                !session.access_token
+            ) {
+
+                message.textContent =
+                    "Director session expired.";
+
+                return;
+            }
+
+
+            const response =
+                await fetch(
+                    "/.netlify/functions/management-director-members",
+                    {
+                        method: "GET",
+
+                        headers: {
+                            Authorization:
+                                `Bearer ${session.access_token}`
+                        },
+
+                        cache: "no-store"
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.error ||
+                    data.message ||
+                    "Unable to load management members."
+                );
+
+            }
+
+
+            const members =
+                data.members || [];
+
+
+            message.textContent =
+                members.length === 0
+                    ? "No management members have been registered yet."
+                    : `${members.length} management member(s) found.`;
+
+
+            if (
+                members.length === 0
+            ) {
+
+                return;
+            }
+
+
+            container.innerHTML =
+                members
+                    .map(
+                        member =>
+                            createMemberCard(
+                                member
+                            )
+                    )
+                    .join("");
+
+
+        } catch (error) {
+
+            console.error(
+                "Management members error:",
+                error
+            );
+
+            message.textContent =
+                error.message ||
+                "Unable to load management members.";
+
+        }
+
+    }
+
+
+    /* ==========================================
+       CREATE MEMBER CARD
+    ========================================== */
+
+    function createMemberCard(
+        member
+    ) {
+
+        const createdDate =
+            member.created_at
+                ? new Date(
+                    member.created_at
+                ).toLocaleString()
+                : "—";
+
+
+        const lastLogin =
+            member.last_login_at
+                ? new Date(
+                    member.last_login_at
+                ).toLocaleString()
+                : "Never";
+
+
+        const removedDate =
+            member.removed_at
+                ? new Date(
+                    member.removed_at
+                ).toLocaleString()
+                : "—";
+
+
+        return `
+
+            <div
+                class="management-member-card">
+
+
+                <h3>
+
+                    ${escapeHtml(
+                        member.full_name
+                    )}
+
+                </h3>
+
+
+                <p>
+
+                    <strong>
+                        Management ID:
+                    </strong>
+
+                    ${escapeHtml(
+                        member.management_id
+                    )}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Email:
+                    </strong>
+
+                    ${escapeHtml(
+                        member.email
+                    )}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Phone:
+                    </strong>
+
+                    ${escapeHtml(
+                        member.phone ||
+                        "—"
+                    )}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Role:
+                    </strong>
+
+                    ${escapeHtml(
+                        member.assigned_role
+                    )}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Department:
+                    </strong>
+
+                    ${escapeHtml(
+                        member.department ||
+                        "—"
+                    )}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Status:
+                    </strong>
+
+                    <span
+                        class="member-status">
+
+                        ${escapeHtml(
+                            member.account_status
+                        )}
+
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Created:
+                    </strong>
+
+                    ${escapeHtml(
+                        createdDate
+                    )}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Last Login:
+                    </strong>
+
+                    ${escapeHtml(
+                        lastLogin
+                    )}
+
+                </p>
+
+
+                ${
+                    member.account_status ===
+                    "REMOVED"
+                    ?
+                    `
+
+                        <p>
+
+                            <strong>
+                                Removed:
+                            </strong>
+
+                            ${escapeHtml(
+                                removedDate
+                            )}
+
+                        </p>
+
+
+                        ${
+                            member.removal_reason
+                            ?
+                            `
+
+                                <p>
+
+                                    <strong>
+                                        Removal Reason:
+                                    </strong>
+
+                                    ${escapeHtml(
+                                        member.removal_reason
+                                    )}
+
+                                </p>
+
+                            `
+                            :
+                            ""
+                        }
+
+                    `
+                    :
+                    ""
+                }
+
+
+                <div
+                    class="member-actions"
+                    data-member-id="${escapeHtml(
+                        member.id
+                    )}">
+
+
+                    ${
+                        member.account_status ===
+                        "ACTIVE"
+                        ?
+                        `
+
+                            <button
+                                type="button"
+                                class="suspend-btn"
+                                onclick="manageMemberAccount(
+                                    '${escapeHtml(member.id)}',
+                                    'SUSPEND'
+                                )">
+
+                                Suspend
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="remove-btn"
+                                onclick="manageMemberAccount(
+                                    '${escapeHtml(member.id)}',
+                                    'REMOVE'
+                                )">
+
+                                Remove
+
+                            </button>
+
+                        `
+                        :
+                        ""
+                    }
+
+
+                    ${
+                        member.account_status ===
+                        "SUSPENDED"
+                        ?
+                        `
+
+                            <button
+                                type="button"
+                                class="restore-btn"
+                                onclick="manageMemberAccount(
+                                    '${escapeHtml(member.id)}',
+                                    'RESTORE'
+                                )">
+
+                                Restore
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="remove-btn"
+                                onclick="manageMemberAccount(
+                                    '${escapeHtml(member.id)}',
+                                    'REMOVE'
+                                )">
+
+                                Remove
+
+                            </button>
+
+                        `
+                        :
+                        ""
+                    }
+
+
+                </div>
+
+
+                <div
+                    id="member-action-${escapeHtml(member.id)}"
+                    class="member-action-message">
+
+                </div>
+
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* ==========================================
+       MANAGE MEMBER ACCOUNT
+    ========================================== */
+
+    async function manageMemberAccount(
+        memberId,
+        action
+    ) {
+
+        const messageElement =
+            document.getElementById(
+                `member-action-${memberId}`
+            );
+
+
+        try {
+
+            const {
+                data
+            } =
+                await supabase.auth.getSession();
+
+
+            if (
+                !data.session ||
+                !data.session.access_token
+            ) {
+
+                if (messageElement) {
+
+                    messageElement.textContent =
+                        "Director session expired.";
+
+                }
+
+                return;
+            }
+
+
+            let removalReason =
+                "";
+
+
+            if (
+                action === "REMOVE"
+            ) {
+
+                removalReason =
+                    window.prompt(
+                        "Enter the reason for removing this management member:"
+                    );
+
+
+                if (
+                    removalReason ===
+                    null
+                ) {
+
+                    return;
+                }
+
+
+                removalReason =
+                    removalReason.trim();
+
+
+                if (!removalReason) {
+
+                    alert(
+                        "A removal reason is required."
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    removalReason.length >
+                    2000
+                ) {
+
+                    alert(
+                        "The removal reason is too long."
+                    );
+
+                    return;
+                }
+
+            }
+
+
+            let confirmationMessage =
+                "";
+
+
+            if (
+                action === "SUSPEND"
+            ) {
+
+                confirmationMessage =
+                    "Are you sure you want to suspend this management member?";
+
+            } else if (
+                action === "RESTORE"
+            ) {
+
+                confirmationMessage =
+                    "Are you sure you want to restore this management member?";
+
+            } else if (
+                action === "REMOVE"
+            ) {
+
+                confirmationMessage =
+                    "Are you sure you want to permanently remove this management member?";
+
+            }
+
+
+            if (
+                !window.confirm(
+                    confirmationMessage
+                )
+            ) {
+
+                return;
+            }
+
+
+            if (messageElement) {
+
+                messageElement.textContent =
+                    "Processing...";
+
+            }
+
+
+            const response =
+                await fetch(
+                    "/.netlify/functions/management-director-member-action",
+                    {
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json",
+
+                            Authorization:
+                                `Bearer ${data.session.access_token}`
+
+                        },
+
+                        body: JSON.stringify({
+
+                            memberId,
+
+                            action,
+
+                            removalReason
+
+                        })
+
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    result.error ||
+                    result.message ||
+                    "Unable to update member account."
+                );
+
+            }
+
+
+            if (messageElement) {
+
+                messageElement.textContent =
+                    result.message ||
+                    "Account updated successfully.";
+
+            }
+
+
+            await loadManagementMembers();
+
+
+        } catch (error) {
+
+            console.error(
+                "Management member action error:",
+                error
+            );
+
+
+            if (messageElement) {
+
+                messageElement.textContent =
+                    error.message ||
+                    "An error occurred.";
+
+            } else {
+
+                alert(
+                    error.message ||
+                    "An error occurred."
+                );
+
+            }
+
+        }
+
+    }
+
+
+    /* ==========================================
+       LOGOUT
+    ========================================== */
+
+    logoutBtn.addEventListener(
+        "click",
+        async () => {
+
+            await supabase.auth.signOut();
+
+
+            dashboardSection.style.display =
+                "none";
+
+
+            loginSection.style.display =
+                "block";
+
+
+            document
+                .getElementById("password")
+                .value = "";
+
+
+            showLoginMessage(
+                "You have been logged out.",
+                "success"
+            );
+
+        }
+    );
+
+
+    /* ==========================================
+       LOGIN BUTTON
+    ========================================== */
+
+    loginBtn.addEventListener(
+        "click",
+        loginDirector
+    );
+
+
+    /* ==========================================
+       EXISTING DIRECTOR SESSION
+    ========================================== */
+
+    const {
+        data: {
+            session
+        }
+    } =
+        await supabase.auth.getSession();
+
+
+    if (session) {
+
+        await verifyDirector();
+
+    }
+
+
+    /* ==========================================
+       MAKE FUNCTIONS AVAILABLE TO HTML BUTTONS
+    ========================================== */
+
+    window.loadDirectorReports =
+        loadDirectorReports;
+
+
+    window.updateManagementReport =
+        updateManagementReport;
+
+
+    window.loadManagementMembers =
+        loadManagementMembers;
+
+
+    window.manageMemberAccount =
+        manageMemberAccount;
+
+
+</script>
+
+
+</body>
+
+</html>

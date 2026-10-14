@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>T-KEL Application Form</title>
+
+    <meta
+        name="description"
+        content="Complete your T-KEL application form after successful payment."
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="T-KEL logo.png"
+    >
+
+    <style>
+
+        .hero {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero .logo {
+            display: block;
+            width: 220px;
+            max-width: 70%;
+            height: auto;
+            margin: 0 auto 25px;
+        }
+
+        .hero h1 {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto 15px;
+            font-size: clamp(28px, 6vw, 48px);
+            line-height: 1.15;
+            overflow-wrap: break-word;
+        }
+
+        .hero p {
+            width: 100%;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .content {
+            width: 100%;
+            max-width: 650px;
+            margin: 30px auto;
+            padding: 30px 20px;
+            box-sizing: border-box;
+        }
+
+        #application-form {
+            width: 100%;
+        }
+
+        #application-form p {
+            margin: 0 0 20px;
+        }
+
+        #application-form label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+        }
+
+        #application-form input[type="text"],
+        #application-form input[type="email"],
+        #application-form input[type="tel"],
+        #application-form input[type="date"],
+        #application-form input[type="file"],
+        #application-form select,
+        #application-form textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px 14px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        #application-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        #application-form input:focus,
+        #application-form select:focus,
+        #application-form textarea:focus {
+            border-color: #007BFF;
+        }
+
+        #application-form input[readonly] {
+            background: #f5f5f5;
+        }
+
+        #application-form button[type="submit"] {
+            width: 100%;
+            padding: 14px 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        #application-form button[type="submit"]:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .reference-box {
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            background: #f1f7ff;
+            overflow-wrap: anywhere;
+        }
+
+        .terms-label {
+            display: flex !important;
+            align-items: flex-start;
+            gap: 10px;
+            font-weight: normal !important;
+            line-height: 1.5;
+        }
+
+        .terms-label input {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        #form-message {
+            overflow-wrap: anywhere;
+        }
+
+        #form-message a {
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 480px) {
+
+            .hero {
+                padding: 30px 15px;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .hero .logo {
+                width: 180px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+    <a href="index.html">
+        Home
+    </a>
+
+    <a href="distribution.html">
+        Distribution
+    </a>
+
+</nav>
+
+
+<section class="hero">
+
+    <img
+        src="T-KEL logo.png"
+        alt="T-KEL Logo"
+        class="logo"
+    >
+
+    <h1>
+        T-KEL Application Form
+    </h1>
+
+    <p>
+        Complete your application after
+        successful payment.
+    </p>
+
+</section>
+
+
+<section class="content">
+
+
+    <div
+        id="loading-message"
+        style="
+            text-align:center;
+            font-weight:bold;
+        "
+    >
+        Verifying your payment...
+    </div>
+
+
+    <form
+        id="application-form"
+        style="display:none;"
+        enctype="multipart/form-data"
+    >
+
+
+        <div class="reference-box">
+
+            <p style="margin:0;">
+
+                <strong>
+                    Application Reference:
+                </strong>
+
+                <span id="application-reference">
+                    Loading...
+                </span>
+
+            </p>
+
+        </div>
+
+
+        <!-- FULL NAME -->
+
+        <p>
+
+            <label for="full-name">
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                id="full-name"
+                required
+            >
+
+        </p>
+
+
+        <!-- PROFESSIONAL NAME -->
+
+        <p>
+
+            <label for="professional-name">
+                Professional / Artist Name
+            </label>
+
+            <input
+                type="text"
+                id="professional-name"
+            >
+
+        </p>
+
+
+        <!-- EMAIL -->
+
+        <p>
+
+            <label for="email">
+                Email Address
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                readonly
+                required
+            >
+
+        </p>
+
+
+        <!-- PHONE -->
+
+        <p>
+
+            <label for="phone">
+                Phone Number
+            </label>
+
+            <input
+                type="tel"
+                id="phone"
+                required
+            >
+
+        </p>
+
+
+        <!-- DATE OF BIRTH -->
+
+        <p>
+
+            <label for="date-of-birth">
+                Date of Birth
+            </label>
+
+            <input
+                type="date"
+                id="date-of-birth"
+                required
+            >
+
+        </p>
+
+
+        <!-- GENDER -->
+
+        <p>
+
+            <label for="gender">
+                Gender
+            </label>
+
+            <select
+                id="gender"
+                required
+            >
+
+                <option value="">
+                    Select Gender
+                </option>
+
+                <option value="Male">
+                    Male
+                </option>
+
+                <option value="Female">
+                    Female
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+        </p>
+
+
+        <!-- COUNTRY -->
+
+        <p>
+
+            <label for="country">
+                Country
+            </label>
+
+            <input
+                type="text"
+                id="country"
+                value="Nigeria"
+                required
+            >
+
+        </p>
+
+
+        <!-- STATE -->
+
+        <p>
+
+            <label for="state">
+                State
+            </label>
+
+            <input
+                type="text"
+                id="state"
+                required
+            >
+
+        </p>
+
+
+        <!-- CITY -->
+
+        <p>
+
+            <label for="city">
+                City / Location
+            </label>
+
+            <input
+                type="text"
+                id="city"
+                required
+            >
+
+        </p>
+
+
+        <!-- CATEGORY -->
+
+        <p>
+
+            <label for="category">
+                Application Category
+            </label>
+
+            <select
+                id="category"
+                required
+            >
+
+                <option value="">
+                    Select Category
+                </option>
+
+                <option value="Acting">
+                    Acting
+                </option>
+
+                <option value="Music Artist">
+                    Music Artist
+                </option>
+
+                <option value="Film Project">
+                    Film Project
+                </option>
+
+                <option value="Scriptwriter">
+                    Scriptwriter
+                </option>
+
+                <option value="Comedy / Skits">
+                    Comedy / Skits
+                </option>
+
+            </select>
+
+        </p>
+
+
+        <!-- EXPERIENCE -->
+
+        <p>
+
+            <label for="experience">
+                Experience
+            </label>
+
+            <textarea
+                id="experience"
+                rows="5"
+                placeholder="Tell us about your experience..."
+            ></textarea>
+
+        </p>
+
+
+        <!-- SKILLS -->
+
+        <p>
+
+            <label for="skills">
+                Skills / Talents
+            </label>
+
+            <textarea
+                id="skills"
+                rows="5"
+                placeholder="List your skills or talents..."
+            ></textarea>
+
+        </p>
+
+
+        <!-- SOCIAL MEDIA -->
+
+        <p>
+
+            <label for="social-media">
+                Social Media Handles
+            </label>
+
+            <textarea
+                id="social-media"
+                rows="4"
+                placeholder="TikTok, Instagram, YouTube, Facebook, etc."
+            ></textarea>
+
+        </p>
+
+
+        <!-- REASON -->
+
+        <p>
+
+            <label for="reason">
+                Why do you want to work with T-KEL?
+            </label>
+
+            <textarea
+                id="reason"
+                rows="5"
+            ></textarea>
+
+        </p>
+
+
+        <!-- ADDITIONAL INFORMATION -->
+
+        <p>
+
+            <label for="additional-information">
+                Additional Information
+            </label>
+
+            <textarea
+                id="additional-information"
+                rows="5"
+            ></textarea>
+
+        </p>
+
+
+        <!-- PROFILE PHOTO -->
+
+        <p>
+
+            <label for="profile-photo">
+                Profile Photo
+            </label>
+
+            <input
+                type="file"
+                id="profile-photo"
+                accept="image/jpeg,image/png,image/webp"
+            >
+
+            <small>
+                JPG, PNG or WebP. Maximum 5 MB.
+            </small>
+
+        </p>
+
+
+        <!-- TERMS -->
+
+        <p>
+
+            <label
+                for="terms"
+                class="terms-label"
+            >
+
+                <input
+                    type="checkbox"
+                    id="terms"
+                    required
+                >
+
+                <span>
+                    I confirm that the information
+                    provided is accurate and I agree
+                    to T-KEL's terms and policies.
+                </span>
+
+            </label>
+
+        </p>
+
+
+        <!-- SUBMIT -->
+
+        <button
+            type="submit"
+            id="submit-button"
+        >
+            Submit Application
+        </button>
+
+
+        <!-- MESSAGE -->
+
+        <div
+            id="form-message"
+            style="
+                display:none;
+                margin-top:20px;
+                font-weight:bold;
+                text-align:center;
+            "
+        ></div>
+
+
+    </form>
+
+
+</section>
+
+
+<footer>
+
+    <h3>
+        Terriken Entertainment Limited (T-KEL)
+    </h3>
+
+    <p>
+        Movies • Music • Comedy • Creativity Without Limits
+    </p>
+
+    <p>
+        © 2026 T-KEL. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script>
+
+
+/* ==========================================
+   URL PARAMETERS
+========================================== */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const paymentReference =
+    (params.get("payment") || "")
+        .trim()
+        .toUpperCase();
+
+const applicationReference =
+    (params.get("reference") || "")
+        .trim()
+        .toUpperCase();
+
+
+/* ==========================================
+   PAGE ELEMENTS
+========================================== */
+
+const loadingMessage =
+    document.getElementById(
+        "loading-message"
+    );
+
+
+const form =
+    document.getElementById(
+        "application-form"
+    );
+
+
+const message =
+    document.getElementById(
+        "form-message"
+    );
+
+
+/* ==========================================
+   HELPER
+========================================== */
+
+function showError(text) {
+
+    loadingMessage.textContent =
+        "❌ " + text;
+
+    loadingMessage.style.display =
+        "block";
+
+    form.style.display =
+        "none";
+}
+
+
+/* ==========================================
+   VERIFY PAID APPLICATION
+========================================== */
+
+async function verifyPaidApplication() {
+
+
+    if (!paymentReference) {
+
+        showError(
+            "Payment reference is missing."
+        );
+
+        return;
+    }
+
+
+    if (!applicationReference) {
+
+        showError(
+            "Application reference is missing."
+        );
+
+        return;
+    }
+
+
+    try {
+
+
+        const response =
+            await fetch(
+                "/.netlify/functions/check-paid-application",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        reference:
+                            paymentReference
+
+                    })
+
+                }
+            );
+
+
+        const responseText =
+            await response.text();
+
+
+        let result;
+
+
+        try {
+
+            result =
+                responseText
+                    ? JSON.parse(responseText)
+                    : {};
+
+        } catch (error) {
+
+            throw new Error(
+                "The server returned an invalid response."
+            );
+
+        }
+
+
+        if (
+            !response.ok ||
+            !result.paid ||
+            !result.application
+        ) {
+
+            throw new Error(
+                result.error ||
+                "This application has not been paid for."
+            );
+
+        }
+
+
+        /* ==========================================
+           CONFIRM APPLICATION REFERENCE
+        ========================================== */
+
+        const verifiedReference =
+            String(
+                result.application.reference || ""
+            )
+            .trim()
+            .toUpperCase();
+
+
+        if (
+            verifiedReference !==
+            applicationReference
+        ) {
+
+            throw new Error(
+                "The payment does not match this application."
+            );
+
+        }
+
+
+        /* ==========================================
+           CHECK DUPLICATE SUBMISSION
+        ========================================== */
+
+        if (result.formSubmitted) {
+
+            loadingMessage.innerHTML =
+                "✅ Your payment has been verified." +
+                "<br><br>" +
+                "Your detailed application form has already been submitted." +
+                "<br><br>" +
+                "<a href='index.html'>" +
+                "Return to T-KEL Website" +
+                "</a>";
+
+            return;
+        }
+
+
+        /* ==========================================
+           FILL VERIFIED INFORMATION
+        ========================================== */
+
+        document.getElementById(
+            "application-reference"
+        ).textContent =
+            verifiedReference;
+
+
+        document.getElementById(
+            "full-name"
+        ).value =
+            result.application.fullName || "";
+
+
+        document.getElementById(
+            "email"
+        ).value =
+            result.application.email || "";
+
+
+        document.getElementById(
+            "phone"
+        ).value =
+            result.application.phone || "";
+
+
+        document.getElementById(
+            "date-of-birth"
+        ).value =
+            result.application.dateOfBirth || "";
+
+
+        document.getElementById(
+            "gender"
+        ).value =
+            result.application.gender || "";
+
+
+        document.getElementById(
+            "category"
+        ).value =
+            result.application.category || "";
+
+
+        document.getElementById(
+            "country"
+        ).value =
+            "Nigeria";
+
+
+        /* ==========================================
+           SHOW FORM
+        ========================================== */
+
+        loadingMessage.style.display =
+            "none";
+
+
+        form.style.display =
+            "block";
+
+
+    } catch (error) {
+
+        console.error(
+            "Application verification error:",
+            error
+        );
+
+        showError(
+            error.message ||
+            "Unable to verify your payment."
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   SUBMIT APPLICATION
+========================================== */
+
+form.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        /* ==========================================
+           CHECK BROWSER FORM VALIDATION
+        ========================================== */
+
+        if (!form.checkValidity()) {
+
+            form.reportValidity();
+
+            return;
+        }
+
+
+        const submitButton =
+            document.getElementById(
+                "submit-button"
+            );
+
+
+        const photoInput =
+            document.getElementById(
+                "profile-photo"
+            );
+
+
+        const photo =
+            photoInput.files[0];
+
+
+        /* ==========================================
+           PROFILE PHOTO VALIDATION
+        ========================================== */
+
+        if (photo) {
+
+            const allowedTypes = [
+                "image/jpeg",
+                "image/png",
+                "image/webp"
+            ];
+
+
+            if (
+                !allowedTypes.includes(
+                    photo.type
+                )
+            ) {
+
+                message.style.display =
+                    "block";
+
+                message.style.color =
+                    "red";
+
+                message.textContent =
+                    "❌ Profile photo must be JPG, PNG, or WebP.";
+
+                return;
+            }
+
+
+            if (
+                photo.size >
+                5 * 1024 * 1024
+            ) {
+
+                message.style.display =
+                    "block";
+
+                message.style.color =
+                    "red";
+
+                message.textContent =
+                    "❌ Profile photo must be 5 MB or smaller.";
+
+                return;
+            }
+
+        }
+
+
+        submitButton.disabled =
+            true;
+
+
+        submitButton.textContent =
+            "Submitting Application...";
+
+
+        message.style.display =
+            "block";
+
+
+        message.style.color =
+            "#333";
+
+
+        message.textContent =
+            "Submitting your application...";
+
+
+        try {
+
+
+            /* ==========================================
+               FORM DATA
+            ========================================== */
+
+            const formData =
+                new FormData();
+
+
+            /* PAYMENT */
+
+formData.append(
+    "paymentReference",
+    paymentReference
+);
+
+formData.append(
+    "applicationReference",
+    applicationReference
+);
+
+
+            /* PERSONAL INFORMATION */
+
+            formData.append(
+                "fullName",
+                document.getElementById(
+                    "full-name"
+                ).value.trim()
+            );
+
+
+            formData.append(
+                "professionalName",
+                document.getElementById(
+                    "professional-name"
+                ).value.trim()
+            );
+
+
+            formData.append(
+                "email",
+                document.getElementById(
+                    "email"
+                ).value.trim()
+            );
+
+
+            formData.append(
+                "phone",
+                document.getElementById(
+                    "phone"
+                ).value.trim()
+            );
+
+
+            formData.append(
+                "dateOfBirth",
+                document.getElementById(
+                    "date-of-birth"
+                ).value
+            );
+
+
+            formData.append(
+                "gender",
+                document.getElementById(
+                    "gender"
+                ).value
+            );
+
+
+            /* LOCATION */
+
+            formData.append(
+                "country",
+                document.getElementById(
+                    "country"
+                ).value.trim()
+            );
+
+
+            formData.append(
+                "state",
+                document.getElementById(
+                    "state"
+                ).value.trim()
+            );
+
+
+            formData.append(
+                "city",
+                document.getElementById(
+                    "city"
+                ).value.trim()
+            );
+
+
+            /* CATEGORY */
+
+            formData.append(
+                "category",
+                document.getElementById(
+                    "category"
+                ).value
+            );
+
+
+            /* EXPERIENCE */
+
+            formData.append(
+                "experience",
+                document.getElementById(
+                    "experience"
+                ).value.trim()
+            );
+
+
+            /* SKILLS */
+
+            formData.append(
+                "skills",
+                document.getElementById(
+                    "skills"
+                ).value.trim()
+            );
+
+
+            /* SOCIAL MEDIA */
+
+            formData.append(
+                "socialMedia",
+                document.getElementById(
+                    "social-media"
+                ).value.trim()
+            );
+
+
+            /* REASON */
+
+            formData.append(
+                "reasonForJoining",
+                document.getElementById(
+                    "reason"
+                ).value.trim()
+            );
+
+
+            /* ADDITIONAL INFORMATION */
+
+            formData.append(
+                "additionalInformation",
+                document.getElementById(
+                    "additional-information"
+                ).value.trim()
+            );
+
+
+            /* TERMS */
+
+            formData.append(
+                "termsAccepted",
+                document.getElementById(
+                    "terms"
+                ).checked
+                    ? "true"
+                    : "false"
+            );
+
+
+            /* PROFILE PHOTO */
+
+            if (photo) {
+
+                formData.append(
+                    "profilePhoto",
+                    photo
+                );
+
+            }
+
+
+            /* ==========================================
+               SEND TO NETLIFY FUNCTION
+            ========================================== */
+
+            const response =
+                await fetch(
+                    "/.netlify/functions/submit-application-form",
+                    {
+
+                        method: "POST",
+
+                        body:
+                            formData
+
+                    }
+                );
+
+
+            const responseText =
+                await response.text();
+
+
+            let result;
+
+
+            try {
+
+                result =
+                    responseText
+                        ? JSON.parse(responseText)
+                        : {};
+
+            } catch (error) {
+
+                throw new Error(
+                    "The server returned an invalid response."
+                );
+
+            }
+
+
+            if (
+                !response.ok ||
+                !result.success
+            ) {
+
+                throw new Error(
+                    result.error ||
+                    "Unable to submit application."
+                );
+
+            }
+
+
+            /* ==========================================
+               SUCCESS
+            ========================================== */
+
+            form.style.display =
+                "none";
+
+
+            message.style.color =
+                "green";
+
+
+            message.innerHTML =
+                "<h2>✅ Application Submitted Successfully</h2>" +
+
+                "<p>" +
+                "Your complete T-KEL application has been received." +
+                "</p>" +
+
+                "<p>" +
+                "Application Reference: " +
+                "<strong>" +
+                (
+                    result.applicationReference ||
+                    applicationReference
+                ) +
+                "</strong>" +
+                "</p>" +
+
+                "<p>" +
+                "T-KEL Management will review your application." +
+                "</p>" +
+
+                "<p>" +
+                "<a href='index.html'>" +
+                "Return to T-KEL Website" +
+                "</a>" +
+                "</p>";
+
+
+        } catch (error) {
+
+            console.error(
+                "Application submission error:",
+                error
+            );
+
+
+            message.style.color =
+                "red";
+
+
+            message.textContent =
+                "❌ " +
+                (
+                    error.message ||
+                    "Unable to submit your application."
+                );
+
+
+            submitButton.disabled =
+                false;
+
+
+            submitButton.textContent =
+                "Submit Application";
+
+        }
+
+    }
+);
+
+
+/* ==========================================
+   START VERIFICATION
+========================================== */
+
+verifyPaidApplication();
+
+</script>
+
+
+</body>
+
+</html>

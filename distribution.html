@@ -1,0 +1,1642 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+
+<meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>T-KEL Distribution</title>
+
+<meta name="description"
+    content="T-KEL Distribution — A music distribution platform for independent artists.">
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="icon"
+    type="image/png"
+    href="T-KEL logo.png">
+
+</head><body class="distribution-page">
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav class="distribution-nav">
+
+    <div class="distribution-nav-inner">
+
+        <a href="index.html">Home</a>
+
+        <a href="index.html#movies">Movies</a>
+
+        <a href="index.html#music">Music</a>
+
+        <a href="distribution.html">Distribution</a>
+
+        <a href="index.html#comedy">Comedy</a>
+
+        <a href="index.html#contact">Contact</a>
+
+        <a href="index.html#about">About</a>
+
+    </div>
+
+</nav>
+
+<!-- ==================== DISTRIBUTION HERO ==================== -->
+  <section class="distribution-hero">
+
+    <div class="distribution-hero-inner">
+
+        <div class="distribution-logo-area">
+
+            <img
+                src="T-KEL logo.png"
+                alt="T-KEL Logo"
+                class="distribution-logo"
+            >
+
+        </div>
+
+
+        <div class="distribution-hero-content">
+
+            <div class="distribution-kicker">
+                T-KEL MUSIC PLATFORM
+            </div>
+
+            <h1>
+                T-KEL Distribution
+            </h1>
+
+            <h2>
+                Your Music.<br>
+                Your Voice.<br>
+                Your Journey.
+            </h2>
+
+            <p class="distribution-intro">
+
+                A music distribution platform by
+                Terriken Entertainment Limited (T-KEL).
+
+            </p>
+
+            <p class="distribution-welcome">
+
+                Welcome to T-KEL Distribution.
+                Manage your music releases, track your submissions,
+                and take your music to a wider audience.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+  <!-- ==================== ACCOUNT OPTIONS ==================== --><div class="distribution-options">
+    <button type="button" onclick="showDistributionApplication()">
+    🎵 Apply for Distribution
+</button>
+
+<a
+    href="artist-register.html"
+    class="distribution-register"
+>
+    📝 Register
+</a>
+
+<a href="Distribution/artist-login.html" class="distribution-login">
+    🔐 Already Have an Account? Sign In
+</a>
+
+</div><!-- ==================== DISTRIBUTION APPLICATION ==================== --><section
+    id="distribution-application"
+    class="content"
+    style="display:none;"
+><h2>
+    🎵 Apply for T-KEL Distribution
+</h2>
+
+<p>
+    Submit your application for review by T-KEL Management.
+    You must be approved before creating your T-KEL Distribution account.
+</p>
+
+
+<form id="distribution-application-form">
+
+
+    <p>
+
+        <label for="distribution-full-name">
+            Full Name
+        </label>
+
+        <input
+            type="text"
+            id="distribution-full-name"
+            placeholder="Enter your full name"
+            required
+        >
+
+    </p>
+
+
+    <p>
+
+        <label for="distribution-email">
+            Email Address
+        </label>
+
+        <input
+            type="email"
+            id="distribution-email"
+            placeholder="Enter your email address"
+            required
+        >
+
+    </p>
+
+
+    <p>
+
+        <label for="distribution-phone">
+            Phone Number
+        </label>
+
+        <input
+            type="tel"
+            id="distribution-phone"
+            placeholder="Enter your phone number"
+            required
+        >
+
+    </p>
+
+
+    <p>
+
+        <label for="distribution-location">
+            Location
+        </label>
+
+        <input
+            type="text"
+            id="distribution-location"
+            placeholder="City / Country"
+            required
+        >
+
+    </p>
+
+
+    <p>
+
+        <label for="distribution-experience">
+            Music Experience
+        </label>
+
+        <textarea
+            id="distribution-experience"
+            placeholder="Tell us briefly about your music experience"
+            rows="5"
+            required
+        ></textarea>
+
+    </p>
+
+
+    <p>
+
+        <label>
+
+            <input
+                type="checkbox"
+                id="distribution-terms"
+                required
+            >
+
+            I confirm that the information I submitted is accurate,
+            and I agree to the
+
+            <a
+                href="artist-terms.html"
+                target="_blank"
+                rel="noopener"
+            >
+                T-KEL Distribution Artist Terms & Conditions
+            </a>
+
+            and
+
+            <a
+                href="privacy.html"
+                target="_blank"
+                rel="noopener"
+            >
+                Privacy Policy
+            </a>.
+
+        </label>
+
+    </p>
+
+
+    <button type="submit">
+        Submit Distribution Application
+    </button>
+
+
+    <p
+        id="distribution-application-message"
+        style="font-weight:bold;"
+    ></p>
+
+
+</form>
+
+</section>
+
+  <!-- ==================== LOGIN ==================== --><section
+    id="login"
+    class="content"
+    style="display:none;"
+><h2>
+    🔐 Artist Sign In
+</h2>
+
+<p>
+    Already registered with T-KEL Distribution?
+    Sign in to access your artist account.
+</p>
+
+
+<form id="login-form">
+
+
+    <p>
+
+        <label for="login-email">
+            Email Address
+        </label>
+
+        <input
+            type="email"
+            id="login-email"
+            placeholder="Enter your email address"
+            required
+        >
+
+    </p>
+
+
+    <div>
+
+        <label for="login-password">
+            Password
+        </label>
+
+        <div class="password-field">
+
+            <input
+                type="password"
+                id="login-password"
+                placeholder="Enter your password"
+                required
+            >
+
+            <button
+                type="button"
+                class="password-toggle"
+                onclick="togglePassword('login-password', this)"
+                aria-label="Show password"
+            >
+                <span class="eye-icon hidden"></span>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- FORGOT PASSWORD -->
+
+    <p
+        style="
+            text-align:right;
+            margin-top:-8px;
+            margin-bottom:18px;
+        "
+    >
+
+        <a
+            href="reset-password.html"
+            style="
+                color:#0066ff;
+                text-decoration:none;
+                font-weight:bold;
+            "
+        >
+            Forgot password?
+        </a>
+
+    </p>
+
+
+    <button type="submit">
+        Sign In
+    </button>
+
+
+    <p
+        id="login-message"
+        style="display:none; font-weight:bold;"
+    ></p>
+
+
+</form>
+
+</section><!-- ==================== INFORMATION ==================== -->
+  <section class="content"><h2>
+    🎵 Why Use T-KEL Distribution?
+</h2>
+
+<ul>
+
+    <li>
+        Manage your music releases.
+    </li>
+
+    <li>
+        Submit music for distribution.
+    </li>
+
+    <li>
+        Track the status of your releases.
+    </li>
+
+    <li>
+        Manage your artist information.
+    </li>
+
+    <li>
+        Receive important release updates.
+    </li>
+
+</ul>
+
+</section>
+<!-- ==================== FOOTER ==================== -->
+<footer>
+
+    <h3>
+        Terriken Entertainment Limited (T-KEL)
+    </h3>
+
+    <p>
+        Movies • Music • Comedy • Creativity Without Limits
+    </p>
+
+    <p>
+        T-KEL Distribution
+    </p>
+
+    <p>
+        © 2026 T-KEL. All Rights Reserved.
+    </p>
+
+    <div class="brand-name">
+
+        <h2>
+            T-KEL
+        </h2>
+
+        <span>
+            Luke 10:19
+        </span>
+
+    </div>
+
+
+    <!-- ==================== T-KEL SUPPORT ASSISTANT ==================== -->
+
+    <div id="tkel-support-widget">
+
+        <button
+            id="support-open-button"
+            type="button"
+            onclick="openSupportChat()"
+        >
+            <span>
+                T-KEL Support
+            </span>
+        </button>
+
+
+        <div
+            id="support-chat"
+            style="display:none;"
+        >
+
+            <!-- CHAT HEADER -->
+
+            <div class="support-header">
+
+                <img
+                    src="T-KEL logo.png"
+                    alt="T-KEL Support Assistant"
+                >
+
+                <div>
+
+                    <strong>
+                        T-KEL Support Assistant
+                    </strong>
+
+                    <small>
+                        Terriken Entertainment Limited
+                    </small>
+
+                </div>
+
+                <button
+                    type="button"
+                    onclick="closeSupportChat()"
+                    aria-label="Close support chat"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- CHAT BODY -->
+
+            <div id="support-chat-body">
+
+                <div class="support-welcome">
+
+                    <strong>
+                        👋 Welcome to T-KEL Support
+                    </strong>
+
+                    <p>
+                        Hello! I'm the T-KEL Support Assistant.
+                        How can we help you today?
+                    </p>
+
+                    <p>
+                        If a T-KEL support representative is
+                        available, your conversation can be
+                        continued by a live representative.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- VISITOR INFORMATION -->
+
+            <div id="support-start">
+
+                <input
+                    type="text"
+                    id="support-name"
+                    placeholder="Your name"
+                >
+
+                <input
+                    type="email"
+                    id="support-email"
+                    placeholder="Your email address"
+                >
+
+                <button
+                    type="button"
+                    onclick="startSupportChat()"
+                >
+                    Start Chat
+                </button>
+
+            </div>
+
+
+            <!-- MESSAGE AREA -->
+
+            <div
+                id="support-message-area"
+                style="display:none;"
+            >
+
+                <div class="support-input-row">
+
+                    <input
+                        type="text"
+                        id="support-message"
+                        placeholder="Type your message..."
+                    >
+
+                    <button
+                        type="button"
+                        onclick="sendSupportMessage()"
+                        aria-label="Send message"
+                    >
+                        ➤
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+      <!-- ==================== SUPABASE ==================== --><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+
+    const SUPABASE_URL =
+        "https://tvefankphzactrtciuwp.supabase.co";
+
+
+    const SUPABASE_PUBLISHABLE_KEY =
+        "sb_publishable_yRe3y1xhJO_OFEVqpxopxg_1mR7gmqf";
+
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_PUBLISHABLE_KEY
+        );
+
+</script>
+  <!-- ==================== GENERAL FUNCTIONS ==================== --><script>
+
+    function showDistributionApplication() {
+
+        document.getElementById(
+            "distribution-application"
+        ).style.display = "block";
+
+
+
+        document.getElementById(
+            "login"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "distribution-application"
+        ).scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+    function showLogin() {
+
+        document.getElementById(
+            "login"
+        ).style.display = "block";
+
+
+        document.getElementById(
+            "distribution-application"
+        ).style.display = "none";
+
+
+
+        document.getElementById(
+            "login"
+        ).scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+    window.addEventListener("DOMContentLoaded", function () {
+    if (window.location.hash === "#distribution-application") {
+        showDistributionApplication();
+    }
+});
+
+
+    /* =========================
+       PASSWORD VISIBILITY
+    ========================= */
+
+    function togglePassword(
+        inputId,
+        button
+    ) {
+
+        const input =
+            document.getElementById(
+                inputId
+            );
+
+
+        const eye =
+            button.querySelector(
+                ".eye-icon"
+            );
+
+
+        if (
+            input.type === "password"
+        ) {
+
+            input.type = "text";
+
+
+            eye.classList.remove(
+                "hidden"
+            );
+
+
+            button.setAttribute(
+                "aria-label",
+                "Hide password"
+            );
+
+        } else {
+
+            input.type = "password";
+
+
+            eye.classList.add(
+                "hidden"
+            );
+
+
+            button.setAttribute(
+                "aria-label",
+                "Show password"
+            );
+
+        }
+
+    }
+
+</script><!-- ==================== ARTIST LOGIN ==================== --><script>
+
+    document
+        .getElementById("login-form")
+        .addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                const email =
+                    document
+                        .getElementById(
+                            "login-email"
+                        )
+                        .value
+                        .trim();
+
+
+                const password =
+                    document
+                        .getElementById(
+                            "login-password"
+                        )
+                        .value;
+
+
+                const message =
+                    document
+                        .getElementById(
+                            "login-message"
+                        );
+
+
+                const submitButton =
+                    this.querySelector(
+                        "button[type='submit']"
+                    );
+
+
+                submitButton.disabled =
+                    true;
+
+
+                submitButton.textContent =
+                    "Signing In...";
+
+
+                message.style.display =
+                    "block";
+
+
+                message.style.color =
+                    "#333";
+
+
+                message.textContent =
+                    "Signing in...";
+
+
+                try {
+
+                    const {
+                        data,
+                        error
+                    } =
+                        await supabaseClient.auth
+                            .signInWithPassword({
+
+                                email:
+                                    email,
+
+                                password:
+                                    password
+
+                            });
+
+
+                    if (error) {
+
+                        throw error;
+
+                    }
+
+
+                    if (!data.user) {
+
+                        throw new Error(
+                            "Unable to sign in. Please try again."
+                        );
+
+                    }
+
+
+                    message.style.color =
+                        "green";
+
+
+                    message.textContent =
+                        "✅ Sign in successful. Opening your dashboard...";
+
+
+                    setTimeout(
+                        function() {
+
+                            window.location.href =
+                                "artist-dashboard.html";
+
+                        },
+                        700
+                    );
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Login error:",
+                        error
+                    );
+
+
+                    message.style.color =
+                        "red";
+
+
+                    message.textContent =
+                        "❌ " +
+                        (
+                            error.message ||
+                            "Unable to sign in."
+                        );
+
+
+                    submitButton.disabled =
+                        false;
+
+
+                    submitButton.textContent =
+                        "Sign In";
+
+                }
+
+            }
+        );
+
+</script>
+
+<!-- ==================== DISTRIBUTION APPLICATION ==================== --><script>
+
+    const distributionApplicationForm =
+    document.getElementById(
+        "distribution-application-form"
+    );
+
+
+if (distributionApplicationForm) {
+
+    distributionApplicationForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const form =
+                this;
+
+
+            const fullName =
+                document
+                    .getElementById(
+                        "distribution-full-name"
+                    )
+                    .value
+                    .trim();
+
+
+            const email =
+                document
+                    .getElementById(
+                        "distribution-email"
+                    )
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            const phone =
+                document
+                    .getElementById(
+                        "distribution-phone"
+                    )
+                    .value
+                    .trim();
+
+
+            const location =
+                document
+                    .getElementById(
+                        "distribution-location"
+                    )
+                    .value
+                    .trim();
+
+
+            const experience =
+                document
+                    .getElementById(
+                        "distribution-experience"
+                    )
+                    .value
+                    .trim();
+
+
+            const termsCheckbox =
+                document.getElementById(
+                    "distribution-terms"
+                );
+
+
+            const termsAccepted =
+                termsCheckbox
+                    ? termsCheckbox.checked
+                    : false;
+
+
+            const message =
+                document.getElementById(
+                    "distribution-application-message"
+                );
+
+
+            const submitButton =
+                form.querySelector(
+                    "button[type='submit']"
+                );
+
+
+            /* =========================
+               VALIDATE TERMS
+            ========================= */
+
+            if (!termsAccepted) {
+
+                message.style.color =
+                    "red";
+
+                message.textContent =
+                    "❌ Please accept the terms and privacy policy.";
+
+                return;
+            }
+
+
+            /* =========================
+               DISABLE BUTTON
+            ========================= */
+
+            submitButton.disabled =
+                true;
+
+            submitButton.textContent =
+                "Submitting...";
+
+
+            message.style.color =
+                "#333";
+
+            message.textContent =
+                "Submitting your application...";
+
+
+            try {
+
+                /* =========================
+                   SEND TO NETLIFY FUNCTION
+                ========================= */
+
+                const response =
+                    await fetch(
+                        "/.netlify/functions/submit-distribution-application",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+
+                                    fullName:
+                                        fullName,
+
+                                    email:
+                                        email,
+
+                                    phone:
+                                        phone,
+
+                                    location:
+                                        location,
+
+                                    experience:
+                                        experience,
+
+                                    termsAccepted:
+                                        termsAccepted
+
+                                })
+                        }
+                    );
+
+
+                let data = {};
+
+                try {
+
+                    data =
+                        await response.json();
+
+                } catch {
+
+                    throw new Error(
+                        "Unable to read the server response."
+                    );
+                }
+
+
+                /* =========================
+                   CHECK RESPONSE
+                ========================= */
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.error ||
+                        data.message ||
+                        "Application submission failed."
+                    );
+                }
+
+
+                /* =========================
+                   SUCCESS
+                ========================= */
+
+                message.style.color =
+                    "green";
+
+                message.innerHTML = `
+                    <strong>
+                        ✅ Application submitted successfully.
+                    </strong>
+
+                    <p>
+                        Thank you for submitting your
+                        distribution application to
+                        <strong>T-KEL</strong>.
+                    </p>
+
+                    <p>
+                        Your application has been received
+                        and will be reviewed by
+                        T-KEL Management.
+                    </p>
+
+                    <p>
+                        <strong>
+                            Please check your email.
+                        </strong>
+                    </p>
+
+                    <p>
+                        After T-KEL Management has reviewed
+                        your application, your application
+                        reference number and further
+                        instructions will be sent to the
+                        email address you provided.
+                    </p>
+
+                    <p>
+                        Please check your inbox and
+                        spam/junk folder.
+                    </p>
+
+                    <p>
+                        <strong>
+                            Stay Real, Stay kelz.
+                        </strong>
+                    </p>
+                `;
+
+
+                /* =========================
+                   RESET FORM
+                ========================= */
+
+                form.reset();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Distribution application error:",
+                    error
+                );
+
+
+                message.style.color =
+                    "red";
+
+                message.textContent =
+                    "❌ " +
+                    (
+                        error.message ||
+                        "Something went wrong. Please try again."
+                    );
+
+
+            } finally {
+
+                submitButton.disabled =
+                    false;
+
+                submitButton.textContent =
+                    "Submit Distribution Application";
+
+            }
+
+        }
+    );
+
+}
+
+</script><!-- ==================== T-KEL SUPPORT CHAT ==================== --><script>
+
+    let supportConversationId =
+        null;
+
+
+    let supportVisitorToken =
+        null;
+
+
+    let supportRealtimeChannel =
+        null;
+
+
+    /* =====================================
+       OPEN CHAT
+    ===================================== */
+
+    function openSupportChat() {
+
+        document.getElementById(
+            "support-chat"
+        ).style.display =
+            "flex";
+
+
+        document.getElementById(
+            "support-open-button"
+        ).style.display =
+            "none";
+
+    }
+
+
+    /* =====================================
+       CLOSE CHAT
+    ===================================== */
+
+    function closeSupportChat() {
+
+        document.getElementById(
+            "support-chat"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "support-open-button"
+        ).style.display =
+            "block";
+
+    }
+
+
+    /* =====================================
+       START CHAT
+    ===================================== */
+
+    async function startSupportChat() {
+
+        const name =
+            document
+                .getElementById(
+                    "support-name"
+                )
+                .value
+                .trim();
+
+
+        const email =
+            document
+                .getElementById(
+                    "support-email"
+                )
+                .value
+                .trim();
+
+
+        if (
+            !name ||
+            !email
+        ) {
+
+            alert(
+                "Please enter your name and email address."
+            );
+
+
+            return;
+
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/.netlify/functions/tkel-support",
+                    {
+
+                        method:
+                            "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                action:
+                                    "create_conversation",
+
+                                visitor_name:
+                                    name,
+
+                                visitor_email:
+                                    email
+
+                            })
+
+                    }
+                );
+
+
+            let result;
+
+
+            try {
+
+                result =
+                    await response.json();
+
+            } catch {
+
+                throw new Error(
+                    "Invalid support server response."
+                );
+
+            }
+
+
+            if (
+                !response.ok
+            ) {
+
+                throw new Error(
+                    result.error ||
+                    "Unable to start chat."
+                );
+
+            }
+
+
+            supportConversationId =
+                result.conversation_id;
+
+
+            supportVisitorToken =
+                result.visitor_token;
+
+
+            document.getElementById(
+                "support-start"
+            ).style.display =
+                "none";
+
+
+            document.getElementById(
+                "support-message-area"
+            ).style.display =
+                "block";
+
+
+            addAssistantMessage(
+                "Thank you, " +
+                name +
+                ". Your conversation has started. How can T-KEL Support help you?"
+            );
+
+
+            startVisitorRealtimeChat(
+                supportConversationId
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "T-KEL Support error:",
+                error
+            );
+
+
+            alert(
+                "T-KEL Support is temporarily unavailable. Please try again."
+            );
+
+        }
+
+    }
+
+
+    /* =====================================
+       SEND VISITOR MESSAGE
+    ===================================== */
+
+    async function sendSupportMessage() {
+
+        const input =
+            document.getElementById(
+                "support-message"
+            );
+
+
+        const message =
+            input.value.trim();
+
+
+        if (!message) {
+
+            return;
+
+        }
+
+
+        if (!supportConversationId) {
+
+            alert(
+                "Please start the chat first."
+            );
+
+
+            return;
+
+        }
+
+
+        addVisitorMessage(
+            message
+        );
+
+
+        input.value =
+            "";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/.netlify/functions/tkel-support",
+                    {
+
+                        method:
+                            "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                action:
+                                    "send_message",
+
+                                conversation_id:
+                                    supportConversationId,
+
+                                visitor_token:
+                                    supportVisitorToken,
+
+                                message:
+                                    message
+
+                            })
+
+                    }
+                );
+
+
+            let result;
+
+
+            try {
+
+                result =
+                    await response.json();
+
+            } catch {
+
+                throw new Error(
+                    "Invalid support server response."
+                );
+
+            }
+
+
+            if (
+                !response.ok
+            ) {
+
+                throw new Error(
+                    result.error ||
+                    "Message could not be sent."
+                );
+
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Message error:",
+                error
+            );
+
+
+            addAssistantMessage(
+                "Sorry, your message could not be sent. Please try again."
+            );
+
+        }
+
+    }
+
+
+    /* =====================================
+       REAL-TIME VISITOR CHAT
+    ===================================== */
+
+    function startVisitorRealtimeChat(
+        conversationId
+    ) {
+
+        if (
+            supportRealtimeChannel
+        ) {
+
+            supabaseClient.removeChannel(
+                supportRealtimeChannel
+            );
+
+
+            supportRealtimeChannel =
+                null;
+
+        }
+
+
+        supportRealtimeChannel =
+            supabaseClient
+                .channel(
+                    "tkel-visitor-support-" +
+                    conversationId
+                )
+                .on(
+                    "postgres_changes",
+                    {
+
+                        event:
+                            "INSERT",
+
+                        schema:
+                            "public",
+
+                        table:
+                            "support_messages",
+
+                        filter:
+                            "conversation_id=eq." +
+                            conversationId
+
+                    },
+                    function(payload) {
+
+                        const message =
+                            payload.new;
+
+
+                        /*
+                         * Do not display the visitor's
+                         * own message twice.
+                         */
+
+                        if (
+                            message.sender_type ===
+                            "visitor"
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        addAssistantMessage(
+                            message.message,
+
+                            message.sender_name ||
+                            "T-KEL Support"
+                        );
+
+                    }
+                )
+                .subscribe();
+
+    }
+
+
+    /* =====================================
+       VISITOR MESSAGE
+    ===================================== */
+
+    function addVisitorMessage(
+        message
+    ) {
+
+        const body =
+            document.getElementById(
+                "support-chat-body"
+            );
+
+
+        const div =
+            document.createElement(
+                "div"
+            );
+
+
+        div.className =
+            "support-visitor-message";
+
+
+        div.innerHTML =
+            "<span>" +
+            escapeSupportText(
+                message
+            ) +
+            "</span>";
+
+
+        body.appendChild(
+            div
+        );
+
+
+        body.scrollTop =
+            body.scrollHeight;
+
+    }
+
+
+    /* =====================================
+       T-KEL RESPONSE
+    ===================================== */
+
+    function addAssistantMessage(
+        message,
+        senderName =
+            "T-KEL Support Assistant"
+    ) {
+
+        const body =
+            document.getElementById(
+                "support-chat-body"
+            );
+
+
+        const div =
+            document.createElement(
+                "div"
+            );
+
+
+        div.className =
+            "support-assistant-message";
+
+
+        div.innerHTML =
+            "<span><strong>" +
+            escapeSupportText(
+                senderName
+            ) +
+            "</strong><br>" +
+            escapeSupportText(
+                message
+            ) +
+            "</span>";
+
+
+        body.appendChild(
+            div
+        );
+
+
+        body.scrollTop =
+            body.scrollHeight;
+
+    }
+
+
+    /* =====================================
+       SECURITY
+    ===================================== */
+
+    function escapeSupportText(
+        text
+    ) {
+
+        const div =
+            document.createElement(
+                "div"
+            );
+
+
+        div.textContent =
+            text || "";
+
+
+        return div.innerHTML;
+
+    }
+  
+</script></body></html>

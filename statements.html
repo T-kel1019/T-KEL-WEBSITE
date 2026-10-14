@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Statements | T-KEL Distribution</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="dashboard-header">
+
+        <div class="dashboard-brand">
+
+            <a href="artist-dashboard.html">
+                <img src="T-KEL logo.png" alt="T-KEL Logo">
+            </a>
+
+            <div>
+                <strong>T-KEL Distribution</strong>
+                <span>Artist Portal</span>
+            </div>
+
+        </div>
+
+        <a href="artist-dashboard.html" class="dashboard-back">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <main class="dashboard-page">
+
+        <section class="dashboard-hero">
+
+            <p class="eyebrow">T-KEL DISTRIBUTION</p>
+
+            <h1>Statements</h1>
+
+            <p>
+                View and download your distribution royalty statements.
+            </p>
+
+        </section>
+
+
+        <!-- STATEMENT SUMMARY -->
+
+        <section class="analytics-section">
+
+            <div class="analytics-grid">
+
+                <div class="analytics-card">
+
+                    <span>Total Statements</span>
+
+                    <strong id="totalStatements">
+                        0
+                    </strong>
+
+                    <small>
+                        Available reports
+                    </small>
+
+                </div>
+
+
+                <div class="analytics-card">
+
+                    <span>Latest Statement</span>
+
+                    <strong id="latestStatement">
+                        —
+                    </strong>
+
+                    <small>
+                        Most recent period
+                    </small>
+
+                </div>
+
+
+                <div class="analytics-card">
+
+                    <span>Total Reported</span>
+
+                    <strong id="totalReported">
+                        ₦0.00
+                    </strong>
+
+                    <small>
+                        Reported earnings
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- STATEMENT FILTER -->
+
+        <section class="analytics-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Royalty Statements</h2>
+
+                    <p>
+                        Your processed royalty statements will appear here.
+                    </p>
+
+                </div>
+
+                <select id="statementFilter">
+
+                    <option value="all">
+                        All Statements
+                    </option>
+
+                    <option value="2026">
+                        2026
+                    </option>
+
+                    <option value="2025">
+                        2025
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="royalty-table-container">
+
+                <table class="royalty-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Statement Period</th>
+
+                            <th>Release Earnings</th>
+
+                            <th>Adjustments</th>
+
+                            <th>Net Earnings</th>
+
+                            <th>Status</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="statementTableBody">
+
+                        <tr>
+
+                            <td colspan="6">
+
+                                <div class="table-empty">
+
+                                    <div class="empty-icon">
+                                        📄
+                                    </div>
+
+                                    <strong>
+                                        No Statements Available
+                                    </strong>
+
+                                    <p>
+                                        Your royalty statements will appear
+                                        here after T-KEL receives and processes
+                                        reporting data.
+                                    </p>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- STATEMENT INFORMATION -->
+
+        <section class="info-card">
+
+            <strong>How statements work</strong>
+
+            <p>
+                T-KEL Distribution will generate statements from
+                verified royalty reports. Statements may include
+                earnings, adjustments, applicable fees and the final
+                net amount credited to your artist account.
+            </p>
+
+        </section>
+
+
+        <section class="info-card">
+
+            <strong>Statement downloads</strong>
+
+            <p>
+                Downloadable statement files will become available
+                once the T-KEL reporting and statement-generation
+                system is connected.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer class="dashboard-footer">
+
+        <p>T-KEL Distribution</p>
+
+        <p>Stay Real, Stay kelz.</p>
+
+        <p>© 2026 Terriken Entertainment Limited</p>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+
+        const SUPABASE_URL =
+            "https://tvefankphzactrtciuwp.supabase.co";
+
+        const SUPABASE_KEY =
+            "sb_publishable_yRe3y1xhJO_OFEVQpxopxg_1mR7gmqf";
+
+        const supabaseClient =
+            supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+
+
+        async function checkArtistSession() {
+
+            const {
+                data: { session }
+            } =
+                await supabaseClient.auth.getSession();
+
+
+            if (!session) {
+
+                window.location.href =
+                    "artist-login.html";
+
+                return;
+
+            }
+
+        }
+
+
+        checkArtistSession();
+
+
+        document
+            .getElementById("statementFilter")
+            .addEventListener(
+                "change",
+                function () {
+
+                    /*
+                     * Statement filtering will be connected
+                     * to the T-KEL reporting system later.
+                     */
+
+                }
+            );
+
+    </script>
+
+</body>
+
+</html>

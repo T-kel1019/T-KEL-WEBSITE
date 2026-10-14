@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>Create T-KEL Artist Account</title>
+
+<meta name="description"
+    content="Create your T-KEL Distribution Artist Account.">
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="icon"
+    type="image/png"
+    href="T-KEL logo.png">
+
+
+<style>
+
+/* =========================
+   T-KEL ARTIST ACCOUNT PAGE
+========================= */
+
+.artist-account-page {
+    margin: 0;
+    padding: 0;
+
+    background: #f5f8fc;
+
+    color: #172033;
+
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.artist-account-nav {
+    width: 100%;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5eaf1;
+
+    box-shadow:
+        0 2px 10px rgba(7, 27, 58, 0.05);
+}
+
+
+.artist-account-nav-inner {
+    width: min(
+        1200px,
+        calc(100% - 32px)
+    );
+
+    min-height: 64px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 30px;
+
+    flex-wrap: wrap;
+}
+
+
+.artist-account-nav-inner a {
+    color: #172033;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    padding: 8px 0;
+
+    transition:
+        color 0.2s ease;
+}
+
+
+.artist-account-nav-inner a:hover {
+    color: #0066ff;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.artist-account-hero {
+    width: 100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #061a3a 0%,
+            #003b91 50%,
+            #0066ff 100%
+        );
+
+    color: #ffffff;
+}
+
+
+.artist-account-hero-inner {
+    width: min(
+        1050px,
+        calc(100% - 32px)
+    );
+
+    min-height: 350px;
+
+    margin: 0 auto;
+
+    padding: 55px 0;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 55px;
+}
+
+
+/* Logo */
+
+.artist-account-logo-area {
+    flex: 0 0 210px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+.artist-account-logo {
+    width: 180px;
+
+    max-width: 100%;
+
+    height: auto;
+
+    display: block;
+}
+
+
+/* Hero content */
+
+.artist-account-hero-content {
+    max-width: 620px;
+}
+
+
+.artist-account-kicker {
+    display: inline-block;
+
+    margin-bottom: 13px;
+
+    padding: 7px 13px;
+
+    border:
+        1px solid rgba(
+            255,
+            255,
+            255,
+            0.35
+        );
+
+    border-radius: 30px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.artist-account-hero-content h1 {
+    margin: 0 0 14px;
+
+    color: #ffffff;
+
+    font-size: 42px;
+
+    line-height: 1.1;
+
+    font-weight: 800;
+
+    letter-spacing: -0.5px;
+}
+
+
+.artist-account-hero-content p {
+    margin: 0;
+
+    max-width: 560px;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.88
+        );
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   ACCOUNT FORM CARD
+========================= */
+
+.artist-account-form-section {
+    width: 100%;
+
+    padding: 55px 0 70px;
+
+    box-sizing: border-box;
+}
+
+
+.artist-account-card {
+    width: min(
+        650px,
+        calc(100% - 32px)
+    );
+
+    margin: 0 auto;
+
+    padding: 40px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border:
+        1px solid #e2e8f0;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(
+            7,
+            27,
+            58,
+            0.09
+        );
+
+    position: relative;
+}
+
+
+/* Blue top accent */
+
+.artist-account-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 5px;
+
+    background: #0066ff;
+
+    border-radius:
+        16px 16px 0 0;
+}
+
+
+/* Card heading */
+
+.artist-account-card h2 {
+    margin: 5px 0 10px;
+
+    text-align: center;
+
+    color: #061a3a;
+
+    font-size: 28px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+}
+
+
+.artist-account-card .card-intro {
+    max-width: 500px;
+
+    margin: 0 auto 30px;
+
+    text-align: center;
+
+    color: #667085;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.artist-account-form {
+    margin: 0;
+}
+
+
+.artist-account-form p {
+    margin: 0 0 20px;
+}
+
+
+.artist-account-form label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #172033;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+.artist-account-form input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 14px 15px;
+
+    border:
+        1px solid #d7dee8;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #172033;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.artist-account-form input:focus {
+    border-color: #0066ff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(
+            0,
+            102,
+            255,
+            0.10
+        );
+}
+
+
+.artist-account-form input::placeholder {
+    color: #98a2b3;
+}
+
+
+/* Readonly email */
+
+.artist-account-form input[readonly] {
+    background: #f5f7fa;
+
+    color: #667085;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   TERMS
+========================= */
+
+.artist-account-terms {
+    display: flex !important;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-top: 5px;
+
+    line-height: 1.6;
+}
+
+
+.artist-account-terms input {
+    width: auto !important;
+
+    margin-top: 4px;
+
+    flex-shrink: 0;
+
+    accent-color: #0066ff;
+}
+
+
+.artist-account-terms span {
+    color: #667085;
+
+    font-size: 13px;
+
+    font-weight: 400;
+}
+
+
+.artist-account-terms a {
+    color: #0066ff;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+.artist-account-terms a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   CREATE BUTTON
+========================= */
+
+#create-button {
+    width: 100%;
+
+    min-height: 52px;
+
+    padding: 14px 20px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #0066ff;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+#create-button:hover {
+    background: #0052cc;
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(
+            0,
+            102,
+            255,
+            0.18
+        );
+}
+
+
+#create-button:disabled {
+    opacity: 0.7;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================
+   ACCOUNT MESSAGE
+========================= */
+
+#account-message {
+    margin-top: 20px;
+
+    padding: 14px;
+
+    border-radius: 8px;
+
+    background: #f8fafc;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+#account-message h2 {
+    margin: 0 0 8px;
+
+    font-size: 20px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.artist-account-page footer {
+    width: 100%;
+
+    margin: 0;
+
+    padding: 45px 20px;
+
+    box-sizing: border-box;
+
+    background: #061a3a;
+
+    color: #ffffff;
+
+    text-align: center;
+}
+
+
+.artist-account-page footer h3 {
+    margin: 0 0 10px;
+
+    color: #ffffff;
+
+    font-size: 19px;
+}
+
+
+.artist-account-page footer p {
+    margin: 8px 0;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.78
+        );
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .artist-account-nav-inner {
+        min-height: auto;
+
+        padding: 12px 0;
+
+        gap: 8px 18px;
+    }
+
+
+    .artist-account-nav-inner a {
+        font-size: 13px;
+    }
+
+
+    .artist-account-hero-inner {
+        min-height: auto;
+
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 25px;
+
+        padding: 45px 0 50px;
+    }
+
+
+    .artist-account-logo-area {
+        flex: none;
+    }
+
+
+    .artist-account-logo {
+        width: 145px;
+    }
+
+
+    .artist-account-hero-content {
+        max-width: 100%;
+    }
+
+
+    .artist-account-hero-content h1 {
+        font-size: 32px;
+    }
+
+
+    .artist-account-hero-content p {
+        font-size: 14px;
+    }
+
+
+    .artist-account-form-section {
+        padding: 35px 0 45px;
+    }
+
+
+    .artist-account-card {
+        width: calc(100% - 24px);
+
+        padding: 32px 20px;
+
+        border-radius: 14px;
+    }
+
+
+    .artist-account-card h2 {
+        font-size: 25px;
+    }
+
+
+    .artist-account-card .card-intro {
+        font-size: 14px;
+    }
+
+
+    .artist-account-form input {
+        padding: 13px 14px;
+
+        font-size: 14px;
+    }
+
+
+    #create-button {
+        min-height: 50px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body class="artist-account-page">
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav class="artist-account-nav">
+
+    <div class="artist-account-nav-inner">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="distribution.html">
+            Distribution
+        </a>
+
+        <a href="artist-register.html">
+            Artist Registration
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="artist-account-hero">
+
+    <div class="artist-account-hero-inner">
+
+        <div class="artist-account-logo-area">
+
+            <img
+                src="T-KEL logo.png"
+                alt="T-KEL Logo"
+                class="artist-account-logo"
+            >
+
+        </div>
+
+
+        <div class="artist-account-hero-content">
+
+            <div class="artist-account-kicker">
+                T-KEL DISTRIBUTION
+            </div>
+
+            <h1>
+                Create Your
+                <br>
+                Artist Account
+            </h1>
+
+            <p>
+                Your T-KEL Distribution application
+                has been verified. Complete your
+                account registration below to access
+                your Artist Dashboard.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FORM SECTION
+========================= -->
+
+<section class="artist-account-form-section">
+
+    <div class="artist-account-card">
+
+        <h2>
+            Artist Account Registration
+        </h2>
+
+        <p class="card-intro">
+            Complete the information below to
+            create your official T-KEL Artist Account.
+        </p>
+
+
+        <form
+            id="create-account-form"
+            class="artist-account-form"
+        >
+
+            <p>
+
+                <label for="full-name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="full-name"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                >
+
+            </p>
+
+
+            <p>
+
+                <label for="artist-name">
+                    Artist Name
+                </label>
+
+                <input
+                    type="text"
+                    id="artist-name"
+                    placeholder="Enter your artist/stage name"
+                    autocomplete="nickname"
+                    required
+                >
+
+            </p>
+
+
+            <p>
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    readonly
+                >
+
+            </p>
+
+
+            <p>
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="Enter your phone number"
+                    autocomplete="tel"
+                    required
+                >
+
+            </p>
+
+
+            <p>
+
+                <label for="country">
+                    Country
+                </label>
+
+                <input
+                    type="text"
+                    id="country"
+                    placeholder="Enter your country"
+                    autocomplete="country-name"
+                    required
+                >
+
+            </p>
+
+
+            <p>
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create a password"
+                    minlength="8"
+                    autocomplete="new-password"
+                    required
+                >
+
+            </p>
+
+
+            <p>
+
+                <label for="confirm-password">
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirm-password"
+                    placeholder="Re-enter your password"
+                    minlength="8"
+                    autocomplete="new-password"
+                    required
+                >
+
+            </p>
+
+
+            <p class="artist-account-terms">
+
+                <input
+                    type="checkbox"
+                    id="artist-terms"
+                    required
+                >
+
+                <span>
+
+                    I agree to the
+
+                    <a
+                        href="artist-terms.html"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        T-KEL Distribution Artist Terms & Conditions
+                    </a>
+
+                    and
+
+                    <a
+                        href="privacy.html"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        Privacy Policy
+                    </a>.
+
+                </span>
+
+            </p>
+
+
+            <button
+                type="submit"
+                id="create-button"
+            >
+                Create Artist Account
+            </button>
+
+
+            <div
+                id="account-message"
+                style="display:none;"
+            ></div>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <h3>
+        Terriken Entertainment Limited (T-KEL)
+    </h3>
+
+    <p>
+        Movies • Music • Comedy • Creativity Without Limits
+    </p>
+
+    <p>
+        © 2026 T-KEL. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     SUPABASE
+========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+const SUPABASE_URL =
+    "https://tvefankphzactrtciuwp.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_yRe3y1xhJO_OFEVQpxopxg_1mR7gmqf";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
+
+/* =========================
+   GET REGISTRATION DETAILS
+========================= */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const reference =
+    params.get("reference") || "";
+
+const email =
+    params.get("email") || "";
+
+
+/* =========================
+   GET PAGE ELEMENTS
+========================= */
+
+const emailInput =
+    document.getElementById("email");
+
+const form =
+    document.getElementById(
+        "create-account-form"
+    );
+
+const button =
+    document.getElementById(
+        "create-button"
+    );
+
+const message =
+    document.getElementById(
+        "account-message"
+    );
+
+
+/* =========================
+   PUT EMAIL INTO FORM
+========================= */
+
+emailInput.value = email;
+
+
+/* =========================
+   CHECK REGISTRATION SESSION
+========================= */
+
+if (!reference || !email) {
+
+    form.style.display = "none";
+
+    message.style.display =
+        "block";
+
+    message.style.color =
+        "red";
+
+    message.textContent =
+        "❌ Invalid registration session. Please start again from the T-KEL registration page.";
+}
+
+
+/* =========================
+   ACCOUNT CREATION
+========================= */
+
+form.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        /* =========================
+           GET FORM VALUES
+        ========================= */
+
+        const fullName =
+            document
+                .getElementById("full-name")
+                .value
+                .trim();
+
+        const artistName =
+            document
+                .getElementById("artist-name")
+                .value
+                .trim();
+
+        const phone =
+            document
+                .getElementById("phone")
+                .value
+                .trim();
+
+        const country =
+            document
+                .getElementById("country")
+                .value
+                .trim();
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+        const confirmPassword =
+            document
+                .getElementById("confirm-password")
+                .value;
+
+
+        /* =========================
+           VALIDATE PASSWORD
+        ========================= */
+
+        if (password.length < 6) {
+
+            message.style.display =
+                "block";
+
+            message.style.color =
+                "red";
+
+            message.textContent =
+                "❌ Password must be at least 6 characters long.";
+
+            return;
+        }
+
+
+        if (
+            password !==
+            confirmPassword
+        ) {
+
+            message.style.display =
+                "block";
+
+            message.style.color =
+                "red";
+
+            message.textContent =
+                "❌ Passwords do not match.";
+
+            return;
+        }
+
+
+        /* =========================
+           DISABLE BUTTON
+        ========================= */
+
+        button.disabled =
+            true;
+
+        button.textContent =
+            "Creating Account...";
+
+
+        message.style.display =
+            "block";
+
+        message.style.color =
+            "#333";
+
+        message.textContent =
+            "Verifying your approved application...";
+
+
+        try {
+
+            /* =========================
+               VERIFY APPROVED APPLICATION
+            ========================= */
+
+            const verificationResponse =
+                await fetch(
+                    "/.netlify/functions/verify-artist-registration",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify({
+                                reference:
+                                    reference,
+
+                                email:
+                                    email
+                            })
+                    }
+                );
+
+
+            const verification =
+                await verificationResponse.json();
+
+
+            if (
+                !verificationResponse.ok ||
+                !verification.verified
+            ) {
+
+                throw new Error(
+                    verification.error ||
+                    "Your T-KEL application could not be verified."
+                );
+            }
+
+
+            /* =========================
+               CREATE ARTIST ACCOUNT
+               THROUGH NETLIFY
+            ========================= */
+
+            message.textContent =
+                "Creating your T-KEL Artist Account...";
+
+
+            const accountResponse =
+                await fetch(
+                    "/.netlify/functions/create-artist-account",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                fullName:
+                                    fullName,
+
+                                artistName:
+                                    artistName,
+
+                                email:
+                                    email,
+
+                                phone:
+                                    phone,
+
+                                country:
+                                    country,
+
+                                password:
+                                    password,
+
+                                reference:
+                                    reference
+
+                            })
+                    }
+                );
+
+
+            const accountResult =
+                await accountResponse.json();
+
+
+            /* =========================
+               CHECK ACCOUNT CREATION
+            ========================= */
+
+            if (
+                !accountResponse.ok ||
+                !accountResult.success
+            ) {
+
+                throw new Error(
+                    accountResult.error ||
+                    "Unable to create your T-KEL Artist Account."
+                );
+            }
+
+
+            /* =========================
+               SIGN THE ARTIST IN
+            ========================= */
+
+            message.textContent =
+                "Account created successfully. Signing you in...";
+
+
+            const {
+                data: loginData,
+                error: loginError
+            } =
+                await supabaseClient.auth.signInWithPassword({
+
+                    email:
+                        email,
+
+                    password:
+                        password
+
+                });
+
+
+            if (loginError) {
+
+                throw loginError;
+            }
+
+
+            if (
+                !loginData ||
+                !loginData.user
+            ) {
+
+                throw new Error(
+                    "Account was created, but automatic sign-in failed."
+                );
+            }
+
+
+            /* =========================
+               SUCCESS
+            ========================= */
+
+            message.style.color =
+                "green";
+
+            message.innerHTML =
+                "<h2>✅ Account Created Successfully</h2>" +
+                "<p>Your T-KEL Artist Account has been created.</p>" +
+                "<p>Opening your Artist Dashboard...</p>";
+
+
+            form.style.display =
+                "none";
+
+
+            /* =========================
+               GO TO DASHBOARD
+            ========================= */
+
+            setTimeout(
+                function() {
+
+                    window.location.href = "Distribution/artist-dashboard.html";;
+
+                },
+                1000
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Artist account creation error:",
+                error
+            );
+
+
+            message.style.display =
+                "block";
+
+            message.style.color =
+                "red";
+
+            message.textContent =
+                "❌ " +
+                (
+                    error.message ||
+                    "Account creation failed."
+                );
+
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "Create Artist Account";
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

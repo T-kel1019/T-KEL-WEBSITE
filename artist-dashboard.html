@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Artist Dashboard | T-KEL Distribution</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="dashboard-header">
+
+        <div class="dashboard-brand">
+            <img src="T-KEL logo.png" alt="T-KEL Logo">
+            <div>
+                <strong>T-KEL Distribution</strong>
+                <span>Artist Portal</span>
+            </div>
+        </div>
+
+        <button type="button" id="logoutButton" class="logout-button">
+            Logout
+        </button>
+
+    </header>
+
+
+    <main class="dashboard-container">
+
+        <section class="dashboard-welcome">
+
+            <p class="eyebrow">T-KEL DISTRIBUTION</p>
+
+            <h1>Artist Dashboard</h1>
+
+            <p>
+                Welcome to your artist portal. Manage your music,
+                releases, royalties and distribution from one place.
+            </p>
+
+        </section>
+
+
+        <section class="dashboard-grid">
+
+            <a href="releases.html" class="dashboard-card">
+                <span class="dashboard-icon">🎵</span>
+                <h2>My Releases</h2>
+                <p>
+                    View and manage your music releases.
+                </p>
+            </a>
+
+
+            <a href="create-release.html" class="dashboard-card">
+                <span class="dashboard-icon">➕</span>
+                <h2>Create Release</h2>
+                <p>
+                    Submit a new single, EP or album.
+                </p>
+            </a>
+
+
+            <a href="profile.html" class="dashboard-card">
+                <span class="dashboard-icon">👤</span>
+                <h2>My Profile</h2>
+                <p>
+                    Manage your artist information.
+                </p>
+            </a>
+
+
+            <a href="analytics.html" class="dashboard-card">
+                <span class="dashboard-icon">📊</span>
+                <h2>Analytics</h2>
+                <p>
+                    View your music performance and statistics.
+                </p>
+            </a>
+
+
+            <a href="royalties.html" class="dashboard-card">
+                <span class="dashboard-icon">💰</span>
+                <h2>Royalties</h2>
+                <p>
+                    View your royalty reports and earnings.
+                </p>
+            </a>
+
+
+            <a href="payouts.html" class="dashboard-card">
+                <span class="dashboard-icon">🏦</span>
+                <h2>Payouts</h2>
+                <p>
+                    Manage payout requests and payment information.
+                </p>
+            </a>
+
+
+            <a href="statements.html" class="dashboard-card">
+                <span class="dashboard-icon">📄</span>
+                <h2>Statements</h2>
+                <p>
+                    View and download your account statements.
+                </p>
+            </a>
+
+
+            <a href="notifications.html" class="dashboard-card">
+                <span class="dashboard-icon">🔔</span>
+                <h2>Notifications</h2>
+                <p>
+                    Check important updates from T-KEL.
+                </p>
+            </a>
+
+
+            <a href="settings.html" class="dashboard-card">
+                <span class="dashboard-icon">⚙️</span>
+                <h2>Settings</h2>
+                <p>
+                    Manage your account settings.
+                </p>
+            </a>
+
+
+            <a href="support.html" class="dashboard-card">
+                <span class="dashboard-icon">💬</span>
+                <h2>Support</h2>
+                <p>
+                    Contact T-KEL Distribution support.
+                </p>
+            </a>
+
+        </section>
+
+
+        <section class="dashboard-slogan">
+
+            <strong>Stay Real, Stay kelz.</strong>
+
+            <span>
+                Your Music. Your Voice. Your Journey.
+            </span>
+
+        </section>
+
+    </main>
+
+
+    <footer class="dashboard-footer">
+
+        <p>
+            Terriken Entertainment Limited (T-KEL)
+        </p>
+
+        <p>
+            Movies • Music • Comedy • Creativity Without Limits
+        </p>
+
+        <p>
+            © 2026 T-KEL. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+const SUPABASE_URL =
+    "https://tvefankphzactrtciuwp.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_yRe3y1xhJO_OFEVQpxopxg_1mR7gmqf";
+
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+async function loadArtistDashboard() {
+
+    const {
+        data: { session },
+        error
+    } = await supabaseClient.auth.getSession();
+
+
+    /* Check for authentication errors */
+
+    if (error) {
+
+        console.error(
+            "Session error:",
+            error.message
+        );
+
+        window.location.href =
+            "artist-login.html";
+
+        return;
+    }
+
+
+    /* Make sure an artist is logged in */
+
+    if (!session) {
+
+        window.location.href =
+            "artist-login.html";
+
+        return;
+    }
+
+
+    /*
+     * The logged-in user's Supabase Auth ID.
+     * We will use this ID to connect the account
+     * to the artist record in the database.
+     */
+
+    const userId =
+        session.user.id;
+
+
+    console.log(
+        "Logged-in artist:",
+        session.user.email
+    );
+
+    console.log(
+        "Artist Auth ID:",
+        userId
+    );
+
+
+    /*
+     * Display the artist's email if the dashboard
+     * contains an element with id="artistEmail".
+     */
+
+    const artistEmail =
+        document.getElementById(
+            "artistEmail"
+        );
+
+
+    if (artistEmail) {
+
+        artistEmail.textContent =
+            session.user.email || "";
+
+    }
+
+
+    /*
+     * Load the artist record from the artists table.
+     *
+     * We are using the authenticated user's ID.
+     */
+
+    const {
+        data: artist,
+        error: artistError
+    } = await supabaseClient
+        .from("artists")
+        .select("*")
+        .eq("user_id", userId)
+        .maybeSingle();
+
+
+    if (artistError) {
+
+        console.error(
+            "Artist profile error:",
+            artistError.message
+        );
+
+        return;
+    }
+
+
+    /*
+     * If an artist record exists, display the
+     * artist/stage name where available.
+     */
+
+    if (artist) {
+
+        console.log(
+            "Artist record loaded:",
+            artist
+        );
+
+
+        const artistName =
+            document.getElementById(
+                "artistName"
+            );
+
+
+        if (artistName) {
+
+            artistName.textContent =
+                artist.artist_name ||
+                artist.stage_name ||
+                artist.full_name ||
+                "Artist";
+
+        }
+
+    } else {
+
+        console.log(
+            "No artist record found for this account yet."
+        );
+
+    }
+
+}
+
+
+/* LOGOUT */
+
+async function logoutArtist() {
+
+    const {
+        error
+    } =
+        await supabaseClient.auth.signOut();
+
+
+    if (error) {
+
+        alert(
+            "Logout failed: " +
+            error.message
+        );
+
+        return;
+    }
+
+
+    window.location.href =
+        "artist-login.html";
+}
+
+
+/* Connect logout button */
+
+const logoutButton =
+    document.getElementById(
+        "logoutButton"
+    );
+
+
+if (logoutButton) {
+
+    logoutButton.addEventListener(
+        "click",
+        logoutArtist
+    );
+
+}
+
+
+/* Start dashboard */
+
+loadArtistDashboard();
+
+</script>
+
+    
+
+</body>
+</html>

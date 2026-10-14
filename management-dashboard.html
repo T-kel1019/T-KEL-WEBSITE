@@ -1,0 +1,4289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>T-KEL Management Dashboard</title>
+
+    <meta name="description"
+          content="T-KEL Management member dashboard.">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            color: #222;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            width: 170px;
+            max-width: 75%;
+            height: auto;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 18px 40px;
+        }
+
+        .welcome {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .welcome h1 {
+            margin-top: 0;
+            color: #007BFF;
+        }
+
+        .welcome p {
+            line-height: 1.6;
+        }
+
+        .account-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .account-card {
+            background: #f8f9fa;
+            padding: 18px;
+            border-radius: 8px;
+            border: 1px solid #e3e3e3;
+        }
+
+        .account-card strong {
+            display: block;
+            margin-bottom: 7px;
+            color: #555;
+        }
+
+        .account-card span {
+            font-weight: bold;
+        }
+
+        .dashboard-area,
+        .password-change-section,
+        .my-reports-section {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .dashboard-area h2,
+        .password-change-section h2,
+        .my-reports-section h2 {
+            color: #007BFF;
+            margin-top: 0;
+        }
+
+        .dashboard-area p,
+        .password-change-section p,
+        .my-reports-section p {
+            line-height: 1.6;
+        }
+
+        .module {
+            padding: 18px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 15px;
+            background: #fafafa;
+        }
+
+        .module h3 {
+            margin-top: 0;
+        }
+
+        .management-report-section {
+            margin-top: 25px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        .management-report-section h3 {
+            margin-top: 0;
+        }
+
+        .password-change-section form,
+        .management-report-section form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .form-button {
+            margin-top: 18px;
+            padding: 12px 20px;
+            background: #007BFF;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .form-button:hover {
+            opacity: 0.9;
+        }
+
+        .message {
+            margin-top: 15px;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .report-card {
+            padding: 18px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 15px;
+            background: #fafafa;
+        }
+
+        .report-card h3 {
+            margin-top: 0;
+            color: #007BFF;
+        }
+
+        .report-status {
+            font-weight: bold;
+        }
+
+        .director-response {
+            margin-top: 15px;
+            padding: 15px;
+            background: #ffffff;
+            border-left: 4px solid #007BFF;
+        }
+
+        .logout-button {
+            margin-top: 25px;
+            padding: 13px 22px;
+            background: #007BFF;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .logout-button:hover {
+            opacity: 0.9;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px 20px;
+            font-size: 18px;
+        }
+
+        .error {
+            max-width: 500px;
+            margin: 60px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .error h2 {
+            color: #b00020;
+        }
+
+        .error button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            background: #007BFF;
+            color: #ffffff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+      /* =========================================
+   PRO MANAGEMENT WORKSPACE
+========================================= */
+
+.pro-workspace {
+    margin-top: 20px;
+}
+
+.pro-module {
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 18px;
+}
+
+.pro-module h3 {
+    margin-top: 0;
+    color: #007BFF;
+}
+
+.pro-module p {
+    line-height: 1.6;
+}
+
+.pro-card {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 12px;
+}
+
+.pro-card h4 {
+    margin-top: 0;
+    color: #007BFF;
+}
+
+.pro-card p {
+    margin: 8px 0;
+}
+
+.pro-list {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.pro-stat {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.pro-stat strong {
+    display: block;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.pro-stat span {
+    font-size: 22px;
+    font-weight: bold;
+    color: #007BFF;
+}
+
+.pro-action-button {
+    margin-top: 10px;
+    padding: 10px 16px;
+    background: #007BFF;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.pro-action-button:hover {
+    opacity: 0.9;
+}
+
+.pro-secondary-button {
+    margin-top: 10px;
+    padding: 10px 16px;
+    background: #ffffff;
+    color: #007BFF;
+    border: 1px solid #007BFF;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.pro-secondary-button:hover {
+    background: #f0f6ff;
+}
+
+.pro-message {
+    margin-top: 12px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.pro-empty {
+    padding: 15px;
+    background: #ffffff;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    margin-top: 12px;
+}
+
+.pro-priority {
+    display: inline-block;
+    padding: 4px 9px;
+    border-radius: 5px;
+    background: #eef5ff;
+    color: #007BFF;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.pro-status {
+    font-weight: bold;
+}
+
+.pro-textarea {
+    min-height: 130px;
+}
+
+@media (max-width: 600px) {
+
+    .pro-module {
+        padding: 15px;
+    }
+
+    .pro-card {
+        padding: 14px;
+    }
+
+    .pro-list {
+        grid-template-columns: 1fr;
+    }
+
+    .pro-action-button,
+    .pro-secondary-button {
+        width: 100%;
+    }
+
+}
+      /* =========================================
+   FOUNDER MASTER WORKSPACE
+========================================= */
+
+.founder-workspace {
+    margin-top: 20px;
+}
+
+.founder-banner {
+    background: #061a3a;
+    color: #ffffff;
+    padding: 24px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.founder-banner h3 {
+    margin-top: 0;
+    color: #ffffff;
+}
+
+.founder-banner p {
+    line-height: 1.6;
+}
+
+.founder-badge {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #007BFF;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.founder-module {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 18px;
+}
+
+.founder-module h3 {
+    margin-top: 0;
+    color: #007BFF;
+}
+
+.founder-module p {
+    line-height: 1.6;
+}
+
+.founder-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.founder-card {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 18px;
+}
+
+.founder-card h4 {
+    margin-top: 0;
+    color: #007BFF;
+}
+
+.founder-card p {
+    line-height: 1.5;
+}
+
+.founder-rule {
+    background: #ffffff;
+    border-left: 4px solid #007BFF;
+    padding: 15px;
+    margin-top: 12px;
+    border-radius: 5px;
+}
+
+.founder-rule strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.founder-action {
+    margin-top: 10px;
+    padding: 11px 16px;
+    background: #007BFF;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.founder-action:hover {
+    opacity: 0.9;
+}
+
+.founder-secondary {
+    margin-top: 10px;
+    padding: 11px 16px;
+    background: #ffffff;
+    color: #007BFF;
+    border: 1px solid #007BFF;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.founder-secondary:hover {
+    background: #f0f6ff;
+}
+
+.founder-note {
+    background: #eef6ff;
+    border-left: 4px solid #007BFF;
+    padding: 15px;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+
+    .founder-module {
+        padding: 15px;
+    }
+
+    .founder-card {
+        padding: 15px;
+    }
+
+    .founder-action,
+    .founder-secondary {
+        width: 100%;
+    }
+
+}
+
+    </style>
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <img
+        src="T-KEL logo.png"
+        alt="T-KEL Logo">
+
+</header>
+
+
+<main class="container" id="dashboard">
+
+    <div class="loading">
+        Checking Management session...
+    </div>
+
+</main>
+
+
+<script>
+
+async function loadManagementDashboard() {
+
+    const dashboard =
+        document.getElementById("dashboard");
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/management-session",
+                {
+                    method: "GET",
+                    credentials: "include",
+                    cache: "no-store"
+                }
+            );
+
+        const result =
+            await response.json();
+
+        if (!response.ok || !result.success) {
+
+            window.location.href =
+                "management-login.html";
+
+            return;
+        }
+
+        const management =
+            result.management;
+
+        const role =
+            management.assignedRole || "Management";
+
+
+        dashboard.innerHTML = `
+
+            <section class="welcome">
+
+                <h1>
+                    Welcome, ${escapeHTML(management.fullName)}
+                </h1>
+
+                <p>
+                    Welcome to the T-KEL Management workspace.
+                </p>
+
+                <div class="account-grid">
+
+                    <div class="account-card">
+                        <strong>Management ID</strong>
+                        <span>
+                            ${escapeHTML(
+                                management.managementId
+                            )}
+                        </span>
+                    </div>
+
+                    <div class="account-card">
+                        <strong>Role</strong>
+                        <span>
+                            ${escapeHTML(role)}
+                        </span>
+                    </div>
+
+                    <div class="account-card">
+                        <strong>Department</strong>
+                        <span>
+                            ${escapeHTML(
+                                management.department ||
+                                "Not assigned"
+                            )}
+                        </span>
+                    </div>
+
+                    <div class="account-card">
+                        <strong>Account Status</strong>
+                        <span>
+                            ${escapeHTML(
+                                management.accountStatus
+                            )}
+                        </span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <section class="dashboard-area">
+
+                <h2>
+                    Management Workspace
+                </h2>
+
+                <div id="roleWorkspace"></div>
+
+            </section>
+
+
+            <section class="password-change-section">
+
+                <h2>
+                    Change Password
+                </h2>
+
+                <p>
+                    Change your Management account password.
+                    You will be required to log in again
+                    after changing it.
+                </p>
+
+                <form
+                    onsubmit="changeManagementPassword(event)">
+
+                    <label for="currentManagementPassword">
+                        Current Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="currentManagementPassword"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <label for="newManagementPassword">
+                        New Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="newManagementPassword"
+                        minlength="8"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <label for="confirmManagementPassword">
+                        Confirm New Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmManagementPassword"
+                        minlength="8"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        class="form-button">
+                        Change Password
+                    </button>
+
+                    <div
+                        id="passwordChangeMessage"
+                        class="message">
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <section class="my-reports-section">
+
+                <h2>
+                    My Reports
+                </h2>
+
+                <p>
+                    View reports you have submitted and
+                    track their current status and
+                    Management responses.
+                </p>
+
+                <button
+                    type="button"
+                    class="form-button"
+                    onclick="loadMyReports()">
+
+                    Load My Reports
+
+                </button>
+
+                <div
+                    id="myReportsMessage"
+                    class="message">
+                </div>
+
+                <div
+                    id="myReportsContainer">
+                </div>
+
+            </section>
+
+
+            <button
+                class="logout-button"
+                id="logoutButton">
+
+                Logout
+
+            </button>
+
+        `;
+
+
+        buildRoleWorkspace(
+            management.assignedRole
+        );
+
+
+        document
+            .getElementById("logoutButton")
+            .addEventListener(
+                "click",
+                logoutManagement
+            );
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        dashboard.innerHTML = `
+
+            <div class="error">
+
+                <h2>
+                    Connection Error
+                </h2>
+
+                <p>
+                    We could not verify your
+                    Management session.
+                </p>
+
+                <button
+                    onclick="location.href='management-login.html'">
+
+                    Return to Login
+
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+function buildRoleWorkspace(role) {
+
+    const workspace =
+        document.getElementById("roleWorkspace");
+
+    if (!workspace) return;
+
+    const normalizedRole =
+        String(role || "").trim().toLowerCase();
+
+      /* =========================================
+       FOUNDER MASTER WORKSPACE
+    ========================================= */
+
+    if (normalizedRole === "founder") {
+
+        workspace.innerHTML = `
+
+            <div class="founder-workspace">
+
+                <div class="founder-banner">
+
+                    <h3>
+                        T-KEL Founder Control Center
+                    </h3>
+
+                    <span class="founder-badge">
+                        MASTER MANAGEMENT ACCESS
+                    </span>
+
+                    <p>
+                        Welcome to the Founder workspace.
+                        This area is reserved for the Founder
+                        and provides oversight of the complete
+                        T-KEL Management structure.
+                    </p>
+
+                    <p>
+                        As Founder, you have authority to oversee
+                        Management departments, management members,
+                        applications, reports, responsibilities,
+                        rules and organizational activities.
+                    </p>
+
+                </div>
+
+
+                <div class="founder-module">
+
+                    <h3>
+                        Management Administration
+                    </h3>
+
+                    <div class="founder-grid">
+
+                        <div class="founder-card">
+
+                            <h4>
+                                Management Members
+                            </h4>
+
+                            <p>
+                                View and manage registered
+                                T-KEL Management members.
+                            </p>
+
+                            <button
+                                type="button"
+                                class="founder-action"
+                                onclick="founderComingSoon('Management Members')">
+
+                                Open Members
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="founder-card">
+
+            <div class="founder-card">
+
+    <h4>Create Management Account</h4>
+
+    <p>
+        Create a new T-KEL Management account,
+        assign a role and generate a unique
+        Management ID.
+    </p>
+
+    <button
+        type="button"
+        class="founder-action"
+        onclick="openCreateManagementForm()">
+
+        Create Account
+
+    </button>
+
+</div>
+
+                        </div>
+
+
+                        <div class="founder-card">
+
+                            <h4>
+                                Management Roles
+                            </h4>
+
+                            <p>
+                                Review available roles and their
+                                responsibilities.
+                            </p>
+
+                            <button
+                                type="button"
+                                class="founder-action"
+                                onclick="founderComingSoon('Management Roles')">
+
+                                View Roles
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="founder-card">
+
+                            <h4>
+                                Account Control
+                            </h4>
+
+                            <p>
+                                Activate, deactivate or review
+                                Management accounts.
+                            </p>
+
+                            <button
+                                type="button"
+                                class="founder-action"
+                                onclick="founderComingSoon('Account Control')">
+
+                                Account Control
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="founder-module">
+
+                    <h3>
+                        All Management Rules
+                    </h3>
+
+                    <p>
+                        Founder has oversight of the rules
+                        governing the T-KEL Management structure.
+                    </p>
+
+
+                    <div class="founder-rule">
+
+                        <strong>
+                            Production Management
+                        </strong>
+
+                        Production Management oversees
+                        production activities, projects,
+                        production challenges, equipment issues
+                        and assigned production responsibilities.
+
+                    </div>
+
+
+                    <div class="founder-rule">
+
+                        <strong>
+                            Digital / Website Management
+                        </strong>
+
+                        Digital Management oversees website,
+                        digital systems, technical issues,
+                        content management and digital
+                        improvement activities.
+
+                    </div>
+
+
+                    <div class="founder-rule">
+
+                        <strong>
+                            Media Management
+                        </strong>
+
+                        Media Management coordinates media
+                        activities, communication, content
+                        support and assigned media responsibilities.
+
+                    </div>
+
+
+                    <div class="founder-rule">
+
+                        <strong>
+                            Finance & Accounts
+                        </strong>
+
+                        Finance Management handles financial
+                        records, income, expenditure,
+                        reconciliation, payment documentation
+                        and financial reporting.
+
+                    </div>
+
+
+                    <div class="founder-rule">
+
+                        <strong>
+                            Security Management
+                        </strong>
+
+                        Security Management handles security
+                        duties, incidents, complaints,
+                        recommendations and security reports.
+
+                    </div>
+
+
+                    <div class="founder-rule">
+
+                        <strong>
+                            Music / Artist Management
+                        </strong>
+
+                        Music Management oversees artists,
+                        music projects, releases, artist
+                        activities and related reports.
+
+                    </div>
+
+
+                    <div class="founder-rule">
+
+                        <strong>
+                            Distribution Management
+                        </strong>
+
+                        Distribution Management oversees
+                        music distribution activities,
+                        submissions, releases and distribution
+                        reporting.
+
+                    </div>
+
+
+                    <div class="founder-rule">
+
+                        <strong>
+                            Public Relations
+                        </strong>
+
+                        PRO Management handles authorized
+                        communication, Director instructions,
+                        follow-ups, communication history
+                        and reports.
+
+                    </div>
+
+
+                    <div class="founder-rule">
+
+                        <strong>
+                            General Management Reporting
+                        </strong>
+
+                        Management members must submit reports
+                        concerning duties, incidents, challenges,
+                        equipment problems, recommendations,
+                        complaints and improvement requests.
+
+                    </div>
+
+                </div>
+
+
+                <div class="founder-module">
+
+                    <h3>
+                        Applications & Reports
+                    </h3>
+
+                    <div class="founder-grid">
+
+                        <div class="founder-card">
+
+                            <h4>
+                                Management Applications
+                            </h4>
+
+                            <p>
+                                Review applications for people
+                                seeking positions within
+                                T-KEL Management.
+                            </p>
+
+                            <button
+                                type="button"
+                                class="founder-action"
+                                onclick="founderComingSoon('Management Applications')">
+
+                                View Applications
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="founder-card">
+
+                            <h4>
+                                Management Reports
+                            </h4>
+
+                            <p>
+                                Review reports submitted by
+                                Management members.
+                            </p>
+
+                            <button
+                                type="button"
+                                class="founder-action"
+                                onclick="founderComingSoon('Management Reports')">
+
+                                View Reports
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="founder-card">
+
+                            <h4>
+                                All Departments
+                            </h4>
+
+                            <p>
+                                Founder oversight extends across
+                                every Management department.
+                            </p>
+
+                            <button
+                                type="button"
+                                class="founder-action"
+                                onclick="founderComingSoon('All Departments')">
+
+                                View Departments
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="founder-module">
+
+                    <h3>
+                        Founder Authority
+                    </h3>
+
+                    <div class="founder-note">
+
+                        The Founder is the highest authority within
+                        the T-KEL Management structure.
+
+                        <br><br>
+
+                        Founder authority includes organizational
+                        oversight, Management appointments,
+                        Management account administration,
+                        role assignments, review of reports,
+                        review of applications and supervision
+                        of T-KEL Management activities.
+
+                        <br><br>
+
+                        Sensitive administrative actions will be
+                        protected by server-side authorization and
+                        will not depend only on what is displayed
+                        on this page.
+
+                    </div>
+
+                </div>
+
+                <div
+    class="founder-module"
+    id="create-management-form"
+    style="display:none;"
+>
+
+    <h3>Create Management Member</h3>
+
+    <p>
+        Use this form to create a Management account.
+        The system will automatically generate a unique
+        Management ID.
+    </p>
+
+    <form onsubmit="createManagementMember(event)">
+
+        <label>
+            Full Name
+        </label>
+
+        <input
+            type="text"
+            id="newManagementFullName"
+            placeholder="Enter full name"
+            required
+        >
+
+        <label>
+            Email
+        </label>
+
+        <input
+            type="email"
+            id="newManagementEmail"
+            placeholder="Enter email address"
+            required
+        >
+
+        <label>
+            Phone
+        </label>
+
+        <input
+            type="tel"
+            id="newManagementPhone"
+            placeholder="Enter phone number"
+            required
+        >
+
+        <label>
+            Management Role
+        </label>
+
+        <select
+            id="newManagementRole"
+            required
+        >
+
+            <option value="">
+                Select Management Role
+            </option>
+
+            <option value="Production Manager">
+                Production Manager
+            </option>
+
+            <option value="Digital / Website Manager">
+                Digital / Website Manager
+            </option>
+
+            <option value="Media Manager">
+                Media Manager
+            </option>
+
+            <option value="Finance & Accounts Officer">
+                Finance & Accounts Officer
+            </option>
+
+            <option value="Security Officer">
+                Security Officer
+            </option>
+
+            <option value="Music / Artist Manager">
+                Music / Artist Manager
+            </option>
+
+            <option value="Distribution Manager">
+                Distribution Manager
+            </option>
+
+            <option value="Public Relations Officer">
+                Public Relations Officer
+            </option>
+
+            <option value="Monitoring / Supervisor">
+                Monitoring / Supervisor
+            </option>
+
+            <option value="Support Team">
+                Support Team
+            </option>
+
+        </select>
+
+        <label>
+            Password
+        </label>
+
+        <input
+            type="password"
+            id="newManagementPassword"
+            placeholder="Leave blank to generate automatically"
+            minlength="8"
+        >
+
+        <p style="
+            font-size:13px;
+            color:#666;
+            margin-top:6px;
+        ">
+            If you leave the password blank, the system
+            will automatically generate one.
+        </p>
+
+        <button
+            type="submit"
+            class="founder-action"
+        >
+            Create Management Account
+        </button>
+
+        <button
+            type="button"
+            class="founder-secondary"
+            onclick="closeCreateManagementForm()"
+        >
+            Cancel
+        </button>
+
+    </form>
+
+    <div
+        id="managementCreationResult"
+        style="margin-top:20px;"
+    ></div>
+
+</div>
+
+
+                <div class="founder-module">
+
+                    <h3>
+                        Founder System Settings
+                    </h3>
+
+                    <p>
+                        Founder-only system settings will be
+                        connected here as the Management
+                        administration system is completed.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="founder-secondary"
+                        onclick="founderComingSoon('Founder Settings')">
+
+                        Founder Settings
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+        addManagementReportForm(workspace);
+
+        return;
+    }
+
+    /* PRO 1 / PRO 2 WORKSPACE */
+
+    if (
+        normalizedRole === "pro 1" ||
+        normalizedRole === "pro 2"
+    ) {
+
+        workspace.innerHTML = `
+
+            <div class="pro-workspace">
+
+                <div class="pro-module">
+
+                    <h3>Public Relations Officer Workspace</h3>
+
+                    <p>
+                        Welcome to your T-KEL PRO workspace.
+                        Receive instructions from the Director,
+                        communicate authorized messages to T-KEL
+                        personnel, track follow-ups, and report
+                        outcomes back to the Director.
+                    </p>
+
+                    <div class="pro-list">
+
+                        <div class="pro-stat">
+                            <strong>My Role</strong>
+                            <span>${escapeHTML(role)}</span>
+                        </div>
+
+                        <div class="pro-stat">
+                            <strong>Authority</strong>
+                            <span style="font-size:16px">
+                                Director-Assigned Duties
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="pro-module">
+
+                    <h3>Director Instructions</h3>
+
+                    <p>
+                        View instructions assigned to you by
+                        the Founder or Management Director.
+                    </p>
+
+                    <button class="pro-action-button"
+                        onclick="proLoadDashboardData()">
+                        Load PRO Dashboard
+                    </button>
+
+                    <div id="proInstructions"
+                        aria-live="polite"></div>
+
+                </div>
+
+                <div class="pro-module">
+
+                    <h3>Communication Center</h3>
+
+                    <p>
+                        Send authorized communications to active
+                        T-KEL management members.
+                    </p>
+
+                    <form onsubmit="proSendCommunication(event)">
+
+                        <label for="proCommunicationSubject">
+                            Subject
+                        </label>
+
+                        <input id="proCommunicationSubject"
+                            maxlength="200" required>
+
+                        <label for="proCommunicationPriority">
+                            Priority
+                        </label>
+
+                        <select id="proCommunicationPriority">
+                            <option value="NORMAL">Normal</option>
+                            <option value="IMPORTANT">Important</option>
+                            <option value="URGENT">Urgent</option>
+                        </select>
+
+                        <label for="proCommunicationRecipients">
+                            Recipients
+                        </label>
+
+                        <select id="proCommunicationRecipients"
+                            multiple size="5" required>
+                        </select>
+
+                        <p>
+                            On most phones, tap each recipient you
+                            want to select. You may select multiple
+                            recipients.
+                        </p>
+
+                        <label for="proCommunicationMessage">
+                            Message
+                        </label>
+
+                        <textarea
+                             id="proCommunicationText"
+                            class="pro-textarea"
+                            maxlength="10000"
+                            required></textarea>
+
+                        <button type="submit"
+                            class="pro-action-button">
+                            Send Communication
+                        </button>
+
+                    </form>
+
+                    <div id="proCommunicationMessage"
+                        class="pro-message"
+                        aria-live="polite"></div>
+
+                </div>
+
+                <div class="pro-module">
+
+                    <h3>Received Communications</h3>
+
+                    <button class="pro-action-button"
+                        onclick="proLoadReceivedCommunications()">
+                        Load Received Messages
+                    </button>
+
+                    <div id="proReceivedCommunications"></div>
+
+                </div>
+
+                <div class="pro-module">
+
+                    <h3>People Directory</h3>
+
+                    <p>
+                        Find active T-KEL management members and
+                        their available contact details.
+                    </p>
+
+                    <button class="pro-action-button"
+                        onclick="proLoadPeopleDirectory()">
+                        Load People Directory
+                    </button>
+
+                    <div id="proPeopleDirectory"></div>
+
+                </div>
+
+                <div class="pro-module">
+
+                    <h3>Communication History</h3>
+
+                    <button class="pro-action-button"
+                        onclick="proLoadCommunicationHistory()">
+                        Load Communication History
+                    </button>
+
+                    <div id="proCommunicationHistory"></div>
+
+                </div>
+
+                <div class="pro-module">
+
+                    <h3>Follow-ups</h3>
+
+                    <form onsubmit="proCreateFollowUp(event)">
+
+                        <label for="proFollowUpTitle">
+                            Follow-up Title
+                        </label>
+
+                        <input id="proFollowUpTitle"
+                            maxlength="200" required>
+
+                        <label for="proFollowUpPriority">
+                            Priority
+                        </label>
+
+                        <select id="proFollowUpPriority">
+                            <option value="NORMAL">Normal</option>
+                            <option value="IMPORTANT">Important</option>
+                            <option value="URGENT">Urgent</option>
+                        </select>
+
+                        <label for="proFollowUpDueDate">
+                            Due Date (Optional)
+                        </label>
+
+                        <input id="proFollowUpDueDate"
+                            type="datetime-local">
+
+                        <label for="proFollowUpDescription">
+                            Details
+                        </label>
+
+                        <textarea id="proFollowUpDescription"
+                            class="pro-textarea"
+                            maxlength="10000"
+                            required></textarea>
+
+                        <button type="submit"
+                            class="pro-action-button">
+                            Create Follow-up
+                        </button>
+
+                    </form>
+
+                    <div id="proFollowUpMessage"
+                        class="pro-message"></div>
+
+                    <button class="pro-secondary-button"
+                        onclick="proLoadFollowUps()">
+                        Load My Follow-ups
+                    </button>
+
+                    <div id="proFollowUps"></div>
+
+                </div>
+
+                <div class="pro-module">
+    <h3>Report Back to Director</h3>
+
+    <form onsubmit="proSubmitDirectorReport(event)">
+
+        <label for="proDirectorReportInstruction">
+            Related Director Instruction (Optional)
+        </label>
+
+        <select id="proDirectorReportInstruction">
+            <option value="">
+                No linked instruction
+            </option>
+        </select>
+
+        <label for="proDirectorReportCommunication">
+            Related Communication (Optional)
+        </label>
+
+        <select id="proDirectorReportCommunication">
+            <option value="">
+                No linked communication
+            </option>
+        </select>
+
+        <label for="proDirectorReportTitle">
+            Report Title
+        </label>
+
+        <input
+            id="proDirectorReportTitle"
+            maxlength="200"
+            required
+        >
+
+        <label for="proDirectorReportOutcome">
+            Outcome
+        </label>
+
+        <input
+            id="proDirectorReportOutcome"
+            maxlength="2000"
+        >
+
+        <label for="proDirectorReportText">
+            Report Details
+        </label>
+
+        <textarea
+            id="proDirectorReportText"
+            class="pro-textarea"
+            maxlength="10000"
+            required
+        ></textarea>
+
+        <label>
+            <input
+                type="checkbox"
+                id="proReportFollowUp"
+                style="width:auto"
+            >
+            Further follow-up is required
+        </label>
+
+        <button
+            type="submit"
+            class="pro-action-button"
+        >
+            Submit Report to Director
+        </button>
+
+    </form>
+
+    <div
+        id="proDirectorReportMessage"
+        class="pro-message"
+        aria-live="polite"
+    ></div>
+</div>
+
+
+                <div class="pro-module">
+
+                    <h3>My Reports</h3>
+
+                    <button class="pro-action-button"
+                        onclick="proLoadMyReports()">
+                        Load My PRO Reports
+                    </button>
+
+                    <div id="proMyReports"></div>
+
+                </div>
+
+                <div class="pro-module">
+
+                    <h3>Important Announcements</h3>
+
+                    <p>
+                        Director announcements will appear here
+                        when an announcement feature is connected.
+                        For now, check your Director Instructions
+                        for official updates.
+                    </p>
+
+                </div>
+
+                <div class="pro-module">
+
+                    <h3>My Account</h3>
+
+                    <p>
+                        Your name, Management ID, assigned role,
+                        department, and account status appear in
+                        the account information above.
+                    </p>
+
+                    <p>
+                        Use the Change Password section below
+                        this workspace to update your password.
+                    </p>
+
+                </div>
+
+            </div>
+
+        `;
+
+        /* Keep the existing general report form available
+           for PRO staff as well. */
+
+        addManagementReportForm(workspace);
+
+        return;
+    }
+
+    /* EXISTING NON-PRO WORKSPACES */
+
+    if (normalizedRole.includes("security")) {
+
+        workspace.innerHTML = `
+            <div class="module">
+                <h3>Security Workspace</h3>
+                <p>
+                    Record daily duty reports, security incidents,
+                    events, challenges, actions taken, complaints
+                    and improvement requests.
+                </p>
+            </div>
+        `;
+
+    } else if (
+        normalizedRole.includes("camera") ||
+        normalizedRole.includes("cameraman")
+    ) {
+
+        workspace.innerHTML = `
+            <div class="module">
+                <h3>Camera / Cameraman Workspace</h3>
+                <p>
+                    Submit equipment problems, production
+                    challenges, recommendations and
+                    production-related reports.
+                </p>
+            </div>
+        `;
+
+    } else if (
+        normalizedRole === "finance & accounts officer"
+    ) {
+
+        workspace.innerHTML = `
+            <div class="module">
+                <h3>Finance & Accounts Workspace</h3>
+                <p>
+                    Manage financial records, income and
+                    expenditure information, payment
+                    documentation, financial reports,
+                    reconciliation and assigned financial tasks.
+                </p>
+            </div>
+        `;
+
+    } else if (normalizedRole.includes("production")) {
+
+        workspace.innerHTML = `
+            <div class="module">
+                <h3>Production Workspace</h3>
+                <p>
+                    Manage production reports, projects,
+                    production challenges, equipment issues
+                    and assigned tasks.
+                </p>
+            </div>
+        `;
+
+    } else if (
+        normalizedRole.includes("music") ||
+        normalizedRole.includes("artist")
+    ) {
+
+        workspace.innerHTML = `
+            <div class="module">
+                <h3>Music / Artist Management Workspace</h3>
+                <p>
+                    Manage artist-related activities, music
+                    projects, releases, reports and assigned tasks.
+                </p>
+            </div>
+        `;
+
+    } else if (
+        normalizedRole.includes("digital") ||
+        normalizedRole.includes("website")
+    ) {
+
+        workspace.innerHTML = `
+            <div class="module">
+                <h3>Digital / Website Workspace</h3>
+                <p>
+                    Manage website tasks, digital reports,
+                    technical issues, content and
+                    improvement requests.
+                </p>
+            </div>
+        `;
+
+    } else if (normalizedRole.includes("distribution")) {
+
+        workspace.innerHTML = `
+            <div class="module">
+                <h3>Distribution Workspace</h3>
+                <p>
+                    Manage distribution activities, submissions,
+                    release information, reports and assigned tasks.
+                </p>
+            </div>
+        `;
+
+    } else {
+
+        workspace.innerHTML = `
+            <div class="module">
+                <h3>${escapeHTML(role || "Management")} Workspace</h3>
+                <p>
+                    Your assigned Management workspace will contain
+                    the tasks, reports and responsibilities
+                    connected to your role.
+                </p>
+            </div>
+        `;
+
+    }
+
+    addManagementReportForm(workspace);
+}
+
+
+/* Keep the existing general Management Report form
+   in one reusable function. */
+
+  function founderComingSoon(section) {
+
+    alert(
+        section +
+        " will be connected to the secure Founder Management system."
+    );
+
+}
+
+  function openCreateManagementForm() {
+
+    const form =
+        document.getElementById(
+            "create-management-form"
+        );
+
+    if (!form) return;
+
+    form.style.display = "block";
+
+    form.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+}
+
+
+function closeCreateManagementForm() {
+
+    const form =
+        document.getElementById(
+            "create-management-form"
+        );
+
+    if (!form) return;
+
+    form.style.display = "none";
+
+}
+
+
+async function createManagementMember(event) {
+
+    event.preventDefault();
+
+
+    const fullName =
+        document
+            .getElementById(
+                "newManagementFullName"
+            )
+            .value
+            .trim();
+
+
+    const email =
+        document
+            .getElementById(
+                "newManagementEmail"
+            )
+            .value
+            .trim();
+
+
+    const phone =
+        document
+            .getElementById(
+                "newManagementPhone"
+            )
+            .value
+            .trim();
+
+
+    const role =
+        document
+            .getElementById(
+                "newManagementRole"
+            )
+            .value;
+
+
+    const password =
+        document
+            .getElementById(
+                "newManagementPassword"
+            )
+            .value
+            .trim();
+
+
+    const result =
+        document.getElementById(
+            "managementCreationResult"
+        );
+
+
+    result.innerHTML = `
+        <div class="founder-note">
+            Creating Management account...
+        </div>
+    `;
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/founder-create-management",
+                {
+                    method: "POST",
+
+                    credentials: "include",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        fullName:
+                            fullName,
+
+                        email:
+                            email,
+
+                        phone:
+                            phone,
+
+                        role:
+                            role,
+
+                        password:
+                            password
+
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok || !data.success) {
+
+            throw new Error(
+                data.message ||
+                "Unable to create Management account."
+            );
+        }
+
+
+        result.innerHTML = `
+
+            <div class="founder-note">
+
+                <h4>
+                    Management Account Created Successfully
+                </h4>
+
+                <p>
+                    The new Management member can now
+                    log in through the T-KEL Management Login.
+                </p>
+
+                <p>
+                    <strong>Management ID:</strong><br>
+                    ${escapeHTML(
+                        data.management.managementId
+                    )}
+                </p>
+
+                <p>
+                    <strong>Name:</strong><br>
+                    ${escapeHTML(
+                        data.management.fullName
+                    )}
+                </p>
+
+                <p>
+                    <strong>Role:</strong><br>
+                    ${escapeHTML(
+                        data.management.role
+                    )}
+                </p>
+
+                <p>
+                    <strong>Department:</strong><br>
+                    ${escapeHTML(
+                        data.management.department
+                    )}
+                </p>
+
+                <p>
+                    <strong>Password:</strong><br>
+                    ${escapeHTML(
+                        data.management.temporaryPassword
+                    )}
+                </p>
+
+                <p>
+                    <strong>Status:</strong><br>
+                    ACTIVE
+                </p>
+
+                <p style="
+                    color:#b00020;
+                    font-weight:bold;
+                ">
+                    Save these login details securely.
+                    The generated password will not be
+                    displayed again after this result is closed.
+                </p>
+
+            </div>
+
+        `;
+
+
+        document
+            .getElementById(
+                "newManagementFullName"
+            )
+            .value = "";
+
+        document
+            .getElementById(
+                "newManagementEmail"
+            )
+            .value = "";
+
+        document
+            .getElementById(
+                "newManagementPhone"
+            )
+            .value = "";
+
+        document
+            .getElementById(
+                "newManagementRole"
+            )
+            .value = "";
+
+        document
+            .getElementById(
+                "newManagementPassword"
+            )
+            .value = "";
+
+
+    } catch (error) {
+
+        console.error(
+            "Create Management error:",
+            error
+        );
+
+
+        result.innerHTML = `
+
+            <div
+                style="
+                    background:#fff0f0;
+                    border-left:4px solid #d00000;
+                    padding:15px;
+                    color:#900;
+                "
+            >
+
+                <strong>
+                    Account creation failed.
+                </strong>
+
+                <p>
+                    ${escapeHTML(
+                        error.message
+                    )}
+                </p>
+
+            </div>
+
+        `;
+    }
+
+}
+
+function addManagementReportForm(workspace) {
+
+    workspace.innerHTML += `
+
+        <div class="management-report-section">
+
+            <h3>Submit Management Report</h3>
+
+            <p>
+                Report duties, incidents, challenges,
+                equipment problems, recommendations,
+                complaints, or other matters requiring
+                Management attention.
+            </p>
+
+            <form onsubmit="submitManagementReport(event)">
+
+                <label for="reportType">Report Type</label>
+
+                <select id="reportType" required>
+                    <option value="">Select report type</option>
+                    <option value="Daily Duty Report">Daily Duty Report</option>
+                    <option value="Incident Report">Incident Report</option>
+                    <option value="Production Challenge">Production Challenge</option>
+                    <option value="Equipment Problem">Equipment Problem</option>
+                    <option value="Complaint">Complaint</option>
+                    <option value="Recommendation">Recommendation</option>
+                    <option value="Improvement Request">Improvement Request</option>
+                    <option value="Financial Report">Financial Report</option>
+                    <option value="Project Report">Project Report</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="reportDescription">Description</label>
+
+                <textarea
+                    id="reportDescription"
+                    maxlength="10000"
+                    rows="7"
+                    placeholder="Write your report here..."
+                    required></textarea>
+
+                <button type="submit" class="form-button">
+                    Submit Report
+                </button>
+
+                <div id="reportMessage" class="message"></div>
+
+            </form>
+
+        </div>
+    `;
+}
+
+
+
+async function submitManagementReport(event) {
+
+    event.preventDefault();
+
+
+    const reportType =
+        document.getElementById(
+            "reportType"
+        ).value;
+
+
+    const description =
+        document.getElementById(
+            "reportDescription"
+        ).value.trim();
+
+
+    const message =
+        document.getElementById(
+            "reportMessage"
+        );
+
+
+    if (!reportType || !description) {
+
+        message.textContent =
+            "Please complete the report.";
+
+        return;
+    }
+
+
+    message.textContent =
+        "Submitting report...";
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/management-submit-report",
+                {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+                    body: JSON.stringify({
+                        reportType:
+                            reportType,
+                        description:
+                            description
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                "Unable to submit report."
+            );
+
+        }
+
+
+        message.textContent =
+            "Report submitted successfully. Report ID: " +
+            data.reportId;
+
+
+        document.getElementById(
+            "reportDescription"
+        ).value = "";
+
+
+        document.getElementById(
+            "reportType"
+        ).value = "";
+
+
+    } catch (error) {
+
+        console.error(
+            "Report submission error:",
+            error
+        );
+
+
+        message.textContent =
+            error.message ||
+            "Unable to submit report.";
+
+    }
+
+}
+
+
+async function loadMyReports() {
+
+    const message =
+        document.getElementById(
+            "myReportsMessage"
+        );
+
+
+    const container =
+        document.getElementById(
+            "myReportsContainer"
+        );
+
+
+    message.textContent =
+        "Loading your reports...";
+
+
+    container.innerHTML = "";
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/management-my-reports",
+                {
+                    method: "GET",
+                    credentials: "include",
+                    cache: "no-store"
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                "Unable to load reports."
+            );
+
+        }
+
+
+        const reports =
+            data.reports || [];
+
+
+        message.textContent =
+            reports.length === 0
+                ? "You have not submitted any reports yet."
+                : `${reports.length} report(s) found.`;
+
+
+        if (reports.length === 0) {
+            return;
+        }
+
+
+        container.innerHTML =
+            reports.map(report => {
+
+                const createdDate =
+                    new Date(
+                        report.created_at
+                    ).toLocaleString();
+
+
+                const updatedDate =
+                    report.updated_at
+                        ? new Date(
+                            report.updated_at
+                        ).toLocaleString()
+                        : "—";
+
+
+                return `
+
+                    <div class="report-card">
+
+                        <h3>
+                            ${escapeHTML(
+                                report.report_type
+                            )}
+                        </h3>
+
+
+                        <p>
+                            <strong>
+                                Report ID:
+                            </strong>
+
+                            ${escapeHTML(
+                                report.report_id
+                            )}
+                        </p>
+
+
+                        <p>
+                            <strong>
+                                Date Submitted:
+                            </strong>
+
+                            ${escapeHTML(
+                                createdDate
+                            )}
+                        </p>
+
+
+                        <p>
+                            <strong>
+                                Status:
+                            </strong>
+
+                            <span class="report-status">
+
+                                ${escapeHTML(
+                                    report.status
+                                )}
+
+                            </span>
+
+                        </p>
+
+
+                        <p>
+                            <strong>
+                                Description:
+                            </strong>
+                        </p>
+
+
+                        <p>
+                            ${escapeHTML(
+                                report.description
+                            )}
+                        </p>
+
+
+                        <p>
+                            <strong>
+                                Last Updated:
+                            </strong>
+
+                            ${escapeHTML(
+                                updatedDate
+                            )}
+                        </p>
+
+
+                        <div class="director-response">
+
+                            <strong>
+                                Management Response:
+                            </strong>
+
+                            <p>
+
+                                ${
+                                    report.director_response
+                                        ? escapeHTML(
+                                            report.director_response
+                                        )
+                                        : "No response yet."
+                                }
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }).join("");
+
+
+    } catch (error) {
+
+        console.error(
+            "My reports error:",
+            error
+        );
+
+
+        message.textContent =
+            error.message ||
+            "Unable to load your reports.";
+
+    }
+
+}
+
+
+async function changeManagementPassword(event) {
+
+    event.preventDefault();
+
+
+    const currentPassword =
+        document.getElementById(
+            "currentManagementPassword"
+        ).value;
+
+
+    const newPassword =
+        document.getElementById(
+            "newManagementPassword"
+        ).value;
+
+
+    const confirmPassword =
+        document.getElementById(
+            "confirmManagementPassword"
+        ).value;
+
+
+    const messageElement =
+        document.getElementById(
+            "passwordChangeMessage"
+        );
+
+
+    messageElement.textContent = "";
+
+
+    if (newPassword !== confirmPassword) {
+
+        messageElement.textContent =
+            "The new passwords do not match.";
+
+        return;
+
+    }
+
+
+    if (newPassword.length < 8) {
+
+        messageElement.textContent =
+            "New password must be at least 8 characters.";
+
+        return;
+
+    }
+
+
+    if (!window.confirm(
+        "Are you sure you want to change your password?"
+    )) {
+
+        return;
+
+    }
+
+
+    messageElement.textContent =
+        "Changing password...";
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/management-change-password",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+                    credentials: "include",
+                    cache: "no-store",
+                    body: JSON.stringify({
+                        currentPassword:
+                            currentPassword,
+                        newPassword:
+                            newPassword
+                    })
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.error ||
+                "Unable to change password."
+            );
+
+        }
+
+
+        messageElement.textContent =
+            result.message ||
+            "Password changed successfully.";
+
+
+        document.getElementById(
+            "currentManagementPassword"
+        ).value = "";
+
+
+        document.getElementById(
+            "newManagementPassword"
+        ).value = "";
+
+
+        document.getElementById(
+            "confirmManagementPassword"
+        ).value = "";
+
+
+        setTimeout(function () {
+
+            window.location.href =
+                "management-login.html";
+
+        }, 1500);
+
+
+    } catch (error) {
+
+        console.error(
+            "Password change error:",
+            error
+        );
+
+
+        messageElement.textContent =
+            error.message ||
+            "Unable to change password.";
+
+    }
+
+}
+
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+async function logoutManagement() {
+
+    try {
+
+        await fetch(
+            "/.netlify/functions/management-logout",
+            {
+                method: "POST",
+                credentials: "include"
+            }
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Logout error:",
+            error
+        );
+
+    }
+
+
+    window.location.href =
+        "management-login.html";
+
+}
+
+
+/* =========================================
+   PRO WORKSPACE FUNCTIONS
+========================================= */
+
+async function proLoadDashboardData() {
+
+    const instructionsContainer =
+        document.getElementById("proInstructions");
+
+    if (!instructionsContainer) return;
+
+    instructionsContainer.innerHTML =
+        `<div class="pro-message">Loading Director instructions...</div>`;
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/pro-dashboard-data",
+                {
+                    method: "GET",
+                    credentials: "include",
+                    cache: "no-store"
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok || !data.success) {
+            throw new Error(
+                data.error ||
+                "Unable to load PRO dashboard."
+            );
+        }
+
+        renderProInstructions(
+    data.instructions || []
+);
+
+populateProReportSources(
+    data.instructions || [],
+    data.communications || []
+);
+
+await proLoadPeopleDirectory();
+    } catch (error) {
+
+        console.error(
+            "PRO dashboard error:",
+            error
+        );
+
+        instructionsContainer.innerHTML = `
+            <div class="pro-message">
+                ${escapeHTML(
+                    error.message ||
+                    "Unable to load PRO dashboard."
+                )}
+            </div>
+        `;
+    }
+}
+
+/* =========================================
+   DIRECTOR INSTRUCTIONS
+========================================= */
+
+function renderProInstructions(instructions) {
+
+    const container =
+        document.getElementById("proInstructions");
+
+    if (!container) return;
+
+    if (!instructions.length) {
+
+        container.innerHTML = `
+            <div class="pro-empty">
+                No Director instructions have been assigned
+                to you yet.
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML =
+        instructions.map(instruction => {
+
+            return `
+                <div class="pro-card">
+
+                    <h4>
+                        ${escapeHTML(
+                            instruction.title
+                        )}
+                    </h4>
+
+                    <p>
+                        <strong>Instruction ID:</strong>
+                        ${escapeHTML(
+                            instruction.instruction_id
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>Priority:</strong>
+                        <span class="pro-priority">
+                            ${escapeHTML(
+                                instruction.priority
+                            )}
+                        </span>
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>
+                        <span class="pro-status">
+                            ${escapeHTML(
+                                instruction.status
+                            )}
+                        </span>
+                    </p>
+
+                    <p>
+                        ${escapeHTML(
+                            instruction.instruction_text
+                        )}
+                    </p>
+
+                    ${
+                        instruction.director_note
+                        ? `
+                            <p>
+                                <strong>
+                                    Director Note:
+                                </strong><br>
+                                ${escapeHTML(
+                                    instruction.director_note
+                                )}
+                            </p>
+                        `
+                        : ""
+                    }
+
+                    <button
+                        class="pro-action-button"
+                        onclick="proAcknowledgeInstruction(
+                            '${escapeHTML(instruction.id)}'
+                        )">
+
+                        Acknowledge
+
+                    </button>
+
+                    ${
+                        instruction.status ===
+                        "ACKNOWLEDGED"
+                        ||
+                        instruction.status ===
+                        "IN_PROGRESS"
+                        ? `
+                            <button
+                                class="pro-secondary-button"
+                                onclick="proSetInstructionStatus(
+                                    '${escapeHTML(instruction.id)}',
+                                    'IN_PROGRESS'
+                                )">
+
+                                Mark In Progress
+
+                            </button>
+                        `
+                        : ""
+                    }
+
+                    ${
+                        instruction.status ===
+                        "IN_PROGRESS"
+                        ? `
+                            <button
+                                class="pro-secondary-button"
+                                onclick="proSetInstructionStatus(
+                                    '${escapeHTML(instruction.id)}',
+                                    'COMPLETED'
+                                )">
+
+                                Mark Completed
+
+                            </button>
+                        `
+                        : ""
+                    }
+
+                </div>
+            `;
+
+        }).join("");
+}
+
+
+/* =========================================
+   ACKNOWLEDGE INSTRUCTION
+========================================= */
+
+async function proAcknowledgeInstruction(
+    instructionId
+) {
+
+    if (!instructionId) return;
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/pro-acknowledge-instruction",
+                {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+                    body: JSON.stringify({
+                        instructionId:
+                            instructionId
+                    })
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                "Unable to acknowledge instruction."
+            );
+        }
+
+        await proLoadDashboardData();
+
+    } catch (error) {
+
+        alert(
+            error.message ||
+            "Unable to acknowledge instruction."
+        );
+    }
+}
+
+
+/* =========================================
+   UPDATE INSTRUCTION
+========================================= */
+
+async function proSetInstructionStatus(
+    instructionId,
+    status
+) {
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/pro-update-instruction",
+                {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+                    body: JSON.stringify({
+                        instructionId:
+                            instructionId,
+                        status:
+                            status
+                    })
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                "Unable to update instruction."
+            );
+        }
+
+        await proLoadDashboardData();
+
+    } catch (error) {
+
+        alert(
+            error.message ||
+            "Unable to update instruction."
+        );
+    }
+}
+
+
+/* =========================================
+   PEOPLE DIRECTORY
+========================================= */
+
+async function proLoadPeopleDirectory() {
+
+    const container =
+        document.getElementById(
+            "proPeopleDirectory"
+        );
+
+    const recipientSelect =
+        document.getElementById(
+            "proCommunicationRecipients"
+        );
+
+    if (!container) return;
+
+    container.innerHTML =
+        `<div class="pro-message">
+            Loading people directory...
+        </div>`;
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/pro-people-directory",
+                {
+                    method: "GET",
+                    credentials: "include",
+                    cache: "no-store"
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok || !data.success) {
+
+            throw new Error(
+                data.error ||
+                "Unable to load people directory."
+            );
+        }
+
+        const people =
+            data.people || [];
+
+        if (recipientSelect) {
+
+            recipientSelect.innerHTML = "";
+
+            people.forEach(person => {
+
+                const option =
+                    document.createElement("option");
+
+                option.value =
+                    person.id;
+
+                option.textContent =
+                    `${person.fullName} — ${
+                        person.assignedRole || "Management"
+                    }`;
+
+                recipientSelect.appendChild(
+                    option
+                );
+            });
+        }
+
+        if (!people.length) {
+
+            container.innerHTML = `
+                <div class="pro-empty">
+                    No active management members are
+                    currently available.
+                </div>
+            `;
+
+            return;
+        }
+
+        container.innerHTML =
+            people.map(person => {
+
+                return `
+                    <div class="pro-card">
+
+                        <h4>
+                            ${escapeHTML(
+                                person.fullName
+                            )}
+                        </h4>
+
+                        <p>
+                            <strong>Management ID:</strong>
+                            ${escapeHTML(
+                                person.managementId
+                            )}
+                        </p>
+
+                        <p>
+                            <strong>Role:</strong>
+                            ${escapeHTML(
+                                person.assignedRole ||
+                                "Not assigned"
+                            )}
+                        </p>
+
+                        <p>
+                            <strong>Department:</strong>
+                            ${escapeHTML(
+                                person.department ||
+                                "Not assigned"
+                            )}
+                        </p>
+
+                        <p>
+                            <strong>Email:</strong>
+                            ${escapeHTML(
+                                person.email ||
+                                "Not available"
+                            )}
+                        </p>
+
+                        <p>
+                            <strong>Phone:</strong>
+                            ${escapeHTML(
+                                person.phone ||
+                                "Not available"
+                            )}
+                        </p>
+
+                    </div>
+                `;
+
+            }).join("");
+
+    } catch (error) {
+
+        console.error(
+            "People directory error:",
+            error
+        );
+
+        container.innerHTML = `
+            <div class="pro-message">
+                ${escapeHTML(
+                    error.message ||
+                    "Unable to load people directory."
+                )}
+            </div>
+        `;
+    }
+}
+
+
+/* =========================================
+   SEND COMMUNICATION
+========================================= */
+
+async function proSendCommunication(event) {
+
+    event.preventDefault();
+
+    const subject =
+        document.getElementById(
+            "proCommunicationSubject"
+        ).value.trim();
+
+    const priority =
+        document.getElementById(
+            "proCommunicationPriority"
+        ).value;
+
+    const message =
+    document.getElementById(
+        "proCommunicationText"
+    ).value.trim();
+
+    const recipientsSelect =
+        document.getElementById(
+            "proCommunicationRecipients"
+        );
+
+    const messageBox =
+        document.getElementById(
+            "proCommunicationMessage"
+        );
+
+    const selectedRecipients =
+        Array.from(
+            recipientsSelect.selectedOptions
+        ).map(option => option.value);
+
+    if (
+        !subject ||
+        !message ||
+        !selectedRecipients.length
+    ) {
+
+        document.getElementById(
+            "proCommunicationMessage"
+        ).textContent =
+            "Please complete the communication and select at least one recipient.";
+
+        return;
+    }
+
+    const statusBox =
+        document.getElementById(
+            "proCommunicationMessage"
+        );
+
+    statusBox.textContent =
+        "Sending communication...";
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/pro-send-communication",
+                {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+                    body: JSON.stringify({
+
+                        subject:
+                            subject,
+
+                        message:
+                            message,
+
+                        priority:
+                            priority,
+
+                        recipientAccountIds: selectedRecipients
+
+                    })
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                "Unable to send communication."
+            );
+        }
+
+        statusBox.textContent =
+            "Communication sent successfully.";
+
+        document.getElementById(
+            "proCommunicationSubject"
+        ).value = "";
+
+        document.getElementById(
+    "proCommunicationText"
+).value = "";
+
+        recipientsSelect.selectedIndex = -1;
+
+        await proLoadCommunicationHistory();
+
+    } catch (error) {
+
+        console.error(
+            "PRO communication error:",
+            error
+        );
+
+        statusBox.textContent =
+            error.message ||
+            "Unable to send communication.";
+    }
+}
+
+
+/* =========================================
+   COMMUNICATION HISTORY
+========================================= */
+
+async function proLoadCommunicationHistory() {
+
+    const container =
+        document.getElementById(
+            "proCommunicationHistory"
+        );
+
+    if (!container) return;
+
+    container.innerHTML =
+        `<div class="pro-message">
+            Loading communication history...
+        </div>`;
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/pro-communication-history",
+                {
+                    method: "GET",
+                    credentials: "include",
+                    cache: "no-store"
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok || !data.success) {
+
+            throw new Error(
+                data.error ||
+                "Unable to load communication history."
+            );
+        }
+
+        const communications =
+            data.communications || [];
+
+        if (!communications.length) {
+
+            container.innerHTML = `
+                <div class="pro-empty">
+                    No communication history found.
+                </div>
+            `;
+
+            return;
+        }
+
+        container.innerHTML =
+            communications.map(item => {
+
+                return `
+                    <div class="pro-card">
+
+                        <h4>
+                            ${escapeHTML(
+                                item.subject
+                            )}
+                        </h4>
+
+                        <p>
+                            <strong>Communication ID:</strong>
+                            ${escapeHTML(
+                                item.communication_id
+                            )}
+                        </p>
+
+                        <p>
+                            <strong>Priority:</strong>
+                            ${escapeHTML(
+                                item.priority
+                            )}
+                        </p>
+
+                        <p>
+                            ${escapeHTML(
+                                item.message
+                            )}
+                        </p>
+
+                        <p>
+                            <strong>Status:</strong>
+                            ${escapeHTML(
+                                item.status
+                            )}
+                        </p>
+
+                    </div>
+                `;
+
+            }).join("");
+
+    } catch (error) {
+
+        console.error(
+            "Communication history error:",
+            error
+        );
+
+        container.innerHTML = `
+            <div class="pro-message">
+                ${escapeHTML(
+                    error.message ||
+                    "Unable to load communication history."
+                )}
+            </div>
+        `;
+    }
+}
+
+
+/* =========================================
+   RECEIVED COMMUNICATIONS
+========================================= */
+
+async function proLoadReceivedCommunications() {
+
+    const container =
+        document.getElementById(
+            "proReceivedCommunications"
+        );
+
+    if (!container) return;
+
+    container.innerHTML =
+        `<div class="pro-message">
+            Loading received communications...
+        </div>`;
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/pro-received-communications",
+                {
+                    method: "GET",
+                    credentials: "include",
+                    cache: "no-store"
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok || !data.success) {
+
+            throw new Error(
+                data.error ||
+                "Unable to load received communications."
+            );
+        }
+
+        const communications =
+            data.communications || [];
+
+        if (!communications.length) {
+
+            container.innerHTML = `
+                <div class="pro-empty">
+                    You have no received communications.
+                </div>
+            `;
+
+            return;
+        }
+
+        container.innerHTML =
+            communications.map(item => {
+
+                return `
+                    <div class="pro-card">
+
+                        <h4>
+                            ${escapeHTML(
+                                item.subject
+                            )}
+                        </h4>
+
+                        <p>
+                            <strong>From:</strong>
+                            ${escapeHTML(
+                                item.pro_name
+                            )}
+                        </p>
+
+                        <p>
+                            <strong>Priority:</strong>
+                            ${escapeHTML(
+                                item.priority
+                            )}
+                        </p>
+
+                        <p>
+                            ${escapeHTML(
+                                item.message
+                            )}
+                        </p>
+
+                        <p>
+                            <strong>Delivery Status:</strong>
+                            ${escapeHTML(
+                                item.delivery_status
+                            )}
+                        </p>
+
+                        ${
+                            item.delivery_status !==
+                            "ACKNOWLEDGED"
+                            ? `
+                                <button
+                                    class="pro-action-button"
+                                    onclick="proAcknowledgeCommunication(
+                                        '${escapeHTML(item.id)}'
+                                    )">
+
+                                    Acknowledge
+
+                                </button>
+                            `
+                            : `
+                                <p>
+                                    <strong>
+                                        Acknowledged
+                                    </strong>
+                                </p>
+                            `
+                        }
+
+                    </div>
+                `;
+
+            }).join("");
+
+    } catch (error) {
+
+        console.error(
+            "Received communications error:",
+            error
+        );
+
+        container.innerHTML = `
+            <div class="pro-message">
+                ${escapeHTML(
+                    error.message ||
+                    "Unable to load received communications."
+                )}
+            </div>
+        `;
+    }
+}
+
+
+/* =========================================
+   ACKNOWLEDGE COMMUNICATION
+========================================= */
+
+async function proAcknowledgeCommunication(
+    recipientId
+) {
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/pro-acknowledge-communication",
+                {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+                    body: JSON.stringify({
+                        recipientId:
+                            recipientId
+                    })
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                "Unable to acknowledge communication."
+            );
+        }
+
+        await proLoadReceivedCommunications();
+
+    } catch (error) {
+
+        alert(
+            error.message ||
+            "Unable to acknowledge communication."
+        );
+    }
+}
+
+
+/* =========================================
+   FOLLOW-UPS
+========================================= */
+
+async function proCreateFollowUp(event) {
+
+    event.preventDefault();
+
+    const title =
+        document.getElementById(
+            "proFollowUpTitle"
+        ).value.trim();
+
+    const priority =
+        document.getElementById(
+            "proFollowUpPriority"
+        ).value;
+
+    const dueDate =
+        document.getElementById(
+            "proFollowUpDueDate"
+        ).value;
+
+    const description =
+        document.getElementById(
+            "proFollowUpDescription"
+        ).value.trim();
+
+    const message =
+        document.getElementById(
+            "proFollowUpMessage"
+        );
+
+    message.textContent =
+        "Creating follow-up...";
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/pro-create-follow-up",
+                {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+                    body: JSON.stringify({
+
+                        title:
+                            title,
+
+                        description:
+                            description,
+
+                        priority:
+                            priority,
+
+                        dueDate:
+                            dueDate
+                                ? new Date(
+                                    dueDate
+                                ).toISOString()
+                                : null
+
+                    })
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                "Unable to create follow-up."
+            );
+        }
+
+        message.textContent =
+            "Follow-up created successfully.";
+
+        document.getElementById(
+            "proFollowUpTitle"
+        ).value = "";
+
+        document.getElementById(
+            "proFollowUpDescription"
+        ).value = "";
+
+        document.getElementById(
+            "proFollowUpDueDate"
+        ).value = "";
+
+        await proLoadFollowUps();
+
+    } catch (error) {
+
+        message.textContent =
+            error.message ||
+            "Unable to create follow-up.";
+    }
+}
+
+
+async function proLoadFollowUps() {
+
+    const container =
+        document.getElementById(
+            "proFollowUps"
+        );
+
+    if (!container) return;
+
+    container.innerHTML =
+        `<div class="pro-message">
+            Loading follow-ups...
+        </div>`;
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/pro-my-follow-ups",
+                {
+                    method: "GET",
+                    credentials: "include",
+                    cache: "no-store"
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok || !data.success) {
+
+            throw new Error(
+                data.error ||
+                "Unable to load follow-ups."
+            );
+        }
+
+        const followUps =
+            data.followUps || [];
+
+        if (!followUps.length) {
+
+            container.innerHTML = `
+                <div class="pro-empty">
+                    No follow-ups found.
+                </div>
+            `;
+
+            return;
+        }
+
+        container.innerHTML =
+            followUps.map(item => {
+
+                return `
+                    <div class="pro-card">
+
+                        <h4>
+                            ${escapeHTML(
+                                item.title
+                            )}
+                        </h4>
+
+                        <p>
+                            <strong>Follow-up ID:</strong>
+                            ${escapeHTML(
+                                item.follow_up_id
+                            )}
+                        </p>
+
+                        <p>
+                            <strong>Priority:</strong>
+                            ${escapeHTML(
+                                item.priority
+                            )}
+                        </p>
+
+                        <p>
+                            <strong>Status:</strong>
+                            ${escapeHTML(
+                                item.status
+                            )}
+                        </p>
+
+                        <p>
+                            ${escapeHTML(
+                                item.description
+                            )}
+                        </p>
+
+                        ${
+                            item.due_date
+                            ? `
+                                <p>
+                                    <strong>Due:</strong>
+                                    ${escapeHTML(
+                                        new Date(
+                                            item.due_date
+                                        ).toLocaleString()
+                                    )}
+                                </p>
+                            `
+                            : ""
+                        }
+
+                        ${
+                            item.status !==
+                                "COMPLETED" &&
+                            item.status !==
+                                "CANCELLED"
+                            ? `
+                                <button
+                                    class="pro-action-button"
+                                    onclick="proCompleteFollowUp(
+                                        '${escapeHTML(item.id)}'
+                                    )">
+
+                                    Mark Completed
+
+                                </button>
+                            `
+                            : ""
+                        }
+
+                    </div>
+                `;
+
+            }).join("");
+
+    } catch (error) {
+
+        container.innerHTML = `
+            <div class="pro-message">
+                ${escapeHTML(
+                    error.message ||
+                    "Unable to load follow-ups."
+                )}
+            </div>
+        `;
+    }
+}
+
+
+async function proCompleteFollowUp(
+    followUpId
+) {
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/pro-update-follow-up",
+                {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+                    body: JSON.stringify({
+
+                        followUpId:
+                            followUpId,
+
+                        status:
+                            "COMPLETED"
+
+                    })
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                "Unable to complete follow-up."
+            );
+        }
+
+        await proLoadFollowUps();
+
+    } catch (error) {
+
+        alert(
+            error.message ||
+            "Unable to complete follow-up."
+        );
+    }
+}
+
+function populateProReportSources(
+    instructions,
+    communications
+) {
+    const instructionSelect =
+        document.getElementById(
+            "proDirectorReportInstruction"
+        );
+
+    const communicationSelect =
+        document.getElementById(
+            "proDirectorReportCommunication"
+        );
+
+    if (instructionSelect) {
+
+        instructionSelect.innerHTML = `
+            <option value="">
+                No linked instruction
+            </option>
+        `;
+
+        instructions.forEach(instruction => {
+
+            const option =
+                document.createElement("option");
+
+            option.value = instruction.id;
+
+            option.textContent =
+                `${instruction.instruction_id} — ${instruction.title}`;
+
+            instructionSelect.appendChild(option);
+        });
+    }
+
+    if (communicationSelect) {
+
+        communicationSelect.innerHTML = `
+            <option value="">
+                No linked communication
+            </option>
+        `;
+
+        communications.forEach(communication => {
+
+            const option =
+                document.createElement("option");
+
+            option.value = communication.id;
+
+            option.textContent =
+                `${communication.communication_id} — ${communication.subject}`;
+
+            communicationSelect.appendChild(option);
+        });
+    }
+}
+
+/* =========================================
+   DIRECTOR REPORT
+========================================= */
+
+async function proSubmitDirectorReport(event) {
+
+    event.preventDefault();
+
+    const instructionId =
+        document.getElementById(
+            "proDirectorReportInstruction"
+        ).value || null;
+
+    const communicationId =
+        document.getElementById(
+            "proDirectorReportCommunication"
+        ).value || null;
+
+    const title =
+        document.getElementById(
+            "proDirectorReportTitle"
+        ).value.trim();
+
+    const outcome =
+        document.getElementById(
+            "proDirectorReportOutcome"
+        ).value.trim();
+
+    const reportText =
+        document.getElementById(
+            "proDirectorReportText"
+        ).value.trim();
+
+    const followUpRequired =
+        document.getElementById(
+            "proReportFollowUp"
+        ).checked;
+
+    const message =
+        document.getElementById(
+            "proDirectorReportMessage"
+        );
+
+    message.textContent =
+        "Submitting report...";
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/pro-director-report",
+                {
+                    method: "POST",
+                    credentials: "include",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        directorInstructionId:
+                            instructionId,
+
+                        communicationId:
+                            communicationId,
+
+                        reportTitle:
+                            title,
+
+                        reportText:
+                            reportText,
+
+                        outcome:
+                            outcome,
+
+                        followUpRequired:
+                            followUpRequired
+                    })
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                data.error ||
+                "Unable to submit Director report."
+            );
+        }
+
+        message.textContent =
+            "Report successfully submitted to the Director.";
+
+        document.getElementById(
+            "proDirectorReportInstruction"
+        ).value = "";
+
+        document.getElementById(
+            "proDirectorReportCommunication"
+        ).value = "";
+
+        document.getElementById(
+            "proDirectorReportTitle"
+        ).value = "";
+
+        document.getElementById(
+            "proDirectorReportOutcome"
+        ).value = "";
+
+        document.getElementById(
+            "proDirectorReportText"
+        ).value = "";
+
+        document.getElementById(
+            "proReportFollowUp"
+        ).checked = false;
+
+    } catch (error) {
+
+        message.textContent =
+            error.message ||
+            "Unable to submit Director report.";
+    }
+}
+
+
+/* =========================================
+   MY PRO REPORTS
+========================================= */
+
+async function proLoadMyReports() {
+
+    const container =
+        document.getElementById(
+            "proMyReports"
+        );
+
+    if (!container) return;
+
+    container.innerHTML =
+        `<div class="pro-message">
+            Loading reports...
+        </div>`;
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/pro-my-reports",
+                {
+                    method: "GET",
+                    credentials: "include",
+                    cache: "no-store"
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok || !data.success) {
+
+            throw new Error(
+                data.error ||
+                "Unable to load reports."
+            );
+        }
+
+        const reports =
+            data.reports || [];
+
+        if (!reports.length) {
+
+            container.innerHTML = `
+                <div class="pro-empty">
+                    You have not submitted any PRO reports yet.
+                </div>
+            `;
+
+            return;
+        }
+
+        container.innerHTML =
+            reports.map(report => {
+
+                return `
+                    <div class="pro-card">
+
+                        <h4>
+                            ${escapeHTML(
+                                report.report_title
+                            )}
+                        </h4>
+
+                        <p>
+                            <strong>Report ID:</strong>
+                            ${escapeHTML(
+                                report.report_id
+                            )}
+                        </p>
+
+                        <p>
+                            <strong>Status:</strong>
+                            ${escapeHTML(
+                                report.status
+                            )}
+                        </p>
+
+                        <p>
+                            ${escapeHTML(
+                                report.report_text
+                            )}
+                        </p>
+
+                        ${
+                            report.outcome
+                            ? `
+                                <p>
+                                    <strong>Outcome:</strong>
+                                    ${escapeHTML(
+                                        report.outcome
+                                    )}
+                                </p>
+                            `
+                            : ""
+                        }
+
+                        ${
+                            report.director_response
+                            ? `
+                                <div class="director-response">
+                                    <strong>
+                                        Director Response:
+                                    </strong>
+
+                                    <p>
+                                        ${escapeHTML(
+                                            report.director_response
+                                        )}
+                                    </p>
+                                </div>
+                            `
+                            : ""
+                        }
+
+                    </div>
+                `;
+
+            }).join("");
+
+    } catch (error) {
+
+        container.innerHTML = `
+            <div class="pro-message">
+                ${escapeHTML(
+                    error.message ||
+                    "Unable to load reports."
+                )}
+            </div>
+        `;
+    }
+}
+
+
+/* =========================================
+   START MANAGEMENT DASHBOARD
+========================================= */
+
+loadManagementDashboard();
+
+</script>
+
+</body>
+</html>

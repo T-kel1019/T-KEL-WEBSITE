@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Notifications | T-KEL Distribution</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="dashboard-header">
+
+        <div class="dashboard-brand">
+
+            <a href="artist-dashboard.html">
+                <img src="T-KEL logo.png" alt="T-KEL Logo">
+            </a>
+
+            <div>
+                <strong>T-KEL Distribution</strong>
+                <span>Artist Portal</span>
+            </div>
+
+        </div>
+
+        <a href="artist-dashboard.html" class="dashboard-back">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <main class="dashboard-page">
+
+        <section class="dashboard-hero">
+
+            <p class="eyebrow">T-KEL DISTRIBUTION</p>
+
+            <h1>Notifications</h1>
+
+            <p>
+                Stay updated on your releases, royalties,
+                payouts and important T-KEL Distribution activities.
+            </p>
+
+        </section>
+
+
+        <!-- NOTIFICATION SUMMARY -->
+
+        <section class="analytics-section">
+
+            <div class="analytics-grid">
+
+                <div class="analytics-card">
+
+                    <span>Total Notifications</span>
+
+                    <strong id="totalNotifications">
+                        0
+                    </strong>
+
+                    <small>
+                        All notifications
+                    </small>
+
+                </div>
+
+
+                <div class="analytics-card">
+
+                    <span>Unread</span>
+
+                    <strong id="unreadNotifications">
+                        0
+                    </strong>
+
+                    <small>
+                        Awaiting your attention
+                    </small>
+
+                </div>
+
+
+                <div class="analytics-card">
+
+                    <span>Important</span>
+
+                    <strong id="importantNotifications">
+                        0
+                    </strong>
+
+                    <small>
+                        Important updates
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- NOTIFICATION LIST -->
+
+        <section class="notification-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Recent Notifications</h2>
+
+                    <p>
+                        Your latest T-KEL Distribution updates.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="markAllRead"
+                    class="btn btn-secondary"
+                >
+                    Mark All as Read
+                </button>
+
+            </div>
+
+
+            <div
+                id="notificationList"
+                class="notification-list"
+            >
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        🔔
+                    </div>
+
+                    <h3>No Notifications</h3>
+
+                    <p>
+                        You currently have no notifications.
+                        Important updates about your account and
+                        releases will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- NOTIFICATION INFORMATION -->
+
+        <section class="info-card">
+
+            <strong>Stay informed</strong>
+
+            <p>
+                T-KEL Distribution may notify you about release
+                reviews, delivery updates, royalty reports, payout
+                activity, account changes and important service
+                announcements.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer class="dashboard-footer">
+
+        <p>T-KEL Distribution</p>
+
+        <p>Stay Real, Stay kelz.</p>
+
+        <p>© 2026 Terriken Entertainment Limited</p>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+
+        const SUPABASE_URL =
+            "https://tvefankphzactrtciuwp.supabase.co";
+
+        const SUPABASE_KEY =
+            "sb_publishable_yRe3y1xhJO_OFEVQpxopxg_1mR7gmqf";
+
+        const supabaseClient =
+            supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+
+
+        async function checkArtistSession() {
+
+            const {
+                data: { session }
+            } =
+                await supabaseClient.auth.getSession();
+
+
+            if (!session) {
+
+                window.location.href =
+                    "artist-login.html";
+
+                return;
+
+            }
+
+        }
+
+
+        checkArtistSession();
+
+
+        document
+            .getElementById("markAllRead")
+            .addEventListener(
+                "click",
+                function () {
+
+                    /*
+                     * This will be connected to the
+                     * T-KEL notifications table later.
+                     */
+
+                    alert(
+                        "Notification management will be connected next."
+                    );
+
+                }
+            );
+
+    </script>
+
+</body>
+
+</html>

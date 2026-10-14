@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Payouts | T-KEL Distribution</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .payout-section {
+            margin-bottom: 32px;
+        }
+
+        .payout-currency {
+            max-width: 260px;
+            margin-bottom: 24px;
+        }
+
+        .payout-currency select,
+        .payout-section input,
+        .payout-section select {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .payout-section input,
+        .payout-section select {
+            padding: 12px;
+            border: 1px solid #d5dce8;
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .payout-section input:focus,
+        .payout-section select:focus {
+            outline: 2px solid #0066ff;
+            outline-offset: 1px;
+        }
+
+        .form-message {
+            margin: 15px 0;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+            overflow-wrap: anywhere;
+        }
+
+        .form-message.success {
+            display: block;
+            color: #126b37;
+            background: #e8f8ee;
+        }
+
+        .form-message.error {
+            display: block;
+            color: #a32121;
+            background: #fff0f0;
+        }
+
+        .form-message.info {
+            display: block;
+            color: #174b91;
+            background: #edf4ff;
+        }
+
+        .payout-notice {
+            margin: 20px 0;
+            padding: 16px;
+            border-radius: 10px;
+            background: #edf4ff;
+        }
+
+        .payout-notice p {
+            margin-bottom: 0;
+        }
+
+        .payout-loading {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .payout-status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background: #edf4ff;
+            color: #174b91;
+            font-size: 12px;
+            text-transform: capitalize;
+            white-space: nowrap;
+        }
+
+        .payout-status.completed {
+            background: #e8f8ee;
+            color: #126b37;
+        }
+
+        .payout-status.rejected,
+        .payout-status.cancelled {
+            background: #fff0f0;
+            color: #a32121;
+        }
+
+        .payout-status.processing,
+        .payout-status.approved {
+            background: #fff4dc;
+            color: #815400;
+        }
+
+        .payout-reference {
+            overflow-wrap: anywhere;
+            font-size: 12px;
+        }
+
+        .payout-table-wrap {
+            overflow-x: auto;
+        }
+
+        .payout-table-wrap table {
+            min-width: 650px;
+        }
+
+        .payout-form-actions {
+            margin-top: 18px;
+        }
+
+        .payout-help {
+            font-size: 13px;
+            color: #5c6678;
+        }
+
+        .payout-balance-note {
+            margin-top: 12px;
+        }
+
+        .required-label {
+            color: #b42318;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="dashboard-header">
+
+        <div class="dashboard-brand">
+
+            <a href="artist-dashboard.html">
+                <img src="T-KEL logo.png" alt="T-KEL Logo">
+            </a>
+
+            <div>
+                <strong>T-KEL Distribution</strong>
+                <span>Artist Portal</span>
+            </div>
+
+        </div>
+
+        <a href="artist-dashboard.html" class="dashboard-back">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <main class="dashboard-page">
+
+        <section class="dashboard-hero">
+
+            <p class="eyebrow">T-KEL DISTRIBUTION</p>
+
+            <h1>Payouts</h1>
+
+            <p>
+                Manage your payment information and request
+                withdrawals from your available distribution earnings.
+            </p>
+
+        </section>
+
+
+        <!-- CURRENCY -->
+
+        <section class="payout-section">
+
+            <div class="form-group payout-currency">
+
+                <label for="currency">
+                    Display Currency
+                </label>
+
+                <select id="currency">
+                    <option value="NGN">NGN — Nigerian Naira (₦)</option>
+                    <option value="USD">USD — US Dollar ($)</option>
+                </select>
+
+                <p class="payout-help">
+                    Balances and payout requests are displayed in
+                    the currency you select.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- BALANCES -->
+
+        <section class="payout-section">
+
+            <div class="analytics-grid">
+
+                <div class="analytics-card">
+
+                    <span>Available Balance</span>
+
+                    <strong id="availableBalance">—</strong>
+
+                    <small>Available for payout</small>
+
+                </div>
+
+                <div class="analytics-card">
+
+                    <span>Pending Payout</span>
+
+                    <strong id="pendingPayout">—</strong>
+
+                    <small>Requests not yet finalized</small>
+
+                </div>
+
+                <div class="analytics-card">
+
+                    <span>Total Paid</span>
+
+                    <strong id="totalPaid">—</strong>
+
+                    <small>Recorded lifetime payouts</small>
+
+                </div>
+
+            </div>
+
+            <p
+                id="balanceMessage"
+                class="payout-help payout-balance-note"
+                aria-live="polite"
+            >
+                Loading your balances...
+            </p>
+
+        </section>
+
+
+        <!-- PAYMENT INFORMATION -->
+
+        <section class="payout-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Payment Information</h2>
+
+                    <p>
+                        Add the bank account where you want your
+                        approved payouts to be sent.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form id="paymentForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="accountName">
+                            Account Name
+                            <span class="required-label">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="accountName"
+                            maxlength="150"
+                            autocomplete="name"
+                            placeholder="Name on bank account"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="bankName">
+                            Bank Name
+                            <span class="required-label">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="bankName"
+                            maxlength="150"
+                            autocomplete="off"
+                            placeholder="Enter bank name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="accountNumber">
+                            Account Number
+                            <span class="required-label">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="accountNumber"
+                            inputmode="numeric"
+                            maxlength="10"
+                            autocomplete="off"
+                            pattern="[0-9]{10}"
+                            placeholder="10-digit account number"
+                            required
+                        >
+
+                        <small class="payout-help">
+                            For Nigerian bank accounts, enter 10 digits.
+                        </small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="country">
+                            Country
+                        </label>
+
+                        <input
+                            type="text"
+                            id="country"
+                            value="Nigeria"
+                            maxlength="100"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="paymentMessage"
+                    class="form-message"
+                    role="status"
+                    aria-live="polite"
+                ></div>
+
+
+                <div class="payout-form-actions">
+
+                    <button
+                        type="submit"
+                        id="savePaymentButton"
+                        class="btn btn-primary"
+                    >
+                        Save Payment Information
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- REQUEST PAYOUT -->
+
+        <section class="payout-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Request Payout</h2>
+
+                    <p>
+                        Request a withdrawal from your available balance.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form id="payoutForm">
+
+                <div class="form-group">
+
+                    <label for="payoutAmount">
+                        Amount
+                    </label>
+
+                    <input
+                        type="number"
+                        id="payoutAmount"
+                        min="0.01"
+                        step="0.01"
+                        placeholder="Enter amount"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="payout-notice">
+
+                    <strong>Before requesting a payout</strong>
+
+                    <p>
+                        Your request must not exceed your available
+                        balance in the selected currency. T-KEL may
+                        review your request before payment is released.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="payoutMessage"
+                    class="form-message"
+                    role="status"
+                    aria-live="polite"
+                ></div>
+
+
+                <button
+                    type="submit"
+                    id="requestPayoutButton"
+                    class="btn btn-primary"
+                >
+                    Request Payout
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- PAYOUT HISTORY -->
+
+        <section class="payout-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Payout History</h2>
+
+                    <p>
+                        Review your previous payout requests.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="royalty-table-container payout-table-wrap">
+
+                <table class="royalty-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>Date</th>
+                            <th>Reference</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="payoutTableBody">
+
+                        <tr>
+                            <td colspan="4">
+                                <div class="payout-loading">
+                                    Loading payout history...
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <section class="info-card">
+
+            <strong>Security Notice</strong>
+
+            <p>
+                Keep your payment information accurate.
+                T-KEL will process payouts according to its
+                verification and payment procedures. A payout request
+                does not mean that a bank transfer has been completed.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer class="dashboard-footer">
+
+        <p>T-KEL Distribution</p>
+
+        <p>Stay Real, Stay kelz.</p>
+
+        <p>© 2026 Terriken Entertainment Limited</p>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+
+        const SUPABASE_URL =
+            "https://tvefankphzactrtciuwp.supabase.co";
+
+        const SUPABASE_KEY =
+            "sb_publishable_yRe3y1xhJO_OFEVQpxopxg_1mR7gmqf";
+
+
+        const supabaseClient = supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+
+        let currentUser = null;
+        let currentArtist = null;
+        let currentPaymentDetails = null;
+        let pageBusy = false;
+
+
+        const $ = (id) => document.getElementById(id);
+
+
+        function showMessage(id, message, type = "info") {
+
+            const element = $(id);
+
+            element.textContent = message;
+            element.className = "form-message " + type;
+
+        }
+
+
+        function clearMessage(id) {
+
+            const element = $(id);
+
+            element.textContent = "";
+            element.className = "form-message";
+
+        }
+
+
+        function setBusy(buttonId, busy, busyText, normalText) {
+
+            const button = $(buttonId);
+
+            button.disabled = busy;
+            button.textContent = busy ? busyText : normalText;
+
+        }
+
+
+        function formatMoney(amount, currency) {
+
+            const symbols = {
+                NGN: "₦",
+                USD: "$"
+            };
+
+            const number = Number(amount || 0);
+
+            if (!Number.isFinite(number)) {
+                return "—";
+            }
+
+            return symbols[currency] +
+                number.toLocaleString("en-NG", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+
+        }
+
+
+        function formatDate(dateValue) {
+
+            if (!dateValue) {
+                return "—";
+            }
+
+            const date = new Date(dateValue);
+
+            if (Number.isNaN(date.getTime())) {
+                return "—";
+            }
+
+            return date.toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            });
+
+        }
+
+
+        function showEmptyHistory(message) {
+
+            const row = document.createElement("tr");
+            const cell = document.createElement("td");
+            const wrapper = document.createElement("div");
+            const icon = document.createElement("div");
+            const title = document.createElement("strong");
+            const description = document.createElement("p");
+
+            cell.colSpan = 4;
+
+            wrapper.className = "table-empty";
+
+            icon.className = "empty-icon";
+            icon.textContent = "🏦";
+
+            title.textContent = "No Payouts Yet";
+            description.textContent = message;
+
+            wrapper.append(icon, title, description);
+            cell.appendChild(wrapper);
+            row.appendChild(cell);
+
+            $("payoutTableBody").replaceChildren(row);
+
+        }
+
+
+        function setBalanceLoading() {
+
+            $("availableBalance").textContent = "—";
+            $("pendingPayout").textContent = "—";
+            $("totalPaid").textContent = "—";
+
+        }
+
+
+        async function requireArtistSession() {
+
+            const {
+                data,
+                error
+            } = await supabaseClient.auth.getSession();
+
+            if (error) {
+                throw error;
+            }
+
+            if (!data.session) {
+
+                window.location.replace("artist-login.html");
+
+                return false;
+
+            }
+
+            currentUser = data.session.user;
+
+            const {
+                data: artist,
+                error: artistError
+            } = await supabaseClient
+                .from("artists")
+                .select("id, artist_name, status")
+                .eq("user_id", currentUser.id)
+                .maybeSingle();
+
+            if (artistError) {
+                throw artistError;
+            }
+
+            if (!artist || artist.status !== "active") {
+
+                document.querySelector("main").textContent =
+                    "An active T-KEL artist account is required to access payouts.";
+
+                return false;
+
+            }
+
+            currentArtist = artist;
+
+            return true;
+
+        }
+
+
+        async function loadPaymentDetails() {
+
+            clearMessage("paymentMessage");
+
+            const {
+                data,
+                error
+            } = await supabaseClient
+                .from("artist_payment_details")
+                .select(
+                    "id, payment_method, account_name, bank_name, account_number, country"
+                )
+                .eq("artist_id", currentArtist.id)
+                .maybeSingle();
+
+            if (error) {
+                throw error;
+            }
+
+            currentPaymentDetails = data;
+
+            if (!data) {
+                return;
+            }
+
+            $("accountName").value = data.account_name || "";
+            $("bankName").value = data.bank_name || "";
+            $("accountNumber").value = data.account_number || "";
+            $("country").value = data.country || "Nigeria";
+
+            showMessage(
+                "paymentMessage",
+                "Your saved payment information has been loaded.",
+                "info"
+            );
+
+        }
+
+
+        async function savePaymentDetails(event) {
+
+            event.preventDefault();
+
+            if (pageBusy) {
+                return;
+            }
+
+            clearMessage("paymentMessage");
+
+            const accountName = $("accountName").value.trim();
+            const bankName = $("bankName").value.trim();
+            const accountNumber = $("accountNumber").value.trim();
+            const country = $("country").value.trim();
+
+            if (!accountName || !bankName || !country) {
+
+                showMessage(
+                    "paymentMessage",
+                    "Complete all required payment information.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+            if (!/^[0-9]{10}$/.test(accountNumber)) {
+
+                showMessage(
+                    "paymentMessage",
+                    "Enter a valid 10-digit Nigerian bank account number.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+            pageBusy = true;
+
+            setBusy(
+                "savePaymentButton",
+                true,
+                "Saving...",
+                "Save Payment Information"
+            );
+
+            try {
+
+                const paymentRecord = {
+                    artist_id: currentArtist.id,
+                    payment_method: "bank_transfer",
+                    account_name: accountName,
+                    bank_name: bankName,
+                    account_number: accountNumber,
+                    country: country,
+                    updated_at: new Date().toISOString()
+                };
+
+                let result;
+
+                if (currentPaymentDetails) {
+
+                    result = await supabaseClient
+                        .from("artist_payment_details")
+                        .update(paymentRecord)
+                        .eq("id", currentPaymentDetails.id)
+                        .select(
+                            "id, payment_method, account_name, bank_name, account_number, country"
+                        )
+                        .single();
+
+                } else {
+
+                    result = await supabaseClient
+                        .from("artist_payment_details")
+                        .insert(paymentRecord)
+                        .select(
+                            "id, payment_method, account_name, bank_name, account_number, country"
+                        )
+                        .single();
+
+                }
+
+                if (result.error) {
+                    throw result.error;
+                }
+
+                currentPaymentDetails = result.data;
+
+                showMessage(
+                    "paymentMessage",
+                    "Payment information saved successfully.",
+                    "success"
+                );
+
+            } catch (error) {
+
+                console.error("Save payment details error:", error);
+
+                showMessage(
+                    "paymentMessage",
+                    "Unable to save payment information. Please verify your connection and database permissions.",
+                    "error"
+                );
+
+            } finally {
+
+                pageBusy = false;
+
+                setBusy(
+                    "savePaymentButton",
+                    false,
+                    "Saving...",
+                    "Save Payment Information"
+                );
+
+            }
+
+        }
+
+
+        async function loadBalances() {
+
+            const currency = $("currency").value;
+
+            setBalanceLoading();
+
+            $("balanceMessage").textContent =
+                "Loading " + currency + " balances...";
+
+            const {
+                data: balance,
+                error
+            } = await supabaseClient
+                .from("artist_balances")
+                .select(
+                    "pending_balance, available_balance, paid_balance, reserved_balance"
+                )
+                .eq("artist_id", currentArtist.id)
+                .eq("currency", currency)
+                .maybeSingle();
+
+            if (error) {
+                throw error;
+            }
+
+            if (!balance) {
+
+                $("availableBalance").textContent =
+                    formatMoney(0, currency);
+
+                $("pendingPayout").textContent =
+                    formatMoney(0, currency);
+
+                $("totalPaid").textContent =
+                    formatMoney(0, currency);
+
+                $("balanceMessage").textContent =
+                    "No " + currency +
+                    " balance record exists yet. Your balance will appear when T-KEL records earnings.";
+
+                return;
+
+            }
+
+            $("availableBalance").textContent =
+                formatMoney(balance.available_balance, currency);
+
+            $("totalPaid").textContent =
+                formatMoney(balance.paid_balance, currency);
+
+
+            const {
+                data: requests,
+                error: requestsError
+            } = await supabaseClient
+                .from("payout_requests")
+                .select("amount, status")
+                .eq("artist_id", currentArtist.id)
+                .eq("currency", currency)
+                .in(
+                    "status",
+                    [
+                        "pending",
+                        "under_review",
+                        "approved",
+                        "processing"
+                    ]
+                );
+
+            if (requestsError) {
+                throw requestsError;
+            }
+
+            const pendingTotal = (requests || []).reduce(
+                (total, request) => total + Number(request.amount || 0),
+                0
+            );
+
+            $("pendingPayout").textContent =
+                formatMoney(pendingTotal, currency);
+
+            $("balanceMessage").textContent =
+                "Balances are shown in " + currency +
+                ". They depend on earnings and payout transactions recorded in T-KEL's database.";
+
+        }
+
+
+        async function loadPayoutHistory() {
+
+            const currency = $("currency").value;
+
+            showEmptyHistory("Loading payout history...");
+
+            const {
+                data,
+                error
+            } = await supabaseClient
+                .from("payout_requests")
+                .select(
+                    "id, amount, currency, status, requested_at, created_at"
+                )
+                .eq("artist_id", currentArtist.id)
+                .eq("currency", currency)
+                .order("requested_at", {
+                    ascending: false
+                });
+
+            if (error) {
+                throw error;
+            }
+
+            if (!data || data.length === 0) {
+
+                showEmptyHistory(
+                    "Your " + currency +
+                    " payout requests will appear here."
+                );
+
+                return;
+
+            }
+
+            const body = $("payoutTableBody");
+
+            body.replaceChildren();
+
+            data.forEach((payout) => {
+
+                const row = document.createElement("tr");
+
+                const dateCell = document.createElement("td");
+                const referenceCell = document.createElement("td");
+                const amountCell = document.createElement("td");
+                const statusCell = document.createElement("td");
+
+                dateCell.textContent = formatDate(
+                    payout.requested_at || payout.created_at
+                );
+
+                referenceCell.textContent = payout.id;
+                referenceCell.className = "payout-reference";
+
+                amountCell.textContent = formatMoney(
+                    payout.amount,
+                    payout.currency
+                );
+
+                const badge = document.createElement("span");
+
+                badge.className =
+                    "payout-status " + payout.status;
+
+                badge.textContent = payout.status.replace(/_/g, " ");
+
+                statusCell.appendChild(badge);
+
+                row.append(
+                    dateCell,
+                    referenceCell,
+                    amountCell,
+                    statusCell
+                );
+
+                body.appendChild(row);
+
+            });
+
+        }
+
+
+        async function requestPayout(event) {
+
+            event.preventDefault();
+
+            if (pageBusy) {
+                return;
+            }
+
+            clearMessage("payoutMessage");
+
+            const amount = Number($("payoutAmount").value);
+            const currency = $("currency").value;
+
+            if (!Number.isFinite(amount) || amount <= 0) {
+
+                showMessage(
+                    "payoutMessage",
+                    "Enter a valid amount greater than zero.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+            if (!currentPaymentDetails) {
+
+                showMessage(
+                    "payoutMessage",
+                    "Save your bank payment information before requesting a payout.",
+                    "error"
+                );
+
+                $("paymentForm").scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+                return;
+
+            }
+
+            const paymentAccount = [
+                "Account name: " + currentPaymentDetails.account_name,
+                "Bank: " + currentPaymentDetails.bank_name,
+                "Account number: " + currentPaymentDetails.account_number,
+                "Country: " + currentPaymentDetails.country
+            ].join(" | ");
+
+            const confirmed = window.confirm(
+                "Request " + formatMoney(amount, currency) +
+                " from your available " + currency +
+                " balance to your saved bank account?"
+            );
+
+            if (!confirmed) {
+                return;
+            }
+
+            pageBusy = true;
+
+            setBusy(
+                "requestPayoutButton",
+                true,
+                "Submitting...",
+                "Request Payout"
+            );
+
+            try {
+
+                const {
+                    data,
+                    error
+                } = await supabaseClient.rpc(
+                    "request_my_payout",
+                    {
+                        p_amount: amount,
+                        p_currency: currency,
+                        p_payment_method: "bank_transfer",
+                        p_payment_account: paymentAccount
+                    }
+                );
+
+                if (error) {
+                    throw error;
+                }
+
+                showMessage(
+                    "payoutMessage",
+                    "Your payout request was submitted. Reference: " +
+                    data.id +
+                    ". The request is awaiting T-KEL's review.",
+                    "success"
+                );
+
+                $("payoutAmount").value = "";
+
+                await loadBalances();
+                await loadPayoutHistory();
+
+            } catch (error) {
+
+                console.error("Payout request error:", error);
+
+                let message =
+                    "Unable to submit the payout request.";
+
+                if (
+                    error.message &&
+                    error.message.includes("No available balance found")
+                ) {
+
+                    message =
+                        "No balance record exists for this currency yet.";
+
+                } else if (
+                    error.message &&
+                    error.message.includes("exceeds available balance")
+                ) {
+
+                    message =
+                        "Your requested amount exceeds your available balance.";
+
+                } else if (
+                    error.message &&
+                    error.message.includes("Active artist account not found")
+                ) {
+
+                    message =
+                        "An active artist account is required to request a payout.";
+
+                }
+
+                showMessage(
+                    "payoutMessage",
+                    message,
+                    "error"
+                );
+
+            } finally {
+
+                pageBusy = false;
+
+                setBusy(
+                    "requestPayoutButton",
+                    false,
+                    "Submitting...",
+                    "Request Payout"
+                );
+
+            }
+
+        }
+
+
+        async function refreshCurrencyData() {
+
+            if (!currentArtist) {
+                return;
+            }
+
+            clearMessage("payoutMessage");
+
+            try {
+
+                await loadBalances();
+                await loadPayoutHistory();
+
+            } catch (error) {
+
+                console.error("Currency refresh error:", error);
+
+                $("balanceMessage").textContent =
+                    "Unable to load balances. Please refresh the page or try again later.";
+
+                showEmptyHistory(
+                    "Unable to load payout history."
+                );
+
+            }
+
+        }
+
+
+        async function initializePage() {
+
+            try {
+
+                const ready = await requireArtistSession();
+
+                if (!ready) {
+                    return;
+                }
+
+                await loadPaymentDetails();
+
+                await refreshCurrencyData();
+
+            } catch (error) {
+
+                console.error("Payout page initialization error:", error);
+
+                $("balanceMessage").textContent =
+                    "Unable to load your payout information. Please refresh the page.";
+
+                showMessage(
+                    "paymentMessage",
+                    "Unable to load saved payment information.",
+                    "error"
+                );
+
+                showEmptyHistory(
+                    "Unable to load payout history."
+                );
+
+            }
+
+        }
+
+
+        $("paymentForm").addEventListener(
+            "submit",
+            savePaymentDetails
+        );
+
+        $("payoutForm").addEventListener(
+            "submit",
+            requestPayout
+        );
+
+        $("currency").addEventListener(
+            "change",
+            refreshCurrencyData
+        );
+
+
+        initializePage();
+
+    </script>
+
+</body>
+
+</html>

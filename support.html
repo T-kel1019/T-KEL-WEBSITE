@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Support | T-KEL Distribution</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="dashboard-header">
+
+        <div class="dashboard-brand">
+
+            <a href="artist-dashboard.html">
+                <img src="T-KEL logo.png" alt="T-KEL Logo">
+            </a>
+
+            <div>
+                <strong>T-KEL Distribution</strong>
+                <span>Artist Portal</span>
+            </div>
+
+        </div>
+
+        <a href="artist-dashboard.html" class="dashboard-back">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <main class="dashboard-page">
+
+        <section class="dashboard-hero">
+
+            <p class="eyebrow">T-KEL DISTRIBUTION</p>
+
+            <h1>Artist Support</h1>
+
+            <p>
+                Get help with your releases, account,
+                royalties, payouts and distribution.
+            </p>
+
+        </section>
+
+
+        <!-- CONTACT SUPPORT -->
+
+        <section class="settings-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Contact T-KEL Support</h2>
+
+                    <p>
+                        Submit a support request and the T-KEL
+                        team will review it.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form id="supportForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="supportCategory">
+                            Support Category
+                        </label>
+
+                        <select id="supportCategory" required>
+
+                            <option value="">
+                                Select a category
+                            </option>
+
+                            <option value="account">
+                                Account & Login
+                            </option>
+
+                            <option value="release">
+                                Release & Distribution
+                            </option>
+
+                            <option value="royalty">
+    Royalties
+</option>
+
+                            <option value="payout">
+                                Payout
+                            </option>
+
+                            <option value="copyright">
+                                Copyright & Rights
+                            </option>
+
+                            <option value="technical">
+                                Technical Problem
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="supportSubject">
+                            Subject
+                        </label>
+
+                        <input
+    type="text"
+    id="supportSubject"
+    placeholder="What do you need help with?"
+    maxlength="150"
+    required
+>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="supportMessage">
+                        Message
+                    </label>
+
+                    <textarea
+    id="supportMessage"
+    rows="7"
+    placeholder="Describe your issue or question..."
+    maxlength="5000"
+    required
+></textarea>
+
+                </div>
+
+
+                <div
+                    id="supportMessageStatus"
+                    class="form-message"
+                ></div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Submit Support Request
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- MY SUPPORT TICKETS -->
+
+        <section class="settings-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>My Support Requests</h2>
+
+                    <p>
+                        View requests you have submitted to
+                        T-KEL Support.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div id="supportTickets">
+
+                <div class="empty-state">
+
+                    <h3>No Support Requests Yet</h3>
+
+                    <p>
+                        Your submitted support requests will
+                        appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SUPPORT INFORMATION -->
+
+        <section class="info-card">
+
+            <strong>Need urgent assistance?</strong>
+
+            <p>
+                For account, release, royalty or payout issues,
+                provide as much information as possible so the
+                T-KEL team can investigate your request properly.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer class="dashboard-footer">
+
+        <p>T-KEL Distribution</p>
+
+        <p>Stay Real, Stay kelz.</p>
+
+        <p>© 2026 Terriken Entertainment Limited</p>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+    const SUPABASE_URL =
+        "https://tvefankphzactrtciuwp.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_yRe3y1xhJO_OFEVQpxopxg_1mR7gmqf";
+
+    const supabaseClient = supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+    let currentSession = null;
+
+    const supportForm =
+        document.getElementById("supportForm");
+
+    const supportStatus =
+        document.getElementById("supportMessageStatus");
+
+    const supportTickets =
+        document.getElementById("supportTickets");
+
+
+    function showStatus(message, type) {
+        supportStatus.textContent = message;
+        supportStatus.className = "form-message " + type;
+    }
+
+
+    function formatDate(dateString) {
+        if (!dateString) return "Date unavailable";
+
+        return new Date(dateString).toLocaleString(
+            "en-NG",
+            {
+                dateStyle: "medium",
+                timeStyle: "short"
+            }
+        );
+    }
+
+
+    async function checkArtistSession() {
+        const {
+            data: { session },
+            error
+        } = await supabaseClient.auth.getSession();
+
+        if (error) {
+            supportTickets.textContent =
+                "Unable to verify your login. Please refresh the page.";
+            return false;
+        }
+
+        if (!session) {
+            window.location.href = "artist-login.html";
+            return false;
+        }
+
+        currentSession = session;
+
+        return true;
+    }
+
+
+    async function loadSupportTickets() {
+        if (!currentSession) return;
+
+        supportTickets.textContent =
+            "Loading your support requests...";
+
+        const { data, error } = await supabaseClient
+            .from("support_tickets")
+            .select(
+                "id, subject, category, priority, status, created_at, updated_at"
+            )
+            .eq("user_id", currentSession.user.id)
+            .order("created_at", { ascending: false });
+
+        if (error) {
+            console.error(
+                "Support ticket loading error:",
+                error
+            );
+
+            supportTickets.textContent =
+                "Unable to load your support requests. Please try again later.";
+
+            return;
+        }
+
+        supportTickets.replaceChildren();
+
+        if (!data || data.length === 0) {
+            const emptyState = document.createElement("div");
+            emptyState.className = "empty-state";
+
+            const heading = document.createElement("h3");
+            heading.textContent = "No Support Requests Yet";
+
+            const paragraph = document.createElement("p");
+            paragraph.textContent =
+                "Your submitted support requests will appear here.";
+
+            emptyState.append(heading, paragraph);
+            supportTickets.appendChild(emptyState);
+
+            return;
+        }
+
+        data.forEach(function (ticket) {
+            const card = document.createElement("div");
+            card.className = "info-card";
+
+            const heading = document.createElement("h3");
+            heading.textContent = ticket.subject;
+
+            const status = document.createElement("p");
+            status.textContent =
+                "Status: " + ticket.status.replaceAll("_", " ");
+
+            const category = document.createElement("p");
+            category.textContent =
+                "Category: " + ticket.category;
+
+            const priority = document.createElement("p");
+            priority.textContent =
+                "Priority: " + ticket.priority;
+
+            const date = document.createElement("p");
+            date.textContent =
+                "Submitted: " + formatDate(ticket.created_at);
+
+            card.append(
+                heading,
+                status,
+                category,
+                priority,
+                date
+            );
+
+            supportTickets.appendChild(card);
+        });
+    }
+
+
+    supportForm.addEventListener(
+        "submit",
+        async function (event) {
+            event.preventDefault();
+
+            if (!currentSession) {
+                showStatus(
+                    "Your session is not ready. Please refresh the page and sign in again.",
+                    "error"
+                );
+                return;
+            }
+
+            const category =
+                document.getElementById("supportCategory").value;
+
+            const subject =
+                document.getElementById("supportSubject").value.trim();
+
+            const messageText =
+                document.getElementById("supportMessage").value.trim();
+
+            if (!category || !subject || !messageText) {
+                showStatus(
+                    "Please complete all required fields.",
+                    "error"
+                );
+                return;
+            }
+
+            if (subject.length > 150) {
+                showStatus(
+                    "The subject cannot exceed 150 characters.",
+                    "error"
+                );
+                return;
+            }
+
+            if (messageText.length > 5000) {
+                showStatus(
+                    "The message cannot exceed 5,000 characters.",
+                    "error"
+                );
+                return;
+            }
+
+            const submitButton =
+                supportForm.querySelector('button[type="submit"]');
+
+            submitButton.disabled = true;
+            submitButton.textContent = "Submitting...";
+
+            showStatus(
+                "Submitting your support request...",
+                "success"
+            );
+
+            try {
+                const { error } = await supabaseClient.rpc(
+                    "create_my_support_ticket",
+                    {
+                        p_subject: subject,
+                        p_message: messageText,
+                        p_category: category,
+                        p_priority: "normal"
+                    }
+                );
+
+                if (error) {
+                    console.error(
+                        "Support submission error:",
+                        error
+                    );
+
+                    showStatus(
+                        "Your request could not be submitted. Please check your connection and try again.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+                supportForm.reset();
+
+                showStatus(
+                    "Your support request has been submitted successfully.",
+                    "success"
+                );
+
+                await loadSupportTickets();
+
+            } catch (error) {
+                console.error(error);
+
+                showStatus(
+                    "An unexpected error occurred. Please try again.",
+                    "error"
+                );
+
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent =
+                    "Submit Support Request";
+            }
+        }
+    );
+
+
+    async function initializeSupportPage() {
+        const authenticated =
+            await checkArtistSession();
+
+        if (!authenticated) return;
+
+        await loadSupportTickets();
+    }
+
+    initializeSupportPage();
+</script>
+
+</body>
+
+</html>

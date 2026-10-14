@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Release | T-KEL Distribution</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="dashboard-header">
+
+        <div class="dashboard-brand">
+            <a href="artist-dashboard.html">
+                <img src="T-KEL logo.png" alt="T-KEL Logo">
+            </a>
+
+            <div>
+                <strong>T-KEL Distribution</strong>
+                <span>Artist Portal</span>
+            </div>
+        </div>
+
+        <a href="artist-dashboard.html" class="dashboard-back">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <main class="dashboard-page">
+
+        <section class="dashboard-hero">
+
+            <p class="eyebrow">T-KEL DISTRIBUTION</p>
+
+            <h1>Create New Release</h1>
+
+            <p>
+                Submit your music information and prepare your release
+                for distribution.
+            </p>
+
+        </section>
+
+
+        <section class="release-form-section">
+
+            <form id="releaseForm">
+
+                <div class="form-section">
+
+                    <h2>1. Release Type</h2>
+
+                    <p class="form-help">
+                        Select the type of release you are submitting.
+                    </p>
+
+                    <div class="release-type-options">
+
+                        <label class="release-type-card">
+
+                            <input
+                                type="radio"
+                                name="releaseType"
+                                value="single"
+                                required
+                            >
+
+                            <span class="release-type-content">
+                                <strong>Single</strong>
+                                <small>One track</small>
+                            </span>
+
+                        </label>
+
+
+                        <label class="release-type-card">
+
+                            <input
+                                type="radio"
+                                name="releaseType"
+                                value="EP"
+                            >
+
+                            <span class="release-type-content">
+                                <strong>EP</strong>
+                                <small>Multiple tracks</small>
+                            </span>
+
+                        </label>
+
+
+                        <label class="release-type-card">
+
+                            <input
+                                type="radio"
+                                name="releaseType"
+                                value="album"
+                            >
+
+                            <span class="release-type-content">
+                                <strong>Album</strong>
+                                <small>Full collection</small>
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-section">
+
+                    <h2>2. Release Information</h2>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="releaseTitle">
+                                Release Title
+                            </label>
+
+                            <input
+                                type="text"
+                                id="releaseTitle"
+                                placeholder="Enter release title"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="artistName">
+                                Artist Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="artistName"
+                                placeholder="Artist or stage name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="genre">
+                                Primary Genre
+                            </label>
+
+                            <select id="genre" required>
+
+                                <option value="">
+                                    Select genre
+                                </option>
+
+                                <option value="Afrobeats">
+                                    Afrobeats
+                                </option>
+
+                                <option value="Amapiano">
+                                    Amapiano
+                                </option>
+
+                                <option value="Afropop">
+                                    Afropop
+                                </option>
+
+                                <option value="Hip Hop">
+                                    Hip Hop
+                                </option>
+
+                                <option value="R&B">
+                                    R&B
+                                </option>
+
+                                <option value="Pop">
+                                    Pop
+                                </option>
+
+                                <option value="Gospel">
+                                    Gospel
+                                </option>
+
+                                <option value="Highlife">
+                                    Highlife
+                                </option>
+
+                                <option value="Reggae">
+                                    Reggae
+                                </option>
+
+                                <option value="Dancehall">
+                                    Dancehall
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="language">
+                                Language
+                            </label>
+
+                            <input
+                                type="text"
+                                id="language"
+                                placeholder="e.g. English"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="releaseDate">
+                                Intended Release Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="releaseDate"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="recordLabel">
+                                Record Label
+                            </label>
+
+                            <input
+                                type="text"
+                                id="recordLabel"
+                                placeholder="Enter label name or Independent"
+                                value="T-KEL"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-section">
+
+                    <h2>3. Content Information</h2>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="copyrightOwner">
+                                Copyright Owner
+                            </label>
+
+                            <input
+                                type="text"
+                                id="copyrightOwner"
+                                placeholder="Name of copyright owner"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="cLine">
+                                ℗ P-Line
+                            </label>
+
+                            <input
+                                type="text"
+                                id="cLine"
+                                placeholder="e.g. © 2026 Artist Name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="publishing">
+                                Publishing Information
+                            </label>
+
+                            <input
+                                type="text"
+                                id="publishing"
+                                placeholder="Publisher or self-published"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="contentRating">
+                                Content Rating
+                            </label>
+
+                            <select id="contentRating" required>
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option value="clean">
+                                    Clean
+                                </option>
+
+                                <option value="explicit">
+                                    Explicit
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-section">
+
+                    <h2>4. Cover Artwork</h2>
+
+                    <p class="form-help">
+                        Upload the artwork that will represent your release.
+                    </p>
+
+                    <div class="form-group">
+
+                        <label for="artwork">
+                            Cover Artwork
+                        </label>
+
+                        <input
+                            type="file"
+                            id="artwork"
+                            accept="image/jpeg,image/png,image/webp"
+                            required
+                        >
+
+                        <small>
+                            JPG, PNG or WEBP. Final technical requirements
+                            will be checked before delivery.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-section">
+
+                    <h2>5. Track Information</h2>
+
+                    <p class="form-help">
+                        Add the tracks that belong to this release.
+                    </p>
+
+                    <div id="tracksContainer">
+
+                        <div class="track-card">
+
+                            <div class="track-header">
+
+                                <strong>
+                                    Track 1
+                                </strong>
+
+                            </div>
+
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+
+                                    <label>
+                                        Track Title
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        name="trackTitle[]"
+                                        placeholder="Track title"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label>
+                                        Version
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        name="trackVersion[]"
+                                        placeholder="e.g. Original"
+                                    >
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label>
+                                        ISRC
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        name="isrc[]"
+                                        placeholder="Leave blank if not assigned"
+                                    >
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label>
+                                        Audio File
+                                    </label>
+
+                                    <input
+                                        type="file"
+                                        name="audio[]"
+                                        accept="audio/*"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="addTrackButton"
+                        class="btn btn-secondary"
+                    >
+                        + Add Another Track
+                    </button>
+
+                </div>
+
+
+                <div class="form-section">
+
+                    <h2>6. Distribution Destinations</h2>
+
+                    <p class="form-help">
+                        Select the platforms where you want T-KEL
+                        to deliver your release.
+                    </p>
+
+                    <div class="destination-grid">
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="destinations"
+                                value="spotify"
+                            >
+                            Spotify
+                        </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="destinations"
+                                value="apple-music"
+                            >
+                            Apple Music
+                        </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="destinations"
+                                value="youtube-music"
+                            >
+                            YouTube Music
+                        </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="destinations"
+                                value="amazon-music"
+                            >
+                            Amazon Music
+                        </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="destinations"
+                                value="deezer"
+                            >
+                            Deezer
+                        </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="destinations"
+                                value="tidal"
+                            >
+                            TIDAL
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-section">
+
+                    <h2>7. Rights Declaration</h2>
+
+                    <label class="checkbox-row">
+
+                        <input
+                            type="checkbox"
+                            id="rightsDeclaration"
+                            required
+                        >
+
+                        <span>
+                            I confirm that I have the necessary rights,
+                            permissions and authority to distribute this music
+                            and artwork.
+                        </span>
+
+                    </label>
+
+
+                    <label class="checkbox-row">
+
+                        <input
+                            type="checkbox"
+                            id="informationAccuracy"
+                            required
+                        >
+
+                        <span>
+                            I confirm that the information provided is accurate
+                            and complete.
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <div id="releaseMessage" class="form-message"></div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        id="saveDraftButton"
+                    >
+                        Save as Draft
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Submit Release
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <footer class="dashboard-footer">
+
+        <p>T-KEL Distribution</p>
+
+        <p>Stay Real, Stay kelz.</p>
+
+        <p>© 2026 Terriken Entertainment Limited</p>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+
+        const SUPABASE_URL =
+            "https://tvefankphzactrtciuwp.supabase.co";
+
+        const SUPABASE_KEY =
+            "sb_publishable_yRe3y1xhJO_OFEVqpxopxg_1mR7gmqf";
+
+        const supabaseClient =
+            supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+      
+      let currentReleaseId = null;
+
+        async function checkArtistSession() {
+
+            const {
+                data: { session }
+            } =
+                await supabaseClient.auth.getSession();
+
+            if (!session) {
+
+                window.location.href =
+                    "artist-login.html";
+
+                return;
+
+            }
+
+        }
+
+
+        checkArtistSession();
+
+
+        const tracksContainer =
+            document.getElementById("tracksContainer");
+
+        const addTrackButton =
+            document.getElementById("addTrackButton");
+
+
+        let trackNumber = 1;
+
+
+        addTrackButton.addEventListener(
+            "click",
+            function () {
+
+                trackNumber++;
+
+
+                const trackCard =
+                    document.createElement("div");
+
+                trackCard.className =
+                    "track-card";
+
+
+                trackCard.innerHTML = `
+
+                    <div class="track-header">
+
+                        <strong>
+                            Track ${trackNumber}
+                        </strong>
+
+                        <button
+                            type="button"
+                            class="remove-track"
+                        >
+                            Remove
+                        </button>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                Track Title
+                            </label>
+
+                            <input
+                                type="text"
+                                name="trackTitle[]"
+                                placeholder="Track title"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Version
+                            </label>
+
+                            <input
+                                type="text"
+                                name="trackVersion[]"
+                                placeholder="e.g. Original"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                ISRC
+                            </label>
+
+                            <input
+                                type="text"
+                                name="isrc[]"
+                                placeholder="Leave blank if not assigned"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Audio File
+                            </label>
+
+                            <input
+                                type="file"
+                                name="audio[]"
+                                accept="audio/*"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                tracksContainer.appendChild(
+                    trackCard
+                );
+
+
+                trackCard
+                    .querySelector(".remove-track")
+                    .addEventListener(
+                        "click",
+                        function () {
+
+                            trackCard.remove();
+
+                        }
+                    );
+
+            }
+        );
+
+
+        const releaseForm =
+            document.getElementById("releaseForm");
+
+
+        releaseForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                const message =
+                    document.getElementById(
+                        "releaseMessage"
+                    );
+
+
+                message.textContent =
+                    "Release form is ready. Backend submission will be connected next.";
+
+                message.className =
+                    "form-message success";
+
+            }
+        );
+
+
+    document
+    .getElementById("saveDraftButton")
+    .addEventListener(
+        "click",
+        async function () {
+
+            const message =
+                document.getElementById(
+                    "releaseMessage"
+                );
+
+            message.textContent =
+                "Saving draft...";
+
+            message.className =
+                "form-message";
+
+
+            try {
+
+                // Check the logged-in artist
+                const {
+                    data: { session },
+                    error: sessionError
+                } =
+                    await supabaseClient.auth.getSession();
+
+
+                if (
+                    sessionError ||
+                    !session
+                ) {
+
+                    window.location.href =
+                        "artist-login.html";
+
+                    return;
+
+                }
+
+
+                // Find the artist connected to this account
+                const {
+                    data: artist,
+                    error: artistError
+                } =
+                    await supabaseClient
+                        .from("artists")
+                        .select("id, artist_name, stage_name, full_name")
+                        .eq("user_id", session.user.id)
+                        .maybeSingle();
+
+
+                if (artistError) {
+
+                    throw artistError;
+
+                }
+
+
+                if (!artist) {
+
+                    throw new Error(
+                        "Artist profile was not found."
+                    );
+
+                }
+
+
+                // Get selected release type
+                const releaseType =
+                    document.querySelector(
+                        'input[name="releaseType"]:checked'
+                    );
+
+
+                if (!releaseType) {
+
+                    throw new Error(
+                        "Please select a release type."
+                    );
+
+                }
+
+
+                // Get content rating
+                const contentRating =
+                    document.getElementById(
+                        "contentRating"
+                    ).value;
+
+
+                // Convert content rating to boolean
+                const isExplicit =
+                    contentRating === "explicit";
+
+
+                // Get release information
+                const releaseData = {
+
+                    artist_id: artist.id,
+
+                    title:
+                        document.getElementById(
+                            "releaseTitle"
+                        ).value.trim(),
+
+                    release_type:
+                        releaseType.value.toUpperCase(),
+
+                    primary_artist:
+                        document.getElementById(
+                            "artistName"
+                        ).value.trim(),
+
+                    genre:
+                        document.getElementById(
+                            "genre"
+                        ).value,
+
+                    language:
+                        document.getElementById(
+                            "language"
+                        ).value.trim(),
+
+                    original_release_date:
+    document.getElementById(
+        "releaseDate"
+    ).value || null,
+
+                    copyright_text:
+    document.getElementById(
+        "copyrightOwner"
+    ).value.trim() || null,
+
+                    copyright_year:
+    new Date().getFullYear(),
+
+               photographic_copyright:
+    null,
+
+                    explicit:
+                        isExplicit,
+
+                    status:
+                        "DRAFT"
+
+                };
+
+
+                // Save the release
+    let release;
+let releaseError;
+
+if (currentReleaseId) {
+
+    const result = await supabaseClient
+        .from("releases")
+        .update(releaseData)
+        .eq("id", currentReleaseId)
+        .select()
+        .single();
+
+    release = result.data;
+    releaseError = result.error;
+
+} else {
+
+    const result = await supabaseClient
+        .from("releases")
+        .insert(releaseData)
+        .select()
+        .single();
+
+    release = result.data;
+    releaseError = result.error;
+}
+
+if (releaseError) {
+    throw releaseError;
+}
+
+              // Remember the release ID for the tracks
+currentReleaseId = release.id;
+
+const trackTitles =
+    document.querySelectorAll('input[name="trackTitle[]"]');
+
+const trackVersions =
+    document.querySelectorAll('input[name="trackVersion[]"]');
+
+const trackISRCs =
+    document.querySelectorAll('input[name="isrc[]"]');
+
+
+// Get tracks already saved for this release
+const {
+    data: existingTracks,
+    error: existingTracksError
+} = await supabaseClient
+    .from("tracks")
+    .select("id, track_number")
+    .eq("release_id", currentReleaseId);
+
+if (existingTracksError) {
+    throw existingTracksError;
+}
+
+
+// Save or update each track
+for (let i = 0; i < trackTitles.length; i++) {
+
+    const title =
+        trackTitles[i].value.trim();
+
+    if (!title) {
+        continue;
+    }
+
+    const trackNumber = i + 1;
+
+    const trackData = {
+
+        release_id:
+            currentReleaseId,
+
+        track_number:
+            trackNumber,
+
+        disc_number:
+            1,
+
+        title:
+            title,
+
+        version:
+            trackVersions[i]
+                ? trackVersions[i].value.trim() || null
+                : null,
+
+        ISRC:
+            trackISRCs[i]
+                ? trackISRCs[i].value.trim() || null
+                : null,
+
+        status:
+            "DRAFT"
+    };
+
+
+    const existingTrack =
+        existingTracks.find(
+            track =>
+                track.track_number === trackNumber
+        );
+
+
+    if (existingTrack) {
+
+        const {
+            data: updatedTrack,
+            error: updateTrackError
+        } = await supabaseClient
+            .from("tracks")
+            .update(trackData)
+            .eq("id", existingTrack.id)
+            .select()
+            .single();
+
+        if (updateTrackError) {
+            throw updateTrackError;
+        }
+
+        console.log(
+            "Track updated:",
+            updatedTrack
+        );
+
+    } else {
+
+        const {
+            data: newTrack,
+            error: insertTrackError
+        } = await supabaseClient
+            .from("tracks")
+            .insert(trackData)
+            .select()
+            .single();
+
+        if (insertTrackError) {
+            throw insertTrackError;
+        }
+
+        console.log(
+            "Track created:",
+            newTrack
+        );
+    }
+}
+  
+console.log("Release ID:", currentReleaseId);
+
+                message.textContent =
+                    "Draft saved successfully.";
+
+                message.className =
+                    "form-message success";
+
+
+            } catch (error) {
+
+                console.error(
+                    "Save draft error:",
+                    error
+                );
+
+
+                message.textContent =
+                    error.message ||
+                    "Unable to save draft.";
+
+                message.className =
+                    "form-message error";
+
+            }
+
+        }
+    );        
+
+    </script>
+
+</body>
+
+</html>

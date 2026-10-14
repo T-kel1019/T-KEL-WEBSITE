@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>T-KEL Application Form Purchase</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <section class="content">
+
+        <div style="text-align:center;">
+
+            <img
+                src="T-KEL logo.png"
+                alt="T-KEL Logo"
+                style="
+                    width:220px;
+                    max-width:85%;
+                    height:auto;
+                "
+            >
+
+            <h1>
+                T-KEL Application Form
+            </h1>
+
+            <p>
+                Terriken Entertainment Limited
+            </p>
+
+        </div>
+
+
+        <hr>
+
+
+        <h2>🎫 Application Form Purchase</h2>
+
+
+        <p>
+            Your application has been approved by
+            T-KEL Management.
+        </p>
+
+
+        <div
+            style="
+                border:1px solid #ccc;
+                padding:20px;
+                margin:20px 0;
+                border-radius:10px;
+            "
+        >
+
+            <p>
+                <strong>
+                    Application Reference:
+                </strong>
+
+                <span id="application-reference">
+                    Loading...
+                </span>
+            </p>
+
+
+            <p>
+                <strong>
+                    Applicant:
+                </strong>
+
+                <span id="applicant-name">
+                    Loading...
+                </span>
+            </p>
+
+
+            <p>
+                <strong>
+                    Category:
+                </strong>
+
+                <span id="application-category">
+                    Loading...
+                </span>
+            </p>
+
+        </div>
+
+
+        <h2>
+            Application Form Fee
+        </h2>
+
+
+        <h1>
+            ₦5,000
+        </h1>
+
+
+        <p>
+            Your application has been approved.
+            Please proceed with payment of ₦5,000
+            to purchase the T-KEL application form.
+        </p>
+
+
+        <button
+            type="button"
+            id="payment-button"
+            onclick="startPayment()"
+        >
+            💳 Proceed to Payment — ₦5,000
+        </button>
+
+
+        <p
+            id="payment-message"
+            style="
+                display:none;
+                font-weight:bold;
+                margin-top:15px;
+            "
+        ></p>
+
+
+        <p style="margin-top:30px;">
+
+            <a href="index.html">
+                ← Back to T-KEL Website
+            </a>
+
+        </p>
+
+    </section>
+
+
+    <script>
+
+        /*
+        ==========================================
+        GET APPLICATION INFORMATION
+        ==========================================
+        */
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const reference =
+            params.get("reference");
+
+
+        const name =
+            params.get("name");
+
+
+        const category =
+            params.get("category");
+
+
+        const email =
+            params.get("email");
+
+
+        document.getElementById(
+            "application-reference"
+        ).textContent =
+            reference || "Not provided";
+
+
+        document.getElementById(
+            "applicant-name"
+        ).textContent =
+            name || "Not provided";
+
+
+        document.getElementById(
+            "application-category"
+        ).textContent =
+            category || "Not provided";
+
+
+        /*
+        ==========================================
+        START PAYSTACK PAYMENT
+        ==========================================
+        */
+
+        async function startPayment() {
+
+            const button =
+                document.getElementById(
+                    "payment-button"
+                );
+
+
+            const message =
+                document.getElementById(
+                    "payment-message"
+                );
+
+
+            if (
+                !reference ||
+                !name ||
+                !email
+            ) {
+
+                message.textContent =
+                    "Application information is missing.";
+
+                message.style.display =
+                    "block";
+
+                return;
+
+            }
+
+
+            button.disabled = true;
+
+
+            button.textContent =
+                "Starting payment...";
+
+
+            message.style.display =
+                "none";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/.netlify/functions/initialize-payment",
+                        {
+
+                            method: "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body: JSON.stringify({
+
+                                email:
+                                    email,
+
+                                reference:
+                                    reference,
+
+                                fullName:
+                                    name
+
+                            })
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !data.success
+                ) {
+
+                    throw new Error(
+                        data.error ||
+                        "Unable to start payment."
+                    );
+
+                }
+
+
+                /*
+                Send applicant to Paystack
+                */
+
+                window.location.href =
+                    data.authorization_url;
+
+
+            } catch (error) {
+
+                console.error(
+                    "Payment error:",
+                    error
+                );
+
+
+                message.textContent =
+                    "❌ " +
+                    error.message;
+
+
+                message.style.display =
+                    "block";
+
+
+                button.disabled =
+                    false;
+
+
+                button.textContent =
+                    "💳 Proceed to Payment — ₦5,000";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

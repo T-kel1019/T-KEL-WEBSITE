@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>T-KEL Management</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <section class="content">
+
+        <h1>🔐 T-KEL Management</h1>
+
+        <p>
+            Terriken Entertainment Limited
+        </p>
+
+        <h2>Management Login</h2>
+
+        <form id="management-login-form">
+
+            <p>
+
+                <label for="management-email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="management-email"
+                    placeholder="Enter management email"
+                    required
+                >
+
+            </p>
+
+
+            <p>
+
+                <label for="management-password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="management-password"
+                    placeholder="Enter password"
+                    required
+                >
+
+            </p>
+
+
+            <button
+                type="submit"
+                id="management-login-button"
+            >
+                Login
+            </button>
+
+
+            <p
+                id="login-message"
+                style="display:none; font-weight:bold;"
+            ></p>
+
+        </form>
+
+    </section>
+
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <script>
+
+        const SUPABASE_URL =
+            "https://tvefankphzactrtciuwp.supabase.co";
+
+
+        const SUPABASE_PUBLISHABLE_KEY =
+            "sb_publishable_yRe3y1xhJO_OFEVqpxopxg_1mR7gmqf";
+
+
+        const supabaseClient =
+            supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_PUBLISHABLE_KEY
+            );
+
+
+        /* =========================
+           MANAGEMENT LOGIN
+        ========================= */
+
+        document
+            .getElementById("management-login-form")
+            .addEventListener(
+                "submit",
+                async function(event) {
+
+                    event.preventDefault();
+
+
+                    const email =
+                        document
+                            .getElementById(
+                                "management-email"
+                            )
+                            .value
+                            .trim();
+
+
+                    const password =
+                        document
+                            .getElementById(
+                                "management-password"
+                            )
+                            .value;
+
+
+                    const button =
+                        document
+                            .getElementById(
+                                "management-login-button"
+                            );
+
+
+                    const message =
+                        document
+                            .getElementById(
+                                "login-message"
+                            );
+
+
+                    button.disabled = true;
+
+
+                    button.textContent =
+                        "Logging in...";
+
+
+                    message.style.display =
+                        "none";
+
+
+                    try {
+
+                        const { data, error } =
+                            await supabaseClient.auth
+                                .signInWithPassword({
+
+                                    email: email,
+
+                                    password: password
+
+                                });
+
+
+                        if (error) {
+
+                            console.error(error);
+
+
+                            message.textContent =
+                                "Login failed: " +
+                                error.message;
+
+
+                            message.style.display =
+                                "block";
+
+
+                            button.disabled =
+                                false;
+
+
+                            button.textContent =
+                                "Login";
+
+
+                            return;
+
+                        }
+
+
+                        /* Successful login */
+
+                        window.location.href =
+                            "management-dashboard.html";
+
+
+                    } catch (error) {
+
+                        console.error(error);
+
+
+                        message.textContent =
+                            "Something went wrong. Please try again.";
+
+
+                        message.style.display =
+                            "block";
+
+
+                        button.disabled =
+                            false;
+
+
+                        button.textContent =
+                            "Login";
+
+                    }
+
+                }
+            );
+
+    </script>
+
+</body>
+
+</html>

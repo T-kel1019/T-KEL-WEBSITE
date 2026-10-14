@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>T-KEL Media Manager</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+  <style>
+body {
+    background: #ffffff;
+    color: #111111;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+</style>
+
+</head>
+
+<body>
+
+    <section class="content">
+
+        <div class="management-header">
+
+            <img
+                src="T-KEL logo.png"
+                alt="T-KEL Logo"
+                class="logo"
+            >
+
+            <h1>
+                🎬 T-KEL Media Manager
+            </h1>
+
+            <p>
+                Terriken Entertainment Limited
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             MEDIA MANAGER
+        ========================== -->
+
+        <h2>
+            Upload Content
+        </h2>
+
+
+        <p>
+            Use this page to upload T-KEL movies,
+            music, comedy and other content.
+        </p>
+
+
+<!-- CONTENT TITLE -->
+<label for="content-title">
+    <strong>Content Title</strong>
+</label>
+
+<input
+    type="text"
+    id="content-title"
+    placeholder="Enter content title"
+    style="width:100%;box-sizing:border-box;padding:12px;margin-top:8px;margin-bottom:15px;"
+>
+
+<!-- ARTIST / CREATOR -->
+<label for="content-artist">
+    <strong>🎤 Artist / Creator Name</strong>
+</label>
+
+<input
+    type="text"
+    id="content-artist"
+    placeholder="Enter artist or creator name"
+    style="width:100%;box-sizing:border-box;padding:12px;margin-top:8px;margin-bottom:15px;"
+>
+
+<!-- PRODUCER -->
+<label for="content-producer">
+    <strong>🎬 Producer Name</strong>
+</label>
+
+<input
+    type="text"
+    id="content-producer"
+    placeholder="Enter producer name"
+    style="width:100%;box-sizing:border-box;padding:12px;margin-top:8px;margin-bottom:15px;"
+>
+
+<!-- RECORD LABEL -->
+<label for="content-label">
+    <strong>🏷️ Record Label</strong>
+</label>
+
+<input
+    type="text"
+    id="content-label"
+    value="T-KEL"
+    readonly
+    style="width:100%;box-sizing:border-box;padding:12px;margin-top:8px;margin-bottom:15px;background:#f1f1f1;"
+>
+        
+
+
+        <!-- CATEGORY -->
+
+        <label for="content-category">
+            <strong>
+                Category
+            </strong>
+        </label>
+
+        <select
+            id="content-category"
+            style="
+                width:100%;
+                box-sizing:border-box;
+                padding:12px;
+                margin-top:8px;
+                margin-bottom:15px;
+            "
+        >
+
+            <option value="">
+                Select category
+            </option>
+
+            <option value="Movies">
+                Movies
+            </option>
+
+            <option value="Music">
+                Music
+            </option>
+
+            <option value="Comedy">
+                Comedy
+            </option>
+
+            <option value="Other">
+                Other
+            </option>
+
+        </select>
+
+
+        <!-- DESCRIPTION -->
+
+        <label for="content-description">
+            <strong>
+                Description
+            </strong>
+        </label>
+
+        <textarea
+            id="content-description"
+            rows="5"
+            placeholder="Enter a description of the content..."
+            style="
+                width:100%;
+                box-sizing:border-box;
+                padding:12px;
+                margin-top:8px;
+                margin-bottom:15px;
+            "
+        ></textarea>
+
+
+<!-- MEDIA TYPE -->
+
+<label for="media-type">
+    <strong>
+        🎵 Media Type
+    </strong>
+</label>
+
+<select
+    id="media-type"
+    style="
+        width:100%;
+        box-sizing:border-box;
+        padding:12px;
+        margin-top:8px;
+        margin-bottom:15px;
+    "
+>
+    <option value="video">
+        🎬 Video
+    </option>
+
+    <option value="audio">
+        🎵 Audio / Music
+    </option>
+</select>
+
+
+<!-- MEDIA FILE -->
+
+<!-- VIDEO FILE -->
+
+<div id="video-file-container">
+
+    <label for="video-file">
+        <strong>
+            🎬 Video File
+        </strong>
+    </label>
+
+    <input
+        type="file"
+        id="video-file"
+        accept="video/*"
+        style="width:100%;box-sizing:border-box;margin-top:8px;margin-bottom:15px;"
+    >
+
+</div>
+
+
+<!-- AUDIO FILE -->
+
+<div
+    id="audio-file-container"
+    style="display:none;"
+>
+
+    <label for="audio-file">
+        <strong>
+            🎵 Audio / Music File
+        </strong>
+    </label>
+
+    <input
+        type="file"
+        id="audio-file"
+        accept="audio/*"
+        style="width:100%;box-sizing:border-box;margin-top:8px;margin-bottom:15px;"
+    >
+
+</div>
+
+
+        <!-- COVER / POSTER -->
+<label for="cover-file">
+    <strong>🖼️ Cover / Poster / Thumbnail</strong>
+</label>
+
+<input
+    type="file"
+    id="cover-file"
+    accept="image/*"
+    style="width:100%;box-sizing:border-box;margin-top:8px;margin-bottom:15px;"
+>
+        
+
+
+        <!-- PUBLISH STATUS -->
+
+<label for="publish-status">
+    <strong>
+        Publish Status
+    </strong>
+</label>
+
+<select
+    id="publish-status"
+    style="
+        width:100%;
+        box-sizing:border-box;
+        padding:12px;
+        margin-top:8px;
+        margin-bottom:20px;
+    "
+>
+    <option value="draft">
+        Hidden / Draft
+    </option>
+
+    <option value="published">
+        Published
+    </option>
+</select>
+
+
+<!-- DOWNLOAD PERMISSION -->
+
+<label for="downloadable">
+    <strong>
+        ⬇️ Download Permission
+    </strong>
+</label>
+
+<select
+    id="downloadable"
+    style="
+        width:100%;
+        box-sizing:border-box;
+        padding:12px;
+        margin-top:8px;
+        margin-bottom:15px;
+    "
+>
+    <option value="true">
+        Allow Downloads
+    </option>
+
+    <option value="false">
+        Do Not Allow Downloads
+    </option>
+</select>
+
+
+        <!-- UPLOAD BUTTON -->
+
+        <button
+            type="button"
+            onclick="uploadContent()"
+        >
+            ⬆️ Upload Content
+        </button>
+
+
+        <p
+            id="upload-message"
+            style="
+                font-weight:bold;
+                margin-top:20px;
+            "
+        ></p>
+
+<!-- =========================
+     MEDIA LIBRARY
+========================== -->
+
+<h2>
+    📚 T-KEL Media Library
+</h2>
+
+<p>
+    Manage your uploaded T-KEL content.
+</p>
+
+<button
+    type="button"
+    onclick="loadMedia()"
+>
+    🔄 Refresh Media
+</button>
+
+<div
+    id="media-library-message"
+    style="
+        font-weight:bold;
+        margin-top:20px;
+    "
+  
+>
+    Loading media...
+</div>
+
+<div
+    id="media-library"
+    style="
+        margin-top:20px;
+    "
+></div>
+        <hr
+            style="
+                margin-top:30px;
+                margin-bottom:30px;
+            "
+        >
+
+
+        <!-- BACK BUTTON -->
+
+        <button
+    type="button"
+    id="media-manager-logout-button"
+    onclick="logoutMediaManager()"
+>
+    🚪 Logout
+</button>
+
+    </section>
+
+
+    <!-- =========================
+         SUPABASE
+    ========================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+    const SUPABASE_URL =
+        "https://tvefankphzactrtciuwp.supabase.co";
+
+
+    const SUPABASE_PUBLISHABLE_KEY =
+        "sb_publishable_yRe3y1xhJO_OFEVqpxopxg_1mR7gmqf";
+
+
+    const supabaseClient =
+        supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_PUBLISHABLE_KEY
+        );
+
+
+    /* =========================
+       CHECK MANAGEMENT LOGIN
+    ========================== */
+
+    async function checkMediaManagerLogin() {
+    try {
+        const response =
+            await fetch(
+                "/.netlify/functions/media-manager-session",
+                {
+                    method: "GET",
+                    credentials: "include",
+                    cache: "no-store"
+                }
+            );
+
+        const result =
+            await response.json();
+
+        if (!response.ok || !result.success) {
+
+            window.location.href =
+                "Media Manager Login.html";
+
+            return false;
+        }
+
+        return true;
+
+    } catch (error) {
+
+        console.error(
+            "Media Manager session error:",
+            error
+        );
+
+        window.location.href =
+            "Media Manager Login.html";
+
+        return false;
+    }
+}
+
+    /* =========================
+       UPLOAD CONTENT
+    ========================== */
+
+  async function uploadContent() {
+
+    const message =
+        document.getElementById("upload-message");
+
+    /* =========================
+       GET FORM VALUES
+    ========================= */
+
+    const title =
+        document.getElementById("content-title").value.trim();
+
+    const artist =
+        document.getElementById("content-artist").value.trim();
+
+    const producer =
+        document.getElementById("content-producer").value.trim();
+
+    const label =
+        document.getElementById("content-label").value;
+
+    const category =
+        document.getElementById("content-category").value;
+
+    const description =
+        document.getElementById("content-description").value.trim();
+
+    const mediaType =
+        document.getElementById("media-type").value;
+
+    const mediaFile =
+        mediaType === "audio"
+            ? document.getElementById("audio-file").files[0]
+            : document.getElementById("video-file").files[0];
+
+    const coverFile =
+        document.getElementById("cover-file").files[0];
+
+    const publishStatus =
+        document.getElementById("publish-status").value;
+
+    const downloadable =
+        document.getElementById("downloadable").value === "true";
+
+
+    /* =========================
+       VALIDATION
+    ========================= */
+
+    if (!title) {
+
+        message.textContent =
+            "Please enter a content title.";
+
+        return;
+    }
+
+
+    if (!category) {
+
+        message.textContent =
+            "Please select a category.";
+
+        return;
+    }
+
+
+    if (!mediaFile) {
+
+        message.textContent =
+            "Please select a media file.";
+
+        return;
+    }
+
+
+    if (category === "Music" && !artist) {
+
+        message.textContent =
+            "Please enter the artist name for music.";
+
+        return;
+    }
+
+
+    const MAX_FILE_SIZE =
+        50 * 1024 * 1024;
+
+
+    if (mediaFile.size > MAX_FILE_SIZE) {
+
+        message.textContent =
+            "❌ Media file is too large. Maximum allowed size is 50 MB.";
+
+        return;
+    }
+
+
+    /* =========================
+       CHECK MANAGEMENT LOGIN
+    ========================= */
+
+    message.textContent =
+    "Checking Media Manager login...";
+
+const loggedIn =
+    await checkMediaManagerLogin();
+
+if (!loggedIn) return;
+
+    try {
+
+        const time =
+            Date.now();
+
+
+        const fileExtension =
+            mediaFile.name
+                .split(".")
+                .pop()
+                .toLowerCase();
+
+
+        const mediaPath =
+            (mediaType === "audio"
+                ? "audio/"
+                : "videos/") +
+            time +
+            "-" +
+            crypto.randomUUID() +
+            "." +
+            fileExtension;
+
+
+        let coverPath = null;
+
+
+        /* =========================
+           UPLOAD MEDIA FILE
+        ========================= */
+
+        message.textContent =
+            "Uploading media file...";
+
+
+        const { error: mediaUploadError } =
+            await supabaseClient.storage
+                .from("tkel_media")
+                .upload(
+                    mediaPath,
+                    mediaFile,
+                    {
+                        cacheControl: "3600",
+                        upsert: false
+                    }
+                );
+
+
+        if (mediaUploadError) {
+
+            throw new Error(
+                "Media upload failed: " +
+                mediaUploadError.message
+            );
+        }
+
+
+        /* =========================
+           UPLOAD COVER / POSTER
+        ========================= */
+
+        if (coverFile) {
+
+            message.textContent =
+                "Uploading cover/poster...";
+
+
+            const coverExtension =
+                coverFile.name
+                    .split(".")
+                    .pop()
+                    .toLowerCase();
+
+
+            coverPath =
+                "covers/" +
+                time +
+                "-" +
+                crypto.randomUUID() +
+                "." +
+                coverExtension;
+
+
+            const { error: coverUploadError } =
+                await supabaseClient.storage
+                    .from("tkel_media")
+                    .upload(
+                        coverPath,
+                        coverFile,
+                        {
+                            cacheControl: "3600",
+                            upsert: false
+                        }
+                    );
+
+
+            if (coverUploadError) {
+
+                throw new Error(
+                    "Cover upload failed: " +
+                    coverUploadError.message
+                );
+            }
+        }
+
+
+        /* =========================
+           GET PUBLIC MEDIA URL
+        ========================= */
+
+        const { data: mediaUrlData } =
+            supabaseClient.storage
+                .from("tkel_media")
+                .getPublicUrl(mediaPath);
+
+
+        const mediaUrl =
+            mediaUrlData.publicUrl;
+
+
+        let coverUrl = null;
+
+
+        if (coverPath) {
+
+            const { data: coverUrlData } =
+                supabaseClient.storage
+                    .from("tkel_media")
+                    .getPublicUrl(coverPath);
+
+
+            coverUrl =
+                coverUrlData.publicUrl;
+        }
+
+
+        /* =========================
+           SAVE TO TKEL_MEDIA TABLE
+        ========================= */
+
+        message.textContent =
+            "Saving content information...";
+
+
+        const { error: databaseError } =
+            await supabaseClient
+                .from("tkel_media")
+                .insert({
+
+                    title: title,
+
+                    artist:
+                        artist || null,
+
+                    producer:
+                        producer || null,
+
+                    label:
+                        label,
+
+                    category:
+                        category,
+
+                    media_type:
+                        mediaType,
+
+                    media_url:
+                        mediaUrl,
+
+                    cover_url:
+                        coverUrl,
+
+                    description:
+                        description || null,
+
+                    downloadable:
+                        downloadable,
+
+                    published:
+                        publishStatus === "published"
+                });
+
+
+        if (databaseError) {
+
+            throw new Error(
+                "Content information could not be saved: " +
+                databaseError.message
+            );
+        }
+
+
+        /* =========================
+           SUCCESS
+        ========================= */
+
+        message.textContent =
+            "✅ Content uploaded successfully.";
+
+
+        /* =========================
+           RESET FORM
+        ========================= */
+
+        document.getElementById(
+            "content-title"
+        ).value = "";
+
+
+        document.getElementById(
+            "content-artist"
+        ).value = "";
+
+
+        document.getElementById(
+            "content-producer"
+        ).value = "";
+
+
+        document.getElementById(
+            "content-label"
+        ).value = "T-KEL";
+
+
+        document.getElementById(
+            "content-category"
+        ).value = "";
+
+
+        document.getElementById(
+            "content-description"
+        ).value = "";
+
+
+        document.getElementById(
+            "video-file"
+        ).value = "";
+
+
+        document.getElementById(
+            "audio-file"
+        ).value = "";
+
+
+        document.getElementById(
+            "cover-file"
+        ).value = "";
+
+
+        document.getElementById(
+            "media-type"
+        ).value = "video";
+
+
+        document.getElementById(
+            "video-file-container"
+        ).style.display = "block";
+
+
+        document.getElementById(
+            "audio-file-container"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "publish-status"
+        ).value = "draft";
+
+
+        document.getElementById(
+            "downloadable"
+        ).value = "true";
+
+
+        await loadMedia();
+
+
+    } catch (error) {
+
+        console.error(
+            "Upload error:",
+            error
+        );
+
+
+        message.textContent =
+            "❌ " + error.message;
+    }
+}
+  
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+/* =========================
+   LOAD MEDIA LIBRARY
+========================= */
+
+async function loadMedia() {
+    const message = document.getElementById("media-library-message");
+    const library = document.getElementById("media-library");
+
+    message.textContent = "Loading media...";
+    library.innerHTML = "";
+
+    const loggedIn = await checkManagementLogin();
+    if (!loggedIn) return;
+
+    try {
+        const { data, error } = await supabaseClient
+            .from("tkel_media")
+            .select("*")
+            .order("created_at", { ascending: false });
+
+        if (error) throw error;
+
+        if (!data || data.length === 0) {
+            message.textContent = "No media uploaded yet.";
+            return;
+        }
+
+        message.textContent = data.length + " media item(s) found.";
+
+        data.forEach(function (media) {
+
+            const card = document.createElement("div");
+
+            card.style.border = "1px solid #ccc";
+            card.style.padding = "20px";
+            card.style.marginTop = "20px";
+            card.style.borderRadius = "10px";
+
+            let mediaPreview = "";
+
+            if (media.media_type === "video") {
+
+                mediaPreview = `
+                    <video
+                        controls
+                        style="width:100%;max-width:600px;border-radius:10px;margin-top:10px;"
+                    >
+                        <source src="${escapeHTML(media.media_url)}">
+                        Your browser does not support video playback.
+                    </video>
+                `;
+
+            } else if (media.media_type === "audio") {
+
+                mediaPreview = `
+                    <audio
+                        controls
+                        style="width:100%;margin-top:10px;"
+                    >
+                        <source src="${escapeHTML(media.media_url)}">
+                        Your browser does not support audio playback.
+                    </audio>
+                `;
+            }
+
+            card.innerHTML = `
+                <h3>${escapeHTML(media.title)}</h3>
+
+                <p>
+                    <strong>Category:</strong>
+                    ${escapeHTML(media.category || "Other")}
+                </p>
+
+                <p>
+    <strong>Artist / Creator:</strong>
+    ${escapeHTML(media.artist || "Not specified")}
+</p>
+
+<p>
+    <strong>Producer:</strong>
+    ${escapeHTML(media.producer || "Not specified")}
+</p>
+
+<p>
+    <strong>Record Label:</strong>
+    ${escapeHTML(media.label || "T-KEL")}
+</p>
+
+<p>
+    <strong>Media Type:</strong>
+    ${escapeHTML(media.media_type).toUpperCase()}
+</p>
+
+                <p>
+                    <strong>Status:</strong>
+                    ${media.published ? "PUBLISHED" : "HIDDEN / DRAFT"}
+                </p>
+
+                <p>
+                    <strong>Downloads:</strong>
+                    ${media.downloadable ? "ALLOWED" : "NOT ALLOWED"}
+                </p>
+
+                <p>
+                    <strong>Description:</strong>
+                    ${escapeHTML(media.description || "")}
+                </p>
+
+                ${
+                    media.cover_url
+                    ? `
+                        <img
+                            src="${escapeHTML(media.cover_url)}"
+                            alt="${escapeHTML(media.title)}"
+                            style="width:100%;max-width:400px;border-radius:10px;margin-top:10px;"
+                        >
+                    `
+                    : ""
+                }
+
+                ${mediaPreview}
+
+                <p style="margin-top:15px;">
+                    <a
+                        href="${escapeHTML(media.media_url)}"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        🔗 Open Media
+                    </a>
+                </p>
+
+                <button
+                    type="button"
+                    onclick="deleteMedia('${media.id}')"
+                >
+                    🗑️ Delete
+                </button>
+            `;
+
+            library.appendChild(card);
+        });
+
+    } catch (error) {
+
+        console.error("Load media error:", error);
+
+        message.textContent =
+            "❌ Unable to load media: " + error.message;
+    }
+}
+
+
+/* =========================
+   DELETE MEDIA
+========================= */
+
+async function deleteMedia(mediaId) {
+    const confirmed = confirm(
+        "Are you sure you want to delete this media record?"
+    );
+
+    if (!confirmed) return;
+
+    try {
+        const { error } = await supabaseClient
+            .from("tkel_media")
+            .delete()
+            .eq("id", mediaId);
+
+        if (error) throw error;
+
+        alert("Media record deleted successfully.");
+
+        await loadMedia();
+
+    } catch (error) {
+
+        console.error("Delete media error:", error);
+
+        alert(
+            "Unable to delete media: " + error.message
+        );
+    }
+}
+
+
+/* =========================
+   LOAD MEDIA ON START
+========================= */
+  document.getElementById("media-type").addEventListener("change", function () {
+
+    const videoContainer =
+        document.getElementById("video-file-container");
+
+    const audioContainer =
+        document.getElementById("audio-file-container");
+
+    const videoFile =
+        document.getElementById("video-file");
+
+    const audioFile =
+        document.getElementById("audio-file");
+
+
+    // Clear previously selected files
+
+    videoFile.value = "";
+    audioFile.value = "";
+
+
+    // AUDIO
+
+    if (this.value === "audio") {
+
+        videoContainer.style.display = "none";
+        audioContainer.style.display = "block";
+
+    }
+
+
+    // VIDEO
+
+    else {
+
+        audioContainer.style.display = "none";
+        videoContainer.style.display = "block";
+
+    }
+
+});
+checkMediaManagerLogin().then((loggedIn) => {
+
+    if (loggedIn) {
+        loadMedia();
+    }
+
+});
+  async function logoutMediaManager() {
+
+    const button =
+        document.getElementById(
+            "media-manager-logout-button"
+        );
+
+    button.disabled = true;
+
+    button.textContent =
+        "Logging out...";
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/.netlify/functions/media-manager-logout",
+                {
+                    method: "POST",
+                    credentials: "include"
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok || !result.success) {
+
+            throw new Error(
+                result.message ||
+                "Logout failed."
+            );
+
+        }
+
+
+        window.location.href =
+            "Media Manager Login.html";
+
+
+    } catch (error) {
+
+        console.error(
+            "Media Manager logout error:",
+            error
+        );
+
+
+        button.disabled = false;
+
+        button.textContent =
+            "🚪 Logout";
+
+
+        alert(
+            "Logout failed. Please try again."
+        );
+
+    }
+
+}
+    
+</script>
+
+        
+</body>
+
+</html>

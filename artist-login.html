@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Artist Login | T-KEL Distribution</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <main class="auth-page">
+
+        <div class="auth-card">
+
+            <a href="index.html" class="auth-logo">
+                <img
+                    src="T-KEL logo.png"
+                    alt="T-KEL Logo"
+                >
+            </a>
+
+            <p class="eyebrow">
+                T-KEL DISTRIBUTION
+            </p>
+
+            <h1>
+                Artist Login
+            </h1>
+
+            <p class="auth-subtitle">
+                Sign in to manage your music,
+                releases and distribution.
+            </p>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary auth-button"
+                >
+                    Login
+                </button>
+
+            </form>
+
+
+                        <p class="auth-link">
+                <a href="reset-password.html">
+                    Forgot password?
+                </a>
+            </p>
+
+            <p class="auth-link">
+                Don't have an artist account?
+
+                <a href="https://t-kel.com/distribution.html#distribution-application">
+                    Create Account
+                </a>
+            </p>
+
+
+            <p class="auth-slogan">
+                Stay Real, Stay kelz.
+            </p>
+
+        </div>
+
+    </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+    const SUPABASE_URL = "https://tvefankphzactrtciuwp.supabase.co";
+
+    const SUPABASE_KEY = "sb_publishable_yRe3y1xhJO_OFEVqpxopxg_1mR7gmqf";
+
+    const supabaseClient = supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+</script>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+
+    loginForm.addEventListener("submit", async function (event) {
+
+        event.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+
+        if (!email || !password) {
+            alert("Please enter your email and password.");
+            return;
+        }
+
+        const { data, error } =
+            await supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+
+        if (error) {
+            alert("Login failed: " + error.message);
+            return;
+        }
+
+        alert("Login successful!");
+
+        window.location.href = "artist-dashboard.html";
+    });
+</script>
+
+</body>
+
+</html>

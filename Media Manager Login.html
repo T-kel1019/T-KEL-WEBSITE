@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>T-KEL | Media Manager Login</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            color: #111111;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 430px;
+
+            background: #ffffff;
+
+            border: 1px solid #dddddd;
+            border-radius: 15px;
+
+            padding: 30px 25px;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+            text-align: center;
+        }
+
+        .logo {
+            width: 150px;
+            max-width: 70%;
+            height: auto;
+
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            margin: 5px 0 8px;
+
+            color: #0066ff;
+
+            font-size: 28px;
+        }
+
+        .subtitle {
+            margin: 0 0 25px;
+
+            color: #555555;
+
+            font-size: 15px;
+        }
+
+        .form-group {
+            text-align: left;
+
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-weight: bold;
+
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #cccccc;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #0066ff;
+        }
+
+        button {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #0066ff;
+
+            color: #ffffff;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0047b8;
+        }
+
+        button:disabled {
+            opacity: 0.7;
+
+            cursor: not-allowed;
+        }
+
+        #login-message {
+            margin-top: 18px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            line-height: 1.5;
+        }
+
+        .back-link {
+            display: inline-block;
+
+            margin-top: 20px;
+
+            color: #0066ff;
+
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="login-container">
+
+        <img
+            src="T-KEL logo.png"
+            alt="T-KEL Logo"
+            class="logo"
+        >
+
+        <h1>Media Manager</h1>
+
+        <p class="subtitle">
+            Sign in to your Media Manager Dashboard
+        </p>
+
+
+        <form id="media-manager-login-form">
+
+            <div class="form-group">
+
+                <label for="media-manager-id">
+                    Media Manager ID
+                </label>
+
+                <input
+                    type="text"
+                    id="media-manager-id"
+                    name="mediaManagerId"
+                    placeholder="Enter your Media Manager ID"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="media-manager-password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="media-manager-password"
+                    name="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                id="login-button"
+            >
+                Login to Media Manager
+            </button>
+
+        </form>
+
+
+        <div id="login-message"></div>
+
+
+        <a
+            href="Media Manager.html"
+            class="back-link"
+        >
+            ← Apply for Media Manager
+        </a>
+
+    </div>
+
+
+    <script>
+
+        const loginForm =
+            document.getElementById(
+                "media-manager-login-form"
+            );
+
+        const loginButton =
+            document.getElementById(
+                "login-button"
+            );
+
+        const loginMessage =
+            document.getElementById(
+                "login-message"
+            );
+
+
+        loginForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                const mediaManagerId =
+                    document.getElementById(
+                        "media-manager-id"
+                    ).value.trim();
+
+                const password =
+                    document.getElementById(
+                        "media-manager-password"
+                    ).value;
+
+
+                if (!mediaManagerId || !password) {
+
+                    loginMessage.textContent =
+                        "Please enter your Media Manager ID and password.";
+
+                    return;
+                }
+
+
+                loginButton.disabled = true;
+
+                loginMessage.textContent =
+                    "Signing in...";
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "/.netlify/functions/media-manager-login",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                credentials: "include",
+
+                                body: JSON.stringify({
+                                    mediaManagerId:
+                                        mediaManagerId,
+
+                                    password:
+                                        password
+                                })
+                            }
+                        );
+
+
+                    const result =
+                        await response.json();
+
+
+                    if (!response.ok || !result.success) {
+
+                        loginMessage.textContent =
+                            result.message ||
+                            "Media Manager login failed.";
+
+                        loginButton.disabled = false;
+
+                        return;
+                    }
+
+
+                    loginMessage.textContent =
+                        "Login successful. Opening Media Manager Dashboard...";
+
+
+                    window.location.href =
+                        "Media Manager Dashboard.html";
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Media Manager login error:",
+                        error
+                    );
+
+                    loginMessage.textContent =
+                        "Unable to connect to the login service.";
+
+                    loginButton.disabled = false;
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

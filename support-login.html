@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>T-KEL Support Management Login</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="icon"
+        type="image/png"
+        href="T-KEL logo.png">
+
+
+    <style>
+/* =========================
+   FULL SCREEN RESET
+========================= */
+
+html {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    margin: 0;
+    padding: 25px 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7faff 0%,
+            #ffffff 50%,
+            #eef5ff 100%
+        );
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: #111;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   LOGIN CARD
+========================= */
+
+.support-login {
+    width: min(92vw, 650px);
+
+    padding: 50px 45px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    border: 1px solid #e3eaf5;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.10);
+
+    text-align: center;
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.support-login img {
+    width: 110px;
+    height: 110px;
+
+    object-fit: contain;
+
+    display: block;
+
+    margin: 0 auto 22px;
+}
+
+
+/* =========================
+   HEADINGS
+========================= */
+
+.support-login h1 {
+    margin: 0;
+
+    font-size: 32px;
+    font-weight: 800;
+
+    color: #0066ff;
+}
+
+.support-login h2 {
+    margin: 8px 0 10px;
+
+    font-size: 23px;
+    font-weight: 700;
+
+    color: #111;
+}
+
+.support-login p {
+    margin: 0 0 30px;
+
+    color: #666;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+#support-login-form {
+    width: 100%;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #222;
+}
+
+.support-login input {
+    width: 100%;
+
+    padding: 15px;
+
+    border: 1px solid #cfd7e3;
+
+    border-radius: 10px;
+
+    background: #fff;
+
+    color: #111;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+    box-sizing: border-box;
+}
+
+.support-login input:focus {
+    border-color: #0066ff;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 102, 255, 0.10);
+}
+
+.support-login input::placeholder {
+    color: #999;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.support-login button {
+    width: 100%;
+
+    padding: 16px 18px;
+
+    margin-top: 5px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #0066ff;
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+.support-login button:hover {
+    background: #0047b8;
+
+    box-shadow:
+        0 7px 18px rgba(0, 71, 184, 0.25);
+}
+
+.support-login button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+#login-message {
+    min-height: 24px;
+
+    margin-top: 18px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   PHONE
+========================= */
+
+@media (max-width: 600px) {
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    body {
+        padding: 20px;
+    }
+
+    .support-login {
+        width: 100%;
+        max-width: none;
+
+        padding: 32px 22px;
+
+        border-radius: 16px;
+    }
+
+    .support-login img {
+        width: 90px;
+        height: 90px;
+
+        margin-bottom: 18px;
+    }
+
+    .support-login h1 {
+        font-size: 27px;
+    }
+
+    .support-login h2 {
+        font-size: 19px;
+    }
+
+    .support-login p {
+        font-size: 14px;
+
+        margin-bottom: 24px;
+    }
+
+    .support-login input {
+        padding: 14px;
+
+        font-size: 16px;
+    }
+
+    .support-login button {
+        padding: 15px;
+
+        font-size: 16px;
+    }
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (min-width: 601px) and (max-width: 1000px) {
+
+    .support-login {
+        width: 80vw;
+        max-width: 650px;
+
+        padding: 45px 40px;
+    }
+}
+
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media (min-width: 1001px) {
+
+    .support-login {
+        width: 60vw;
+        max-width: 700px;
+
+        padding: 55px;
+    }
+
+    .support-login img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .support-login h1 {
+        font-size: 34px;
+    }
+
+    .support-login h2 {
+        font-size: 24px;
+    }
+}
+
+      /* =========================
+   MOBILE KEYBOARD FIX
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        display: block;
+
+        min-height: 100vh;
+        min-height: 100dvh;
+
+        padding: 30px 15px 60px;
+
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .support-login {
+        width: 100%;
+        max-width: 500px;
+
+        margin: 30px auto;
+
+        padding: 32px 22px;
+    }
+
+    input,
+    button {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .support-login input {
+        font-size: 16px;
+    }
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+    <div class="support-login">
+
+
+        <img
+            src="T-KEL logo.png"
+            alt="T-KEL"
+        >
+
+
+        <h1>
+            T-KEL Support
+        </h1>
+
+
+        <h2>
+            Management Login
+        </h2>
+
+
+        <p>
+            Terriken Entertainment Limited
+        </p>
+
+
+        <form id="support-login-form">
+
+
+            <div class="form-group">
+
+                <label for="management-email">
+                    Management Email
+                </label>
+
+                <input
+                    type="email"
+                    id="management-email"
+                    placeholder="Enter your management email"
+                    autocomplete="email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="management-password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="management-password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+
+            <button type="submit">
+                🔐 Sign In
+            </button>
+
+
+        </form>
+
+
+        <div
+            id="login-message"
+            aria-live="polite"
+        ></div>
+
+
+    </div>
+
+
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <script>
+
+        const SUPABASE_URL =
+            "https://tvefankphzactrtciuwp.supabase.co";
+
+
+        const SUPABASE_PUBLISHABLE_KEY =
+            "sb_publishable_yRe3y1xhJO_OFEVqpxopxg_1mR7gmqf";
+
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_PUBLISHABLE_KEY
+            );
+
+
+        document
+            .getElementById("support-login-form")
+            .addEventListener(
+                "submit",
+                async function(event) {
+
+                    event.preventDefault();
+
+
+                    const email =
+                        document
+                            .getElementById(
+                                "management-email"
+                            )
+                            .value
+                            .trim();
+
+
+                    const password =
+                        document
+                            .getElementById(
+                                "management-password"
+                            )
+                            .value;
+
+
+                    const message =
+                        document.getElementById(
+                            "login-message"
+                        );
+
+
+                    message.textContent =
+                        "⏳ Signing in...";
+
+
+                    try {
+
+                        const {
+                            data,
+                            error
+                        } =
+                            await supabaseClient.auth.signInWithPassword({
+
+                                email:
+                                    email,
+
+                                password:
+                                    password
+
+                            });
+
+
+                        if (error) {
+
+                            throw error;
+
+                        }
+
+
+                        message.textContent =
+                            "✅ T-KEL Management login successful.";
+
+
+                        window.location.href =
+                            "support-management.html";
+
+
+                    } catch (error) {
+
+                        console.error(error);
+
+
+                        message.textContent =
+                            "❌ Login failed: " +
+                            error.message;
+
+                    }
+
+                });
+
+    </script>
+<script>
+document.querySelectorAll("input").forEach(function(input) {
+
+    input.addEventListener("focus", function() {
+
+        setTimeout(function() {
+
+            input.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }, 300);
+
+    });
+
+});
+</script>
+
+</body>
+
+</html>

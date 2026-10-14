@@ -1,0 +1,2292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>T-KEL Support Management</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="T-KEL logo.png"
+    >
+
+    <style>
+
+        /* =====================================================
+           T-KEL SUPPORT MANAGEMENT
+           PROFESSIONAL DASHBOARD STYLE
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            margin: 0;
+            width: 100%;
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4f8ff 0%,
+                    #ffffff 50%,
+                    #eef5ff 100%
+                );
+
+            color: #111827;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =====================================================
+           MAIN CONTAINER
+        ===================================================== */
+
+        .support-management {
+    width: 100%;
+    min-height: 100vh;
+
+    margin: 0;
+
+    padding:
+        24px 28px
+        40px;
+}
+
+
+        /* =====================================================
+           TOP HEADER
+        ===================================================== */
+
+        .management-header {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            background: #ffffff;
+
+            padding: 22px 25px;
+
+            border-radius: 18px;
+
+            border:
+                1px solid #e2e8f0;
+
+            box-shadow:
+                0 8px 30px
+                rgba(0, 71, 184, 0.08);
+
+            margin-bottom: 25px;
+        }
+
+
+        .management-brand {
+            display: flex;
+
+            align-items: center;
+
+            gap: 16px;
+
+            min-width: 0;
+        }
+
+
+        .management-logo {
+            width: 72px;
+            height: 72px;
+
+            object-fit: contain;
+
+            flex-shrink: 0;
+        }
+
+
+        .management-title {
+            min-width: 0;
+        }
+
+
+        .management-title h1 {
+            margin: 0;
+
+            color: #0066ff;
+
+            font-size: 28px;
+
+            font-weight: 800;
+
+            line-height: 1.2;
+        }
+
+
+        .management-title p {
+            margin:
+                7px 0 0;
+
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+
+        .management-badge {
+            display: inline-block;
+
+            margin-top: 8px;
+
+            padding:
+                5px 10px;
+
+            border-radius: 20px;
+
+            background: #eaf3ff;
+
+            color: #0066ff;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           LOGOUT BUTTON
+        ===================================================== */
+
+        .logout-button {
+            border: none;
+
+            background: #111827;
+
+            color: #ffffff;
+
+            padding:
+                11px 18px;
+
+            border-radius: 25px;
+
+            cursor: pointer;
+
+            font-weight: 700;
+
+            font-size: 14px;
+
+            transition:
+                background 0.2s ease,
+                transform 0.15s ease;
+        }
+
+
+        .logout-button:hover {
+            background: #0066ff;
+        }
+
+
+        .logout-button:active {
+            transform: scale(0.97);
+        }
+
+
+        /* =====================================================
+           DASHBOARD INTRO
+        ===================================================== */
+
+        .dashboard-intro {
+            background:
+                linear-gradient(
+                    135deg,
+                    #0066ff,
+                    #0047b8
+                );
+
+            color: #ffffff;
+
+            padding: 25px 28px;
+
+            border-radius: 18px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 102, 255, 0.18);
+        }
+
+
+        .dashboard-intro h2 {
+            margin: 0 0 8px;
+
+            font-size: 22px;
+        }
+
+
+        .dashboard-intro p {
+            margin: 0;
+
+            max-width: 900px;
+
+            line-height: 1.6;
+
+            font-size: 15px;
+
+            color: #eaf3ff;
+        }
+
+
+        /* =====================================================
+           SUPPORT LAYOUT
+        ===================================================== */
+
+        .support-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(300px, 24%)
+        minmax(0, 1fr);
+
+    gap: 22px;
+
+    align-items: stretch;
+
+    min-height: 680px;
+}
+
+
+        /* =====================================================
+           CONVERSATIONS
+        ===================================================== */
+
+        .conversations {
+            background: #ffffff;
+
+            border-radius: 18px;
+
+            padding: 18px;
+
+            border:
+                1px solid #e2e8f0;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.06);
+
+            min-height: 680px;
+          
+        }
+
+
+        .conversation-heading {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            padding-bottom: 15px;
+
+            border-bottom:
+                1px solid #edf0f4;
+
+            margin-bottom: 12px;
+        }
+
+
+        .conversation-heading h2 {
+            margin: 0;
+
+            font-size: 18px;
+
+            color: #111827;
+        }
+
+
+        .conversation-count {
+            min-width: 28px;
+
+            height: 28px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #eaf3ff;
+
+            color: #0066ff;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        .conversation-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+        }
+
+
+        .conversation-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            padding: 12px;
+
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            border:
+                1px solid transparent;
+
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+
+        .conversation-item:hover {
+            background: #f3f7ff;
+
+            border-color: #dbeafe;
+        }
+
+
+        .visitor-photo {
+            width: 46px;
+            height: 46px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            background: #eaf3ff;
+
+            border:
+                2px solid #e2e8f0;
+
+            flex-shrink: 0;
+        }
+
+
+        .visitor-info {
+            flex: 1;
+
+            min-width: 0;
+        }
+
+
+        .visitor-info strong {
+            display: block;
+
+            color: #111827;
+
+            font-size: 14px;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+        }
+
+
+        .visitor-info small {
+            display: block;
+
+            margin-top: 4px;
+
+            color: #64748b;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           CHAT PANEL
+        ===================================================== */
+
+        .chat-panel {
+            background: #ffffff;
+
+            border-radius: 18px;
+
+            min-height: 650px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            overflow: hidden;
+
+            border:
+                1px solid #e2e8f0;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.06);
+        }
+
+
+        /* =====================================================
+           CHAT HEADER
+        ===================================================== */
+
+        .chat-header {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 17px 20px;
+
+            min-height: 82px;
+
+            border-bottom:
+                1px solid #e5e7eb;
+
+            background: #ffffff;
+        }
+
+
+        .chat-header img {
+            width: 50px;
+            height: 50px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            border:
+                2px solid #dbeafe;
+        }
+
+
+        .chat-header strong {
+            display: block;
+
+            color: #111827;
+
+            font-size: 17px;
+        }
+
+
+        .chat-header small {
+            display: block;
+
+            color: #64748b;
+
+            margin-top: 4px;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           CHAT MESSAGES
+        ===================================================== */
+
+        .chat-messages {
+            flex: 1;
+
+            padding: 25px;
+
+            overflow-y: auto;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #f9fbff,
+                    #ffffff
+                );
+        }
+
+
+        .message {
+            margin-bottom: 16px;
+        }
+
+
+        .message span {
+            display: inline-block;
+
+            padding:
+                11px 15px;
+
+            border-radius: 14px;
+
+            max-width: 75%;
+
+            line-height: 1.5;
+
+            font-size: 14px;
+
+            box-shadow:
+                0 2px 6px
+                rgba(0, 0, 0, 0.04);
+
+            white-space: pre-wrap;
+
+            word-break: break-word;
+        }
+
+
+        .visitor-message {
+            text-align: left;
+        }
+
+
+        .visitor-message span {
+            background: #edf1f5;
+
+            color: #1f2937;
+
+            border-bottom-left-radius: 4px;
+        }
+
+
+        .staff-message {
+            text-align: right;
+        }
+
+
+        .staff-message span {
+            background: #0066ff;
+
+            color: #ffffff;
+
+            border-bottom-right-radius: 4px;
+        }
+
+
+        .message-name {
+            display: block;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            margin-bottom: 5px;
+        }
+
+
+        .visitor-message .message-name {
+            color: #64748b;
+        }
+
+
+        .staff-message .message-name {
+            color: #dbeafe;
+        }
+
+
+        /* =====================================================
+           EMPTY CHAT
+        ===================================================== */
+
+        .empty-chat {
+            margin: auto;
+
+            text-align: center;
+
+            color: #64748b;
+
+            padding: 35px 20px;
+        }
+
+
+        .empty-chat h3 {
+            color: #0066ff;
+
+            margin:
+                0 0 8px;
+
+            font-size: 20px;
+        }
+
+
+        .empty-chat p {
+            margin: 0;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           REPLY AREA
+        ===================================================== */
+
+        .reply-area {
+            display: flex;
+
+            gap: 9px;
+
+            padding: 14px;
+
+            border-top:
+                1px solid #e5e7eb;
+
+            background: #ffffff;
+        }
+
+
+        .reply-area input {
+            flex: 1;
+
+            min-width: 0;
+
+            padding:
+                13px 16px;
+
+            border:
+                1px solid #cbd5e1;
+
+            border-radius: 25px;
+
+            background: #ffffff;
+
+            color: #111827;
+
+            font-size: 15px;
+
+            outline: none;
+        }
+
+
+        .reply-area input:focus {
+            border-color: #0066ff;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(0, 102, 255, 0.10);
+        }
+
+
+        .send-button {
+            border: none;
+
+            border-radius: 25px;
+
+            padding:
+                0 22px;
+
+            background: #0066ff;
+
+            color: #ffffff;
+
+            cursor: pointer;
+
+            font-weight: 800;
+        }
+
+
+        .send-button:hover {
+            background: #0047b8;
+        }
+
+
+        .close-button {
+            border: none;
+
+            border-radius: 25px;
+
+            padding:
+                0 18px;
+
+            background: #475569;
+
+            color: #ffffff;
+
+            cursor: pointer;
+
+            font-weight: 700;
+        }
+
+
+        .close-button:hover {
+            background: #1e293b;
+        }
+
+
+        /* =====================================================
+           PROFESSIONAL FOOTER
+        ===================================================== */
+
+        .management-footer {
+            margin-top: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #061a3a,
+                    #08295a
+                );
+
+            color: #ffffff;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.12);
+        }
+
+
+        .footer-main {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 25px;
+
+            padding: 35px;
+        }
+
+
+        .footer-column h3 {
+            margin:
+                0 0 12px;
+
+            color: #ffffff;
+
+            font-size: 16px;
+        }
+
+
+        .footer-column p {
+            margin: 0;
+
+            color: #cbd5e1;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        .footer-column ul {
+            margin: 0;
+
+            padding: 0;
+
+            list-style: none;
+        }
+
+
+        .footer-column li {
+            margin-bottom: 8px;
+
+            color: #cbd5e1;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        .footer-column li::before {
+            content: "✓";
+
+            color: #60a5fa;
+
+            font-weight: bold;
+
+            margin-right: 7px;
+        }
+
+
+        .footer-divider {
+            height: 1px;
+
+            background:
+                rgba(255, 255, 255, 0.12);
+        }
+
+
+        .footer-bottom {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding:
+                18px 35px;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+        }
+
+
+        .footer-slogan {
+            color: #60a5fa;
+
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (
+            min-width: 701px
+        ) and (
+            max-width: 1000px
+        ) {
+
+            .support-management {
+                width: 100%;
+            }
+
+            .support-layout {
+                grid-template-columns:
+                    280px
+                    minmax(0, 1fr);
+            }
+
+            .footer-main {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+    .support-management {
+        width: 100%;
+        min-height: 100vh;
+        padding: 14px 12px 25px;
+    }
+
+    .support-layout {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .chat-panel {
+        min-height: calc(100vh - 300px);
+        height: auto;
+    }
+}
+
+
+            .management-header {
+                align-items: flex-start;
+
+                padding: 18px;
+
+                border-radius: 15px;
+            }
+
+
+            .management-brand {
+                align-items: flex-start;
+            }
+
+
+            .management-logo {
+                width: 58px;
+                height: 58px;
+            }
+
+
+            .management-title h1 {
+                font-size: 21px;
+            }
+
+
+            .management-title p {
+                font-size: 12px;
+            }
+
+
+            .management-badge {
+                font-size: 10px;
+            }
+
+
+            .logout-button {
+                padding:
+                    9px 13px;
+
+                font-size: 12px;
+
+                flex-shrink: 0;
+            }
+
+
+            .dashboard-intro {
+                padding: 20px;
+
+                border-radius: 15px;
+            }
+
+
+            .dashboard-intro h2 {
+                font-size: 19px;
+            }
+
+
+            .dashboard-intro p {
+                font-size: 13px;
+            }
+
+
+            .support-layout {
+                grid-template-columns: 1fr;
+
+                gap: 16px;
+            }
+
+
+            .conversations {
+                min-height: auto;
+
+                max-height: 280px;
+
+                overflow-y: auto;
+
+                padding: 14px;
+
+                border-radius: 15px;
+            }
+
+
+            .chat-panel {
+                min-height: 580px;
+
+                border-radius: 15px;
+            }
+
+
+            .chat-messages {
+                padding: 18px;
+            }
+
+
+            .message span {
+                max-width: 88%;
+
+                font-size: 13px;
+            }
+
+
+            .reply-area {
+                flex-wrap: wrap;
+
+                padding: 12px;
+            }
+
+
+            .reply-area input {
+                flex-basis: 100%;
+
+                width: 100%;
+
+                padding: 13px;
+            }
+
+
+            .send-button,
+            .close-button {
+                min-height: 42px;
+
+                flex: 1;
+
+                padding:
+                    0 14px;
+            }
+
+
+            .footer-main {
+                grid-template-columns: 1fr;
+
+                padding: 25px 22px;
+
+                gap: 22px;
+            }
+
+
+            .footer-bottom {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                padding:
+                    18px 22px;
+            }
+        }
+
+
+        /* =====================================================
+           SMALL PHONES
+        ===================================================== */
+
+        @media (max-width: 400px) {
+
+            .management-header {
+                flex-direction: column;
+            }
+
+
+            .management-brand {
+                width: 100%;
+            }
+
+
+            .logout-button {
+                align-self: flex-end;
+            }
+
+
+            .management-title h1 {
+                font-size: 19px;
+            }
+
+
+            .chat-panel {
+                min-height: 520px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="support-management">
+
+
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
+
+    <header class="management-header">
+
+        <div class="management-brand">
+
+            <img
+                class="management-logo"
+                src="T-KEL logo.png"
+                alt="T-KEL Logo"
+            >
+
+            <div class="management-title">
+
+                <h1>
+                    T-KEL Support Management
+                </h1>
+
+                <p>
+                    Terriken Entertainment Limited
+                </p>
+
+                <span class="management-badge">
+                    Support Management Staff
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="logout-button"
+            onclick="logoutManagement()"
+        >
+            Logout
+        </button>
+
+    </header>
+
+
+    <!-- =====================================================
+         INTRO
+    ===================================================== -->
+
+    <section class="dashboard-intro">
+
+        <h2>
+            Support Management Dashboard
+        </h2>
+
+        <p>
+            Manage visitor support conversations,
+            respond to enquiries and provide helpful
+            communication on behalf of T-KEL.
+            Handle every conversation professionally,
+            respectfully and according to T-KEL policies.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         MAIN SUPPORT AREA
+    ===================================================== -->
+
+    <main class="support-layout">
+
+
+        <!-- =================================================
+             CONVERSATIONS
+        ================================================= -->
+
+        <section class="conversations">
+
+            <div class="conversation-heading">
+
+                <h2>
+                    💬 Support Conversations
+                </h2>
+
+                <span
+                    id="conversation-count"
+                    class="conversation-count"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div
+                id="conversation-list"
+                class="conversation-list"
+            >
+
+                <p>
+                    Loading conversations...
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CHAT
+        ================================================= -->
+
+        <section class="chat-panel">
+
+
+            <div
+                id="chat-header"
+                class="chat-header"
+            >
+
+                <div class="empty-chat">
+
+                    Select a conversation
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="chat-messages"
+                class="chat-messages"
+            >
+
+                <div class="empty-chat">
+
+                    <h3>
+                        T-KEL Support
+                    </h3>
+
+                    <p>
+                        Select a visitor from the left
+                        to view their conversation.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- REPLY -->
+
+            <div
+                id="reply-area"
+                class="reply-area"
+                style="display:none;"
+            >
+
+                <input
+                    type="text"
+                    id="staff-message"
+                    placeholder="Type your reply..."
+                    autocomplete="off"
+                    onkeydown="
+                        if(event.key === 'Enter')
+                        sendStaffMessage()
+                    "
+                >
+
+
+                <button
+                    type="button"
+                    class="send-button"
+                    onclick="sendStaffMessage()"
+                >
+                    Send
+                </button>
+
+
+                <button
+                    type="button"
+                    class="close-button"
+                    onclick="closeSupportConversation()"
+                >
+                    Close
+                </button>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         PROFESSIONAL FOOTER
+    ===================================================== -->
+
+    <footer class="management-footer">
+
+
+        <div class="footer-main">
+
+
+            <!-- MY ROLE -->
+
+            <div class="footer-column">
+
+                <h3>
+                    My Role
+                </h3>
+
+                <p>
+                    As T-KEL Support Management Staff,
+                    my responsibility is to assist visitors,
+                    respond to support enquiries and help
+                    maintain professional communication
+                    between T-KEL and its audience.
+                </p>
+
+            </div>
+
+
+            <!-- MY DUTIES -->
+
+            <div class="footer-column">
+
+                <h3>
+                    My Duties
+                </h3>
+
+                <ul>
+
+                    <li>
+                        Respond to visitor enquiries
+                    </li>
+
+                    <li>
+                        Handle support conversations
+                    </li>
+
+                    <li>
+                        Provide accurate information
+                    </li>
+
+                    <li>
+                        Escalate important issues
+                    </li>
+
+                    <li>
+                        Maintain professional communication
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- SUPPORT POLICY -->
+
+            <div class="footer-column">
+
+                <h3>
+                    Support Policy
+                </h3>
+
+                <ul>
+
+                    <li>
+                        Treat every visitor respectfully
+                    </li>
+
+                    <li>
+                        Protect visitor information
+                    </li>
+
+                    <li>
+                        Do not disclose private information
+                    </li>
+
+                    <li>
+                        Do not make unauthorized promises
+                    </li>
+
+                    <li>
+                        Escalate sensitive matters to management
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- TERMS -->
+
+            <div class="footer-column">
+
+                <h3>
+                    Terms & Conduct
+                </h3>
+
+                <ul>
+
+                    <li>
+                        Use the dashboard only for T-KEL duties
+                    </li>
+
+                    <li>
+                        Keep management credentials private
+                    </li>
+
+                    <li>
+                        Communicate professionally
+                    </li>
+
+                    <li>
+                        Do not misuse support information
+                    </li>
+
+                    <li>
+                        Follow T-KEL management instructions
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-divider"></div>
+
+
+        <div class="footer-bottom">
+
+            <div>
+                © 2026 Terriken Entertainment Limited.
+                All rights reserved.
+            </div>
+
+            <div class="footer-slogan">
+                Stay Real, Stay kelz.
+            </div>
+
+            <div>
+                T-KEL Support Management System
+            </div>
+
+        </div>
+
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     SUPABASE
+========================================================= -->
+
+
+
+<script>
+
+const SUPABASE_URL =
+    "https://tvefankphzactrtciuwp.supabase.co";
+
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_yRe3y1xhJO_OFEVQpxopxg_1mR7gmqf";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
+
+let selectedConversation = null;
+
+let supportRealtimeChannel = null;
+
+
+/* =====================================================
+   MANAGEMENT SECURITY
+===================================================== */
+
+async function checkManagementLogin() {
+
+    const {
+        data: {
+            session
+        }
+    } = await supabaseClient.auth.getSession();
+
+
+    if (!session) {
+
+        window.location.href =
+            "support-login.html";
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+async function logoutManagement() {
+
+    await supabaseClient.auth.signOut();
+
+    window.location.href =
+        "support-login.html";
+
+}
+
+
+/* =====================================================
+   START DASHBOARD
+===================================================== */
+
+checkManagementLogin().then(function(loggedIn) {
+
+    if (loggedIn) {
+
+        loadConversations();
+
+    }
+
+});
+
+
+/* =====================================================
+   LOAD CONVERSATIONS
+===================================================== */
+
+async function loadConversations() {
+
+    const list =
+        document.getElementById(
+            "conversation-list"
+        );
+
+
+    const count =
+        document.getElementById(
+            "conversation-count"
+        );
+
+
+    try {
+
+        const {
+            data,
+            error
+        } = await supabaseClient
+
+            .from("support_conversations")
+
+            .select(`
+                id,
+                visitor_name,
+                visitor_email,
+                visitor_photo,
+                status,
+                created_at,
+                updated_at
+            `)
+
+            .order(
+                "updated_at",
+                {
+                    ascending: false
+                }
+            );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        list.innerHTML = "";
+
+
+        count.textContent =
+            data
+                ? data.length
+                : 0;
+
+
+        if (!data || data.length === 0) {
+
+            list.innerHTML =
+                "<p>No support conversations yet.</p>";
+
+            return;
+
+        }
+
+
+        data.forEach(function(conversation) {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "conversation-item";
+
+
+            const photo =
+                conversation.visitor_photo ||
+                "T-KEL logo.png";
+
+
+            item.innerHTML = `
+
+                <img
+                    class="visitor-photo"
+                    src="${escapeHtml(photo)}"
+                    alt=""
+                >
+
+                <div class="visitor-info">
+
+                    <strong>
+                        ${escapeHtml(
+                            conversation.visitor_name
+                        )}
+                    </strong>
+
+                    <small>
+                        ${escapeHtml(
+                            conversation.status ||
+                            "active"
+                        )}
+                    </small>
+
+                </div>
+
+            `;
+
+
+            item.onclick =
+                function() {
+
+                    openConversation(
+                        conversation
+                    );
+
+                };
+
+
+            list.appendChild(item);
+
+        });
+
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        list.innerHTML =
+            "<p>Unable to load conversations.</p>";
+
+    }
+
+}
+
+
+/* =====================================================
+   OPEN CONVERSATION
+===================================================== */
+
+async function openConversation(
+    conversation
+) {
+
+    selectedConversation =
+        conversation;
+
+
+    const photo =
+        conversation.visitor_photo ||
+        "T-KEL logo.png";
+
+
+    document.getElementById(
+        "chat-header"
+    ).innerHTML = `
+
+        <img
+            src="${escapeHtml(photo)}"
+            alt=""
+        >
+
+        <div>
+
+            <strong>
+                ${escapeHtml(
+                    conversation.visitor_name
+                )}
+            </strong>
+
+            <small>
+                ${escapeHtml(
+                    conversation.visitor_email
+                )}
+            </small>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "reply-area"
+    ).style.display =
+        "flex";
+
+
+    await loadMessages(
+        conversation.id
+    );
+
+
+    startRealtimeMessages(
+        conversation.id
+    );
+
+}
+
+
+/* =====================================================
+   LOAD MESSAGES
+===================================================== */
+
+async function loadMessages(
+    conversationId
+) {
+
+    const messagesBox =
+        document.getElementById(
+            "chat-messages"
+        );
+
+
+    messagesBox.innerHTML =
+        "<p>Loading messages...</p>";
+
+
+    try {
+
+        const {
+            data,
+            error
+        } = await supabaseClient
+
+            .from("support_messages")
+
+            .select(`
+                id,
+                message,
+                sender_type,
+                sender_name,
+                sender_email,
+                created_at
+            `)
+
+            .eq(
+                "conversation_id",
+                conversationId
+            )
+
+            .order(
+                "created_at",
+                {
+                    ascending: true
+                }
+            );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        messagesBox.innerHTML = "";
+
+
+        if (!data || data.length === 0) {
+
+            messagesBox.innerHTML =
+                "<div class='empty-chat'>No messages yet.</div>";
+
+            return;
+
+        }
+
+
+        data.forEach(function(msg) {
+
+            displayMessage(
+                msg
+            );
+
+        });
+
+
+        messagesBox.scrollTop =
+            messagesBox.scrollHeight;
+
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        messagesBox.innerHTML =
+            "<div class='empty-chat'>Unable to load messages.</div>";
+
+    }
+
+}
+
+
+/* =====================================================
+   DISPLAY MESSAGE
+===================================================== */
+
+function displayMessage(message) {
+
+    const messagesBox =
+        document.getElementById(
+            "chat-messages"
+        );
+
+
+    const existing =
+        document.querySelector(
+            '[data-message-id="' +
+            message.id +
+            '"]'
+        );
+
+
+    if (existing) {
+
+        return;
+
+    }
+
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.setAttribute(
+        "data-message-id",
+        message.id
+    );
+
+
+    if (
+        message.sender_type ===
+        "visitor"
+    ) {
+
+        div.className =
+            "message visitor-message";
+
+    } else {
+
+        div.className =
+            "message staff-message";
+
+    }
+
+
+    div.innerHTML = `
+
+        <span>
+
+            <small class="message-name">
+
+                ${escapeHtml(
+                    message.sender_name ||
+                    message.sender_type
+                )}
+
+            </small>
+
+            ${escapeHtml(
+                message.message
+            )}
+
+        </span>
+
+    `;
+
+
+    messagesBox.appendChild(
+        div
+    );
+
+}
+
+
+/* =====================================================
+   REAL-TIME MESSAGES
+===================================================== */
+
+function startRealtimeMessages(
+    conversationId
+) {
+
+    if (supportRealtimeChannel) {
+
+        supabaseClient.removeChannel(
+            supportRealtimeChannel
+        );
+
+        supportRealtimeChannel =
+            null;
+
+    }
+
+
+    supportRealtimeChannel =
+        supabaseClient
+
+            .channel(
+                "tkel-support-" +
+                conversationId
+            )
+
+            .on(
+                "postgres_changes",
+                {
+                    event: "INSERT",
+                    schema: "public",
+                    table: "support_messages",
+                    filter:
+                        "conversation_id=eq." +
+                        conversationId
+                },
+                function(payload) {
+
+                    displayRealtimeMessage(
+                        payload.new
+                    );
+
+                }
+            )
+
+            .subscribe();
+
+}
+
+
+/* =====================================================
+   DISPLAY REAL-TIME MESSAGE
+===================================================== */
+
+function displayRealtimeMessage(
+    message
+) {
+
+    const messagesBox =
+        document.getElementById(
+            "chat-messages"
+        );
+
+
+    const existing =
+        document.querySelector(
+            '[data-message-id="' +
+            message.id +
+            '"]'
+        );
+
+
+    if (existing) {
+
+        return;
+
+    }
+
+
+    displayMessage(
+        message
+    );
+
+
+    messagesBox.scrollTop =
+        messagesBox.scrollHeight;
+
+}
+
+
+/* =====================================================
+   SEND STAFF MESSAGE
+===================================================== */
+
+async function sendStaffMessage() {
+
+    if (!selectedConversation) {
+
+        return;
+
+    }
+
+
+    const input =
+        document.getElementById(
+            "staff-message"
+        );
+
+
+    const message =
+        input.value.trim();
+
+
+    if (!message) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const {
+            data,
+            error
+        } = await supabaseClient
+
+            .from("support_messages")
+
+            .insert({
+
+                visitor_name:
+                    selectedConversation.visitor_name,
+
+                visitor_email:
+                    selectedConversation.visitor_email,
+
+                message:
+                    message,
+
+                sender_type:
+                    "staff",
+
+                status:
+                    "open",
+
+                sender_name:
+                    "T-KEL Support",
+
+                sender_email:
+                    "support@t-kel.com",
+
+                conversation_id:
+                    selectedConversation.id
+
+            })
+
+            .select()
+            .single();
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        input.value = "";
+
+
+        await supabaseClient
+
+            .from("support_conversations")
+
+            .update({
+
+                status:
+                    "active",
+
+                updated_at:
+                    new Date().toISOString()
+
+            })
+
+            .eq(
+                "id",
+                selectedConversation.id
+            );
+
+
+        await loadMessages(
+            selectedConversation.id
+        );
+
+
+        await loadConversations();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        alert(
+            "Unable to send the message."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CLOSE SUPPORT CONVERSATION
+===================================================== */
+
+async function closeSupportConversation() {
+
+    if (!selectedConversation) {
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } = await supabaseClient
+
+        .from("support_conversations")
+
+        .update({
+
+            status:
+                "closed",
+
+            updated_at:
+                new Date().toISOString()
+
+        })
+
+        .eq(
+            "id",
+            selectedConversation.id
+        );
+
+
+    if (error) {
+
+        console.error(error);
+
+
+        alert(
+            "Unable to close the conversation."
+        );
+
+        return;
+
+    }
+
+
+    selectedConversation.status =
+        "closed";
+
+
+    await loadConversations();
+
+
+    document.getElementById(
+        "reply-area"
+    ).style.display =
+        "none";
+
+
+    alert(
+        "Conversation closed."
+    );
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(text) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        text || "";
+
+
+    return div.innerHTML;
+
+}
+
+
+/* =====================================================
+   MOBILE KEYBOARD SUPPORT
+===================================================== */
+
+document.addEventListener(
+    "focusin",
+    function(event) {
+
+        if (
+            event.target.tagName ===
+            "INPUT"
+        ) {
+
+            setTimeout(
+                function() {
+
+                    event.target.scrollIntoView({
+                        behavior:
+                            "smooth",
+
+                        block:
+                            "center"
+                    });
+
+                },
+                300
+            );
+
+        }
+
+    }
+);
+
+</scrip>
+
+
+</body>
+
+</html>

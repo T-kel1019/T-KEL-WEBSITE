@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>T-KEL Management Login</title>
+
+    <meta name="description"
+          content="Secure T-KEL Management login.">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            min-height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #0066ff;
+            color: #222;
+        }
+
+        /* =========================
+           MAIN PAGE
+        ========================= */
+
+        .management-page {
+            min-height: 100vh;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: 50px;
+
+            padding: 50px 6vw;
+
+            align-items: center;
+        }
+
+
+        /* =========================
+           LEFT SIDE
+        ========================= */
+
+        .brand-section {
+            color: #ffffff;
+
+            min-height: 70vh;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+
+            padding: 30px;
+        }
+
+        .logo-area {
+            margin-bottom: 35px;
+        }
+
+        .logo-area img {
+            width: 280px;
+            max-width: 75%;
+
+            height: auto;
+
+            display: block;
+        }
+
+        .brand-section h2 {
+            font-size: clamp(38px, 5vw, 70px);
+
+            line-height: 1.05;
+
+            margin: 0 0 20px;
+
+            font-weight: 800;
+        }
+
+        .brand-section h2 span {
+            display: block;
+        }
+
+        .brand-description {
+            max-width: 650px;
+
+            font-size: 20px;
+
+            line-height: 1.7;
+
+            margin: 0 0 30px;
+
+            color: rgba(255,255,255,0.95);
+        }
+
+        .portal-info {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(120px, 1fr));
+
+            gap: 15px;
+
+            max-width: 700px;
+        }
+
+        .portal-box {
+            background: rgba(255,255,255,0.12);
+
+            border: 1px solid rgba(255,255,255,0.25);
+
+            padding: 18px;
+
+            border-radius: 10px;
+
+            backdrop-filter: blur(5px);
+        }
+
+        .portal-box strong {
+            display: block;
+
+            font-size: 15px;
+
+            margin-bottom: 7px;
+        }
+
+        .portal-box span {
+            font-size: 13px;
+
+            color: rgba(255,255,255,0.85);
+        }
+
+
+        /* =========================
+           RIGHT SIDE
+        ========================= */
+
+        .login-section {
+            width: 100%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+        }
+
+        .login-card {
+            background: #ffffff;
+
+            width: 100%;
+
+            max-width: 650px;
+
+            padding: 50px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        .login-card h1 {
+            margin: 0 0 12px;
+
+            color: #061a3a;
+
+            font-size: 38px;
+        }
+
+        .subtitle {
+            color: #666;
+
+            font-size: 17px;
+
+            line-height: 1.6;
+
+            margin: 0 0 35px;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        label {
+            display: block;
+
+            font-weight: bold;
+
+            margin-bottom: 9px;
+
+            color: #061a3a;
+
+            font-size: 15px;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 17px;
+
+            margin-bottom: 23px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 8px;
+
+            font-size: 17px;
+
+            background: #ffffff;
+        }
+
+        input:focus {
+            outline: none;
+
+            border-color: #0066ff;
+
+            box-shadow:
+                0 0 0 3px rgba(0,102,255,0.12);
+        }
+
+        button {
+            width: 100%;
+
+            padding: 17px;
+
+            background: #0066ff;
+
+            color: #ffffff;
+
+            border: none;
+
+            border-radius: 8px;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #0047b8;
+        }
+
+        button:disabled {
+            opacity: 0.7;
+
+            cursor: not-allowed;
+        }
+
+
+        /* =========================
+           DIVIDER
+        ========================= */
+
+        .divider {
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin: 28px 0 18px;
+
+            color: #999;
+
+            font-size: 14px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+
+            flex: 1;
+
+            height: 1px;
+
+            background: #ddd;
+        }
+
+
+        /* =========================
+           FOUNDER ACCESS
+        ========================= */
+
+        .founder-access {
+            display: block;
+
+            width: 100%;
+
+            padding: 17px;
+
+            background: #061a3a;
+
+            color: #ffffff;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+        .founder-access:hover {
+            background: #000f25;
+        }
+
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        .message {
+            margin-top: 20px;
+
+            padding: 14px;
+
+            border-radius: 8px;
+
+            display: none;
+
+            line-height: 1.5;
+        }
+
+        .error {
+            background: #ffe8e8;
+
+            color: #a00000;
+        }
+
+        .success {
+            background: #e8f7e8;
+
+            color: #146b14;
+        }
+
+
+        /* =========================
+           BOTTOM LINKS
+        ========================= */
+
+        .login-footer {
+            margin-top: 25px;
+
+            text-align: center;
+        }
+
+        .back-link {
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 15px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .security-note {
+            color: #ffffff;
+
+            opacity: 0.85;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            margin-top: 10px;
+        }
+
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .management-page {
+                grid-template-columns: 1fr;
+
+                padding: 40px 25px;
+
+                gap: 25px;
+            }
+
+            .brand-section {
+                min-height: auto;
+
+                padding: 20px;
+
+                text-align: center;
+
+                align-items: center;
+            }
+
+            .logo-area img {
+                margin: 0 auto;
+
+                width: 230px;
+            }
+
+            .brand-description {
+                max-width: 700px;
+            }
+
+            .login-card {
+                max-width: 700px;
+            }
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .management-page {
+                padding: 25px 15px;
+
+                gap: 20px;
+            }
+
+            .brand-section {
+                padding: 15px;
+            }
+
+            .logo-area img {
+                width: 180px;
+            }
+
+            .brand-section h2 {
+                font-size: 38px;
+            }
+
+            .brand-description {
+                font-size: 16px;
+            }
+
+            .portal-info {
+                grid-template-columns: 1fr;
+                width: 100%;
+            }
+
+            .login-card {
+                padding: 30px 22px;
+
+                border-radius: 14px;
+            }
+
+            .login-card h1 {
+                font-size: 28px;
+            }
+
+            .subtitle {
+                font-size: 15px;
+            }
+
+            input,
+            button,
+            .founder-access {
+                padding: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<div class="management-page">
+
+
+    <!-- =========================
+         LEFT BRAND SECTION
+    ========================== -->
+
+    <section class="brand-section">
+
+        <div class="logo-area">
+
+            <img
+                src="T-KEL logo.png"
+                alt="T-KEL Logo">
+
+        </div>
+
+
+        <h2>
+
+            <span>Management</span>
+
+            <span>Portal</span>
+
+        </h2>
+
+
+        <p class="brand-description">
+
+            Welcome to the secure T-KEL Management
+            Portal. Authorized Management members
+            can access their departments, responsibilities,
+            reports and management tools from here.
+
+        </p>
+
+
+        <div class="portal-info">
+
+            <div class="portal-box">
+
+                <strong>
+                    Secure Access
+                </strong>
+
+                <span>
+                    Authorized T-KEL members only.
+                </span>
+
+            </div>
+
+
+            <div class="portal-box">
+
+                <strong>
+                    Management
+                </strong>
+
+                <span>
+                    Access your assigned department.
+                </span>
+
+            </div>
+
+
+            <div class="portal-box">
+
+                <strong>
+                    T-KEL
+                </strong>
+
+                <span>
+                    Stay Real, Stay kelz.
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         LOGIN SECTION
+    ========================== -->
+
+    <section class="login-section">
+
+        <div class="login-card">
+
+            <h1>
+                Management Login
+            </h1>
+
+
+            <p class="subtitle">
+
+                Authorized T-KEL Management
+                members only.
+
+            </p>
+
+
+            <form id="loginForm">
+
+
+                <label for="managementId">
+
+                    Management ID
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="managementId"
+                    name="managementId"
+                    placeholder="Enter your Management ID"
+                    autocomplete="username"
+                    required>
+
+
+
+                <label for="password">
+
+                    Password
+
+                </label>
+
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required>
+
+
+
+                <button
+                    type="submit"
+                    id="loginButton">
+
+                    Login
+
+                </button>
+
+
+
+                <div class="divider">
+
+                    or
+
+                </div>
+
+
+
+                <a
+                    href="founder-access.html"
+                    class="founder-access">
+
+                    Founder Access
+
+                </a>
+
+
+            </form>
+
+
+
+            <div
+                id="message"
+                class="message">
+
+            </div>
+
+
+            <div class="login-footer">
+
+                <a
+                    href="index.html"
+                    class="back-link">
+
+                    ← Back to T-KEL
+
+                </a>
+
+
+                <div class="security-note">
+
+                    T-KEL Management Portal •
+                    Authorized access only.
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+
+<script>
+
+const loginForm =
+    document.getElementById("loginForm");
+
+const loginButton =
+    document.getElementById("loginButton");
+
+const message =
+    document.getElementById("message");
+
+
+function showMessage(text, type) {
+
+    message.textContent = text;
+
+    message.className =
+        "message " + type;
+
+    message.style.display = "block";
+}
+
+
+loginForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+        message.style.display = "none";
+
+        const managementId =
+            document
+                .getElementById("managementId")
+                .value
+                .trim();
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        if (!managementId || !password) {
+
+            showMessage(
+                "Please enter your Management ID and password.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        loginButton.disabled = true;
+
+        loginButton.textContent =
+            "Logging in...";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/.netlify/functions/management-login",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        credentials: "include",
+
+                        body: JSON.stringify({
+                            managementId,
+                            password
+                        })
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (!response.ok || !result.success) {
+
+                showMessage(
+                    result.message ||
+                    "Login failed.",
+                    "error"
+                );
+
+                loginButton.disabled = false;
+
+                loginButton.textContent =
+                    "Login";
+
+                return;
+            }
+
+
+            showMessage(
+                "Login successful. Opening your Management dashboard...",
+                "success"
+            );
+
+
+            setTimeout(function() {
+
+                window.location.href =
+                    "management-dashboard.html";
+
+            }, 800);
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "Unable to connect to the Management system. Please try again.",
+                "error"
+            );
+
+            loginButton.disabled = false;
+
+            loginButton.textContent =
+                "Login";
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>

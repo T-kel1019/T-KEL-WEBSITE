@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Royalties | T-KEL Distribution</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="dashboard-header">
+
+        <div class="dashboard-brand">
+
+            <a href="artist-dashboard.html">
+                <img src="T-KEL logo.png" alt="T-KEL Logo">
+            </a>
+
+            <div>
+                <strong>T-KEL Distribution</strong>
+                <span>Artist Portal</span>
+            </div>
+
+        </div>
+
+        <a href="artist-dashboard.html" class="dashboard-back">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <main class="dashboard-page">
+
+        <section class="dashboard-hero">
+
+            <p class="eyebrow">T-KEL DISTRIBUTION</p>
+
+            <h1>Royalties</h1>
+
+            <p>
+                View your music earnings and royalty reports
+                generated from your distribution activity.
+            </p>
+
+        </section>
+
+
+        <!-- ROYALTY SUMMARY -->
+
+        <section class="royalty-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Royalty Overview</h2>
+
+                    <p>
+                        Your confirmed royalty earnings will appear here.
+                    </p>
+                </div>
+
+                <select id="royaltyPeriod">
+
+                    <option value="all">
+                        All Time
+                    </option>
+
+                    <option value="year">
+                        This Year
+                    </option>
+
+                    <option value="quarter">
+                        This Quarter
+                    </option>
+
+                    <option value="month">
+                        This Month
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="analytics-grid">
+
+                <div class="analytics-card">
+
+                    <span>Total Royalties</span>
+
+                    <strong id="totalRoyalties">
+                        ₦0.00
+                    </strong>
+
+                    <small>
+                        Confirmed earnings
+                    </small>
+
+                </div>
+
+
+                <div class="analytics-card">
+
+                    <span>Pending Royalties</span>
+
+                    <strong id="pendingRoyalties">
+                        ₦0.00
+                    </strong>
+
+                    <small>
+                        Awaiting confirmation
+                    </small>
+
+                </div>
+
+
+                <div class="analytics-card">
+
+                    <span>Paid Out</span>
+
+                    <strong id="paidRoyalties">
+                        ₦0.00
+                    </strong>
+
+                    <small>
+                        Already paid
+                    </small>
+
+                </div>
+
+
+                <div class="analytics-card">
+
+                    <span>Available Balance</span>
+
+                    <strong id="availableBalance">
+                        ₦0.00
+                    </strong>
+
+                    <small>
+                        Available for payout
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ROYALTY BREAKDOWN -->
+
+        <section class="royalty-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Royalty Breakdown</h2>
+
+                    <p>
+                        Earnings from your music distribution reports.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="royalty-table-container">
+
+                <table class="royalty-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Period</th>
+
+                            <th>Release</th>
+
+                            <th>Platform</th>
+
+                            <th>Territory</th>
+
+                            <th>Streams</th>
+
+                            <th>Royalty</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="royaltyTableBody">
+
+                        <tr>
+
+                            <td colspan="6">
+
+                                <div class="table-empty">
+
+                                    <div class="empty-icon">
+                                        💰
+                                    </div>
+
+                                    <strong>
+                                        No Royalty Reports Yet
+                                    </strong>
+
+                                    <p>
+                                        Your royalty statements will appear
+                                        here when reporting data is received.
+                                    </p>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- PLATFORM EARNINGS -->
+
+        <section class="royalty-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Earnings by Platform</h2>
+
+                    <p>
+                        See how much each platform contributes to your earnings.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="platform-grid">
+
+                <div class="platform-card">
+
+                    <strong>Spotify</strong>
+
+                    <span>
+                        ₦0.00
+                    </span>
+
+                </div>
+
+
+                <div class="platform-card">
+
+                    <strong>Apple Music</strong>
+
+                    <span>
+                        ₦0.00
+                    </span>
+
+                </div>
+
+
+                <div class="platform-card">
+
+                    <strong>YouTube Music</strong>
+
+                    <span>
+                        ₦0.00
+                    </span>
+
+                </div>
+
+
+                <div class="platform-card">
+
+                    <strong>Amazon Music</strong>
+
+                    <span>
+                        ₦0.00
+                    </span>
+
+                </div>
+
+
+                <div class="platform-card">
+
+                    <strong>Deezer</strong>
+
+                    <span>
+                        ₦0.00
+                    </span>
+
+                </div>
+
+
+                <div class="platform-card">
+
+                    <strong>TIDAL</strong>
+
+                    <span>
+                        ₦0.00
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- IMPORTANT INFORMATION -->
+
+        <section class="info-card">
+
+            <strong>Important</strong>
+
+            <p>
+                Royalty figures shown in this section will be based on
+                actual reports received and processed by T-KEL Distribution.
+                Pending amounts may change after reporting periods are
+                finalized and verified.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer class="dashboard-footer">
+
+        <p>T-KEL Distribution</p>
+
+        <p>Stay Real, Stay kelz.</p>
+
+        <p>© 2026 Terriken Entertainment Limited</p>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+
+        const SUPABASE_URL =
+            "https://tvefankphzactrtciuwp.supabase.co";
+
+        const SUPABASE_KEY =
+            "sb_publishable_yRe3y1xhJO_OFEVQpxopxg_1mR7gmqf";
+
+        const supabaseClient =
+            supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+
+
+        async function checkArtistSession() {
+
+            const {
+                data: { session }
+            } =
+                await supabaseClient.auth.getSession();
+
+
+            if (!session) {
+
+                window.location.href =
+                    "artist-login.html";
+
+                return;
+
+            }
+
+        }
+
+
+        checkArtistSession();
+
+
+        document
+            .getElementById("royaltyPeriod")
+            .addEventListener(
+                "change",
+                function () {
+
+                    /*
+                     * Royalty filtering will be connected
+                     * to the T-KEL royalty reporting system later.
+                     */
+
+                }
+            );
+
+    </script>
+
+</body>
+
+</html>

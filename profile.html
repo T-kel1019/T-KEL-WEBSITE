@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Artist Profile | T-KEL Distribution</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="dashboard-header">
+
+        <div class="dashboard-brand">
+
+            <a href="artist-dashboard.html">
+                <img src="T-KEL logo.png" alt="T-KEL Logo">
+            </a>
+
+            <div>
+                <strong>T-KEL Distribution</strong>
+                <span>Artist Portal</span>
+            </div>
+
+        </div>
+
+        <a href="artist-dashboard.html" class="dashboard-back">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <main class="dashboard-page">
+
+        <section class="dashboard-hero">
+
+            <p class="eyebrow">T-KEL DISTRIBUTION</p>
+
+            <h1>Artist Profile</h1>
+
+            <p>
+                Manage your artist information and public profile.
+            </p>
+
+        </section>
+
+
+        <section class="profile-section">
+
+            <form id="profileForm">
+
+
+                <!-- PROFILE PHOTO -->
+
+                <div class="form-section">
+
+                    <h2>Profile Photo</h2>
+
+                    <div class="profile-photo-area">
+
+                        <div
+                            id="profilePreview"
+                            class="profile-photo-preview"
+                        >
+                            👤
+                        </div>
+
+                        <div class="profile-photo-controls">
+
+                            <label for="profilePhoto">
+                                Choose Profile Photo
+                            </label>
+
+                            <input
+                                type="file"
+                                id="profilePhoto"
+                                accept="image/jpeg,image/png,image/webp"
+                            >
+
+                            <small>
+                                JPG, PNG or WEBP.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ARTIST INFORMATION -->
+
+                <div class="form-section">
+
+                    <h2>Artist Information</h2>
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label for="artistName">
+                                Artist / Stage Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="artistName"
+                                placeholder="Your artist name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="fullName">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="fullName"
+                                placeholder="Your full name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="Your email"
+                                readonly
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="phone">
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="Your phone number"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="country">
+                                Country
+                            </label>
+
+                            <input
+                                type="text"
+                                id="country"
+                                value="Nigeria"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="location">
+                                State / City
+                            </label>
+
+                            <input
+                                type="text"
+                                id="location"
+                                placeholder="e.g. Rivers, Port Harcourt"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="genre">
+                                Primary Music Genre
+                            </label>
+
+                            <select id="genre">
+
+                                <option value="">
+                                    Select genre
+                                </option>
+
+                                <option>
+                                    Afrobeats
+                                </option>
+
+                                <option>
+                                    Amapiano
+                                </option>
+
+                                <option>
+                                    Afropop
+                                </option>
+
+                                <option>
+                                    Hip Hop
+                                </option>
+
+                                <option>
+                                    R&B
+                                </option>
+
+                                <option>
+                                    Pop
+                                </option>
+
+                                <option>
+                                    Gospel
+                                </option>
+
+                                <option>
+                                    Highlife
+                                </option>
+
+                                <option>
+                                    Reggae
+                                </option>
+
+                                <option>
+                                    Dancehall
+                                </option>
+
+                                <option>
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="website">
+                                Website
+                            </label>
+
+                            <input
+                                type="url"
+                                id="website"
+                                placeholder="https://..."
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BIO -->
+
+                <div class="form-section">
+
+                    <h2>Artist Bio</h2>
+
+                    <div class="form-group">
+
+                        <label for="bio">
+                            About You
+                        </label>
+
+                        <textarea
+                            id="bio"
+                            rows="6"
+                            placeholder="Tell listeners about yourself, your music and your journey..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SOCIAL MEDIA -->
+
+                <div class="form-section">
+
+                    <h2>Social Media</h2>
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label for="instagram">
+                                Instagram
+                            </label>
+
+                            <input
+                                type="text"
+                                id="instagram"
+                                placeholder="@username"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="tiktok">
+                                TikTok
+                            </label>
+
+                            <input
+                                type="text"
+                                id="tiktok"
+                                placeholder="@username"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="youtube">
+                                YouTube
+                            </label>
+
+                            <input
+                                type="text"
+                                id="youtube"
+                                placeholder="Channel URL"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="facebook">
+                                Facebook
+                            </label>
+
+                            <input
+                                type="text"
+                                id="facebook"
+                                placeholder="Profile URL"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="profileMessage"
+                    class="form-message"
+                ></div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Save Profile
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <footer class="dashboard-footer">
+
+        <p>T-KEL Distribution</p>
+
+        <p>Stay Real, Stay kelz.</p>
+
+        <p>© 2026 Terriken Entertainment Limited</p>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+
+        const SUPABASE_URL =
+            "https://tvefankphzactrtciuwp.supabase.co";
+
+        const SUPABASE_KEY =
+            "sb_publishable_yRe3y1xhJO_OFEVQpxopxg_1mR7gmqf";
+
+        const supabaseClient =
+            supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+
+
+        async function checkArtistSession() {
+
+            const {
+                data: { session }
+            } =
+                await supabaseClient.auth.getSession();
+
+
+            if (!session) {
+
+                window.location.href =
+                    "artist-login.html";
+
+                return;
+
+            }
+
+
+            document.getElementById("email").value =
+                session.user.email || "";
+
+        }
+
+
+        checkArtistSession();
+
+
+        const profilePhoto =
+            document.getElementById("profilePhoto");
+
+        const profilePreview =
+            document.getElementById("profilePreview");
+
+
+        profilePhoto.addEventListener(
+            "change",
+            function () {
+
+                const file =
+                    profilePhoto.files[0];
+
+                if (!file) return;
+
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    function (event) {
+
+                        profilePreview.innerHTML =
+                            `<img src="${event.target.result}"
+                                  alt="Profile Preview">`;
+
+                    };
+
+
+                reader.readAsDataURL(file);
+
+            }
+        );
+
+
+        document
+            .getElementById("profileForm")
+            .addEventListener(
+                "submit",
+                function (event) {
+
+                    event.preventDefault();
+
+
+                    const message =
+                        document.getElementById(
+                            "profileMessage"
+                        );
+
+
+                    message.textContent =
+                        "Profile saving will be connected to Supabase next.";
+
+                    message.className =
+                        "form-message success";
+
+                }
+            );
+
+    </script>
+
+</body>
+
+</html>

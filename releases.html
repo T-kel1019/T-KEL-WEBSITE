@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Releases | T-KEL Distribution</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="dashboard-header">
+
+        <div class="dashboard-brand">
+            <a href="artist-dashboard.html">
+                <img src="T-KEL logo.png" alt="T-KEL Logo">
+            </a>
+
+            <div>
+                <strong>T-KEL Distribution</strong>
+                <span>Artist Portal</span>
+            </div>
+        </div>
+
+        <a href="artist-dashboard.html" class="dashboard-back">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <main class="dashboard-page">
+
+        <section class="dashboard-hero">
+
+            <p class="eyebrow">T-KEL DISTRIBUTION</p>
+
+            <h1>My Releases</h1>
+
+            <p>
+                Manage your music releases, track their status,
+                and monitor your distribution journey.
+            </p>
+
+        </section>
+
+
+        <section class="release-summary">
+
+            <div class="summary-card">
+                <span>All Releases</span>
+                <strong id="allReleases">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Drafts</span>
+                <strong id="draftReleases">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Under Review</span>
+                <strong id="reviewReleases">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Live</span>
+                <strong id="liveReleases">0</strong>
+            </div>
+
+        </section>
+
+
+        <section class="release-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Your Releases</h2>
+
+                    <p>
+                        Your submitted and saved releases will appear here.
+                    </p>
+                </div>
+
+                <a href="create-release.html" class="btn btn-primary">
+                    + Create Release
+                </a>
+
+            </div>
+
+
+            <div id="releaseList" class="release-list">
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">🎵</div>
+
+                    <h3>No Releases Yet</h3>
+
+                    <p>
+                        You have not created any music releases yet.
+                        Start your first release and begin your distribution journey.
+                    </p>
+
+                    <a href="create-release.html" class="btn btn-primary">
+                        Create Your First Release
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="dashboard-footer">
+
+        <p>
+            T-KEL Distribution
+        </p>
+
+        <p>
+            Stay Real, Stay kelz.
+        </p>
+
+        <p>
+            © 2026 Terriken Entertainment Limited
+        </p>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+const SUPABASE_URL =
+    "https://tvefankphzactrtciuwp.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_yRe3y1xhJO_OFEVQpxopxg_1mR7gmqf";
+
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+let currentSession = null;
+let currentArtist = null;
+
+
+/* =========================
+   LOAD ARTIST + RELEASES
+========================= */
+
+async function loadReleases() {
+
+    const {
+        data: { session },
+        error: sessionError
+    } = await supabaseClient.auth.getSession();
+
+
+    if (sessionError || !session) {
+
+        window.location.href =
+            "artist-login.html";
+
+        return;
+
+    }
+
+
+    currentSession = session;
+
+
+    /* Find the artist connected to this account */
+
+    const {
+        data: artist,
+        error: artistError
+    } = await supabaseClient
+        .from("artists")
+        .select("id, artist_name, legal_name")
+        .eq("user_id", session.user.id)
+        .maybeSingle();
+
+
+    if (artistError) {
+
+        console.error(
+            "Artist lookup error:",
+            artistError
+        );
+
+        showError(
+            "Unable to load your artist account."
+        );
+
+        return;
+
+    }
+
+
+    if (!artist) {
+
+        showError(
+            "No artist profile is connected to this account yet."
+        );
+
+        return;
+
+    }
+
+
+    currentArtist = artist;
+
+
+    /* Load releases belonging only to this artist */
+
+    const {
+        data: releases,
+        error: releasesError
+    } = await supabaseClient
+        .from("releases")
+        .select(`
+            id,
+            title,
+            release_type,
+            primary_artist,
+            genre,
+            language,
+            original_release_date,
+            distribution_date,
+            artwork_url,
+            explicit,
+            status,
+            rejection_reason,
+            created_at,
+            updated_at
+        `)
+        .eq("artist_id", artist.id)
+        .order("created_at", {
+            ascending: false
+        });
+
+
+    if (releasesError) {
+
+        console.error(
+            "Release loading error:",
+            releasesError
+        );
+
+        showError(
+            "Unable to load your releases."
+        );
+
+        return;
+
+    }
+
+
+    updateSummary(releases || []);
+
+    displayReleases(releases || []);
+
+}
+
+
+/* =========================
+   SUMMARY COUNTERS
+========================= */
+
+function updateSummary(releases) {
+
+    document.getElementById(
+        "allReleases"
+    ).textContent =
+        releases.length;
+
+
+    const drafts =
+        releases.filter(
+            release =>
+                String(release.status)
+                    .toUpperCase() === "DRAFT"
+        ).length;
+
+
+    const reviews =
+        releases.filter(
+            release =>
+                [
+                    "SUBMITTED",
+                    "UNDER REVIEW"
+                ].includes(
+                    String(release.status)
+                        .toUpperCase()
+                )
+        ).length;
+
+
+    const live =
+        releases.filter(
+            release =>
+                String(release.status)
+                    .toUpperCase() === "LIVE"
+        ).length;
+
+
+    document.getElementById(
+        "draftReleases"
+    ).textContent =
+        drafts;
+
+
+    document.getElementById(
+        "reviewReleases"
+    ).textContent =
+        reviews;
+
+
+    document.getElementById(
+        "liveReleases"
+    ).textContent =
+        live;
+
+}
+
+
+/* =========================
+   DISPLAY RELEASES
+========================= */
+
+function displayReleases(releases) {
+
+    const releaseList =
+        document.getElementById(
+            "releaseList"
+        );
+
+
+    if (!releases.length) {
+
+        releaseList.innerHTML = `
+
+            <div class="empty-state">
+
+                <div class="empty-icon">🎵</div>
+
+                <h3>No Releases Yet</h3>
+
+                <p>
+                    You have not created any music releases yet.
+                    Start your first release and begin your
+                    distribution journey.
+                </p>
+
+                <a
+                    href="create-release.html"
+                    class="btn btn-primary"
+                >
+                    Create Your First Release
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    releaseList.innerHTML = "";
+
+
+    releases.forEach(
+        function (release) {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+            card.className =
+                "release-card";
+
+
+            const status =
+                String(
+                    release.status || "DRAFT"
+                ).toUpperCase();
+
+
+            const artwork =
+                release.artwork_url
+                    ? `
+                        <img
+                            src="${escapeHtml(
+                                release.artwork_url
+                            )}"
+                            alt="${escapeHtml(
+                                release.title
+                            )}"
+                        >
+                      `
+                    : `
+                        <div class="release-artwork-placeholder">
+                            🎵
+                        </div>
+                      `;
+
+
+            const releaseDate =
+                release.original_release_date
+                    ? formatDate(
+                        release.original_release_date
+                    )
+                    : "Not set";
+
+
+            card.innerHTML = `
+
+                <div class="release-card-artwork">
+
+                    ${artwork}
+
+                </div>
+
+
+                <div class="release-card-content">
+
+                    <p class="eyebrow">
+                        ${escapeHtml(
+                            release.release_type ||
+                            "Release"
+                        )}
+                    </p>
+
+
+                    <h3>
+                        ${escapeHtml(
+                            release.title ||
+                            "Untitled Release"
+                        )}
+                    </h3>
+
+
+                    <p>
+                        ${escapeHtml(
+                            release.primary_artist ||
+                            currentArtist.artist_name ||
+                            "Artist"
+                        )}
+                    </p>
+
+
+                    <div class="release-meta">
+
+                        <span>
+                            ${escapeHtml(
+                                release.genre ||
+                                "Genre not set"
+                            )}
+                        </span>
+
+                        <span>
+                            ${releaseDate}
+                        </span>
+
+                    </div>
+
+
+                    <div class="release-status">
+                        ${formatStatus(status)}
+                    </div>
+
+
+                    ${
+                        release.rejection_reason
+                            ? `
+                                <p class="release-rejection">
+                                    ${escapeHtml(
+                                        release.rejection_reason
+                                    )}
+                                </p>
+                              `
+                            : ""
+                    }
+
+                </div>
+
+            `;
+
+
+            releaseList.appendChild(card);
+
+        }
+    );
+
+}
+
+
+/* =========================
+   STATUS DISPLAY
+========================= */
+
+function formatStatus(status) {
+
+    const labels = {
+
+        "DRAFT":
+            "Draft",
+
+        "SUBMITTED":
+            "Submitted",
+
+        "UNDER REVIEW":
+            "Under Review",
+
+        "CHANGES REQUESTED":
+            "Changes Requested",
+
+        "APPROVED":
+            "Approved",
+
+        "DELIVERY":
+            "In Delivery",
+
+        "LIVE":
+            "Live",
+
+        "REJECTED":
+            "Rejected"
+
+    };
+
+
+    return escapeHtml(
+        labels[status] || status
+    );
+
+}
+
+
+/* =========================
+   DATE FORMAT
+========================= */
+
+function formatDate(date) {
+
+    try {
+
+        return new Date(
+            date + "T00:00:00"
+        ).toLocaleDateString(
+            undefined,
+            {
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+            }
+        );
+
+    } catch {
+
+        return date;
+
+    }
+
+}
+
+
+/* =========================
+   BASIC HTML SAFETY
+========================= */
+
+function escapeHtml(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+/* =========================
+   ERROR DISPLAY
+========================= */
+
+function showError(message) {
+
+    const releaseList =
+        document.getElementById(
+            "releaseList"
+        );
+
+
+    releaseList.innerHTML = `
+
+        <div class="empty-state">
+
+            <div class="empty-icon">⚠️</div>
+
+            <h3>Unable to Load Releases</h3>
+
+            <p>
+                ${escapeHtml(message)}
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadReleases();
+
+</script>
+
+</body>
+
+</html>
